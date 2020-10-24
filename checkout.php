@@ -1,9 +1,16 @@
+<?php
+    $a = 0;
+    if(isset($_POST["checkout"])){
+        $a = 1;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="sweetalert2.all.min.js"></script>
     <style>
         *{
             padding: 0;
@@ -16,6 +23,9 @@
         @font-face {
             font-family: "teen";
             src: url('teen.ttf');
+        }
+        .swal2-popup {
+            font-family: "teen";
         }
         .header{
             width: 100%;
@@ -135,8 +145,17 @@
             <hr>
         </div>
         <div class="last2" id="harga">Total Harga: Rp. 50.000.000</div>
-        <button class="last2" id="tombol" style="font-family: 'teen';">Buat Pesanan</button>
+        <form method="POST">
+            <?php //buat cookie untuk menampung barang yang dibeli?>
+            <button class="last2" id="tombol" name="checkout" formaction="pencarian.php" style="font-family: 'teen';">Buat Pesanan</button>
+        </form>
     </div>
     <div style="height: 24px;"></div>
 </body>
+<script>
+    var aa = <?php echo json_encode($a)?>;
+    if(aa==1){
+        Swal.fire('CheckOut','Yuk lanjutkan ke pembayaran!','success');
+    }
+</script>
 </html>

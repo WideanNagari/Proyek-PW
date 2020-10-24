@@ -1,9 +1,14 @@
+<?php
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="jquery-3.5.1.min.js"></script>
+    
     <style>
         *{
             padding: 0;
@@ -109,7 +114,11 @@
     <div class="checkout">
         <div class="barang"></div>
         <div class="last2" id="jumlah">Jumlah Item: 10</div>
-        <button class="last2" id="tombol" style="font-family: 'teen';">Checkout</button>
+        
+        <form method="POST">
+            <?php //buat cookie untuk menampung barang yang dibeli?>
+            <button class="last2" id="tombol" name="checkout" formaction="checkout.php" style="font-family: 'teen';">Checkout</button>
+        </form>
     </div>
     <div style="height: 24px;"></div>
 </body>

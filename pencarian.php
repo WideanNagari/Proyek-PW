@@ -1,3 +1,8 @@
+<?php
+    if(isset($_POST["checkout"])){
+        echo "<script>alert('Berhasil Beli!')</script>";
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
