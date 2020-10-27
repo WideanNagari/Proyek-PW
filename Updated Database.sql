@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2020 at 04:12 AM
+-- Generation Time: Oct 27, 2020 at 04:31 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -46,6 +46,7 @@ CREATE TABLE `barang` (
 CREATE TABLE `customer` (
   `id_customer` varchar(10) NOT NULL,
   `nama_customer` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `email` varchar(30) NOT NULL,
   `alamat` varchar(50) NOT NULL,
   `id_provinsi` varchar(10) NOT NULL,
