@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2020 at 10:50 AM
+-- Generation Time: Oct 27, 2020 at 01:25 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -32,11 +32,64 @@ USE `outfitlabs`;
 CREATE TABLE `barang` (
   `id_barang` varchar(10) NOT NULL,
   `id_jenis` varchar(10) NOT NULL,
-  `nama_barang` varchar(30) NOT NULL,
+  `nama_barang` varchar(50) NOT NULL,
   `harga` varchar(30) NOT NULL,
   `stok` varchar(20) NOT NULL,
   `deskripsi` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `barang`
+--
+
+INSERT INTO `barang` (`id_barang`, `id_jenis`, `nama_barang`, `harga`, `stok`, `deskripsi`) VALUES
+('BA001', 'JB001', 'Adidas Athletics Graphic Tee', '330000', '3', ''),
+('BA002', 'JB001', 'ASSC X Undefeated 2015 Tee', '2400000', '3', ''),
+('BA003', 'JB001', 'Long-sleeved Top Long', '179000', '3', ''),
+('BA004', 'JB001', 'RickAndMorty T-Shirt', '249000', '3', ''),
+('BA005', 'JB001', 'RipnDip Hiker Nerm Tee', '680000', '3', ''),
+('BA006', 'JB001', 'Thrasher Flame T-shirt', '699000', '3', ''),
+('BA007', 'JB001', 'V-neck T-shirt Regular', '149000', '3', ''),
+('BA008', 'JB002', 'Fred Perry High Neck Dress', '1899000', '4', ''),
+('BA009', 'JB002', 'Glittery Shirt', '899000', '4', ''),
+('BA010', 'JB002', 'Imitation Leather Shirt Jacket', '599000', '4', ''),
+('BA011', 'JB002', 'Jersey Top', '70000', '4', ''),
+('BA012', 'JB002', 'Large-collared Blouse leopard', '349000', '4', ''),
+('BA013', 'JB002', 'Short Polo-neck Top', '149000', '4', ''),
+('BA014', 'JB002', 'Tie-detail Dress', '349000', '4', ''),
+('BA015', 'JB003', 'Black Embroidered Unisex Jogger Pants', '240000', '3', ''),
+('BA016', 'JB003', 'Dark Blue Straight Pants', '5960000', '3', ''),
+('BA017', 'JB003', 'Dark Green Mens Chino', '1199000', '3', ''),
+('BA018', 'JB003', 'Lead Pants Speed', '1199000', '3', ''),
+('BA019', 'JB003', 'Men\'s Shredded Slit Wool Pants', '1156000', '3', ''),
+('BA020', 'JB003', 'Stripes \'Davi\' Pleated Pants', '750000', '3', ''),
+('BA021', 'JB003', 'Washed Denim Elastic Pants', '3318000', '3', ''),
+('BA022', 'JB004', 'Beige Mina Quarter Check Pants', '6850000', '2', ''),
+('BA023', 'JB004', 'Black Faux Leather Patch Jogger Pants', '6190000', '2', ''),
+('BA024', 'JB004', 'Blue Stripes Denim Pants', '5580000', '2', ''),
+('BA025', 'JB004', 'Brown Check Elba Pants', '5980000', '2', ''),
+('BA026', 'JB004', 'Bubblegum Nini Pants', '2250000', '2', ''),
+('BA027', 'JB004', 'Grey Long Wide-Leg Paperbag Pants', '11980000', '2', ''),
+('BA028', 'JB004', 'Orange Ginger Hemal Wide Leg Trousser', '2190000', '2', ''),
+('BA029', 'JB005', 'Checked Print Fringed Blazer', '1799000', '5', ''),
+('BA030', 'JB005', 'Cross Button Blazer', '1399000', '5', ''),
+('BA032', 'JB005', 'Faux Shearling-Lined Corduroy Jacket', '1399000', '5', ''),
+('BA033', 'JB005', 'Faux Shearling-Lined Jacket', '1799000', '5', ''),
+('BA034', 'JB005', 'Tweed Blazer', '1799000', '5', ''),
+('BA035', 'JB005', 'Wool College Bomber Jacket', '1599000', '5', ''),
+('BA036', 'JB006', 'Chain Crossbody Bag', '479000', '4', ''),
+('BA037', 'JB006', 'External Pocket Tote Briefcase', '1199000', '4', ''),
+('BA038', 'JB006', 'Nylon Baguette Bag', '479000', '4', ''),
+('BA039', 'JB006', 'Technical Fabric Backpack', '999000', '4', ''),
+('BA040', 'JB006', 'Technical Fabric Cross-Body Bag', '479000', '4', ''),
+('BA041', 'JB006', 'Tortoiseshell Baguette Bag', '359000', '4', ''),
+('BA042', 'JB007', 'Black White Campo Sneakers', '2650000', '6', ''),
+('BA043', 'JB007', 'Fuchsia Hoya Heels Shoes', '6923000', '6', ''),
+('BA044', 'JB007', 'Gold Oversized Pearl Heeled Slip On', '2116000', '6', ''),
+('BA045', 'JB007', 'Men\'s Blue White Canvas Sneakers', '3750000', '6', ''),
+('BA046', 'JB007', 'Men\'s Orange Repeat Low Triplet Plain Light', '1990000', '6', ''),
+('BA047', 'JB007', 'Multicolor Raffia Printed Canvas Shoes', '4790000', '6', ''),
+('BA048', 'JB007', 'White Green Dreamy Leather Sabot', '6790000', '6', '');
 
 -- --------------------------------------------------------
 
@@ -53,6 +106,13 @@ CREATE TABLE `customer` (
   `id_provinsi` varchar(10) NOT NULL,
   `saldo` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`id_customer`, `nama_customer`, `password`, `email`, `alamat`, `id_provinsi`, `saldo`) VALUES
+('CU004', 'user1', '$2y$10$sKFPvKjsgGPqQNy5v0mau.8wU5Axl137PTAQdoF/iQ6avVELVB.Mu', 'user1@gmail.com', 'entah', 'ID027', '0');
 
 -- --------------------------------------------------------
 
@@ -109,11 +169,13 @@ CREATE TABLE `jenis barang` (
 --
 
 INSERT INTO `jenis barang` (`id_jenis`, `nama_jenis`) VALUES
-('JK001', 'Man\'s clothes'),
-('JK002', 'Woman\'s clothes'),
-('JK003', 'Jacket'),
-('JK004', 'Bag'),
-('JK005', 'Shoes');
+('JB001', 'Man\'s clothes'),
+('JB002', 'Woman\'s clothes'),
+('JB003', 'Man\'s trousers'),
+('JB004', 'Woman\'s trousers'),
+('JB005', 'Jacket'),
+('JB006', 'Bag'),
+('JB007', 'Shoes');
 
 -- --------------------------------------------------------
 
