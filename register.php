@@ -1,5 +1,6 @@
 <?php
-
+    require_once("connection.php");
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +51,7 @@
             line-height: 1.2;
             font-size: 18px;
             background: lightgrey;
-            height: 60px;
+            height: 55px;
             width: 20%;
         }
 
@@ -61,7 +62,7 @@
             line-height: 1.2;
             font-size: 18px;
             background: lightgrey;
-            height: 60px;
+            height: 55px;
             width: 20%;
         }
 
@@ -72,7 +73,7 @@
             line-height: 1.2;
             font-size: 18px;
             background: lightgrey;
-            height: 60px;
+            height: 55px;
             width: 20%;
         }
 
@@ -83,7 +84,7 @@
             line-height: 1.2;
             font-size: 18px;
             background: rgb(50, 50, 50);
-            height: 60px;
+            height: 55px;
             width: 20%;
         }
         
@@ -95,7 +96,7 @@
             font-size: 18px;
             background: white;
             border: 2px solid black;
-            height: 60px;
+            height: 55px;
             width: 20%;
         }
 
@@ -109,10 +110,24 @@
         <form method="post">
             <h1>Daftar Akun Baru</h1><br>
             <input type="text" name="username" placeholder="  username"><br><br>
-            <input type="email" name="email" placeholder="  email"><br><br>
             <input type="password" name="password" placeholder="  password"><br><br>
             <input type="password" name="confirmpassword" placeholder="  confirm password"><br><br>
-            <input type="button" value="Daftar"><br><br>
+            <input type="email" name="email" placeholder="  email"><br><br>
+            <input type="text" name="alamat" placeholder="  alamat"><br><br>
+            Provinsi:<br>
+            <select name="provinsi" style="width: 20%;height: 40px; margin-top: 10px; font-size: 18px;font-family: 'teen';">
+            <?php
+                $result = mysqli_query($conn, "select * from provinsi");
+                while($row = mysqli_fetch_array($result)){
+                    $nama = $row["nama_provinsi"];
+                    $value = $row["id_provinsi"];
+            ?>
+            <option value=<?= $value ?>><?= $nama ?></option>
+            <?php
+                }
+            ?>
+            </select><br><br>
+            <input type="button" value="Daftar">
         </form>
     </div>
 </body>
