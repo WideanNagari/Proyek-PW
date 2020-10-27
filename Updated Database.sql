@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2020 at 04:31 AM
+-- Generation Time: Oct 27, 2020 at 10:50 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -31,6 +31,7 @@ USE `outfitlabs`;
 
 CREATE TABLE `barang` (
   `id_barang` varchar(10) NOT NULL,
+  `id_jenis` varchar(10) NOT NULL,
   `nama_barang` varchar(30) NOT NULL,
   `harga` varchar(30) NOT NULL,
   `stok` varchar(20) NOT NULL,
@@ -76,8 +77,21 @@ CREATE TABLE `event` (
 CREATE TABLE `harga_pengiriman` (
   `id_harga` varchar(10) NOT NULL,
   `harga_kirim` varchar(30) NOT NULL,
-  `id_provinsi` varchar(10) NOT NULL
+  `waktu_pengiriman` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `harga_pengiriman`
+--
+
+INSERT INTO `harga_pengiriman` (`id_harga`, `harga_kirim`, `waktu_pengiriman`) VALUES
+('HP001', '45000', '5'),
+('HP002', '23000', '4'),
+('HP003', '60000', '10'),
+('HP004', '50000', '5'),
+('HP005', '56000', '7'),
+('HP006', '130000', '10'),
+('HP007', '140000', '10');
 
 -- --------------------------------------------------------
 
@@ -89,6 +103,17 @@ CREATE TABLE `jenis barang` (
   `id_jenis` varchar(10) NOT NULL,
   `nama_jenis` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `jenis barang`
+--
+
+INSERT INTO `jenis barang` (`id_jenis`, `nama_jenis`) VALUES
+('JK001', 'Man\'s clothes'),
+('JK002', 'Woman\'s clothes'),
+('JK003', 'Jacket'),
+('JK004', 'Bag'),
+('JK005', 'Shoes');
 
 -- --------------------------------------------------------
 
@@ -102,6 +127,19 @@ CREATE TABLE `kurir` (
   `tambahan_harga` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `kurir`
+--
+
+INSERT INTO `kurir` (`id_kurir`, `nama_kurir`, `tambahan_harga`) VALUES
+('KU001', 'JNE', 3000),
+('KU002', 'J&T', 5000),
+('KU003', 'TIKI', 7000),
+('KU004', 'POS', 9000),
+('KU005', 'WAHANA', 10000),
+('KU006', 'NINJA EXPRESS', 5000),
+('KU007', 'SiCepat', 6000);
+
 -- --------------------------------------------------------
 
 --
@@ -110,48 +148,49 @@ CREATE TABLE `kurir` (
 
 CREATE TABLE `provinsi` (
   `id_provinsi` varchar(10) NOT NULL,
-  `nama_provinsi` varchar(30) NOT NULL
+  `nama_provinsi` varchar(30) NOT NULL,
+  `id_harga` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `provinsi`
 --
 
-INSERT INTO `provinsi` (`id_provinsi`, `nama_provinsi`) VALUES
-('ID001', 'Aceh'),
-('ID002', 'Sumatra Utara'),
-('ID003', 'Sumatra Barat'),
-('ID004', 'Riau'),
-('ID005', 'Kepulauan Riau'),
-('ID006', 'Jambi'),
-('ID007', 'Bengkulu'),
-('ID008', 'Sumatra Selatan'),
-('ID009', 'Kepulauan Bangka Belitung'),
-('ID010', 'Lampung'),
-('ID011', 'Banten'),
-('ID012', 'Jawa Barat'),
-('ID013', 'DKI Jakarta'),
-('ID014', 'Jawa Tengah'),
-('ID015', 'DI Yogyakarta'),
-('ID016', 'Jawa Timur'),
-('ID017', 'Bali'),
-('ID018', 'Nusa Tenggara Barat'),
-('ID019', 'Nusa Tenggara Timur'),
-('ID020', 'Kalimantan Barat'),
-('ID021', 'Kalimantan Selatan'),
-('ID022', 'Kalimantan Tengah'),
-('ID023', 'Kalimantan Timur'),
-('ID024', 'Kalimantan Utara'),
-('ID025', 'Gorontalo'),
-('ID026', 'Sulawesi Barat'),
-('ID027', 'Sulawesi Selatan'),
-('ID028', 'Sulawesi Tengah'),
-('ID029', 'Sulawesi Tenggara'),
-('ID030', 'Sulawesi Utara'),
-('ID031', 'Maluku'),
-('ID032', 'Maluku Utara'),
-('ID033', 'Papua Barat'),
-('ID034', 'Papua');
+INSERT INTO `provinsi` (`id_provinsi`, `nama_provinsi`, `id_harga`) VALUES
+('ID001', 'Aceh', 'HP001'),
+('ID002', 'Sumatra Utara', 'HP001'),
+('ID003', 'Sumatra Barat', 'HP001'),
+('ID004', 'Riau', 'HP001'),
+('ID005', 'Kepulauan Riau', 'HP001'),
+('ID006', 'Jambi', 'HP001'),
+('ID007', 'Bengkulu', 'HP001'),
+('ID008', 'Sumatra Selatan', 'HP001'),
+('ID009', 'Kepulauan Bangka Belitung', 'HP001'),
+('ID010', 'Lampung', 'HP001'),
+('ID011', 'Banten', 'HP002'),
+('ID012', 'Jawa Barat', 'HP002'),
+('ID013', 'DKI Jakarta', 'HP002'),
+('ID014', 'Jawa Tengah', 'HP002'),
+('ID015', 'DI Yogyakarta', 'HP002'),
+('ID016', 'Jawa Timur', 'HP002'),
+('ID017', 'Bali', 'HP003'),
+('ID018', 'Nusa Tenggara Barat', 'HP003'),
+('ID019', 'Nusa Tenggara Timur', 'HP003'),
+('ID020', 'Kalimantan Barat', 'HP004'),
+('ID021', 'Kalimantan Selatan', 'HP004'),
+('ID022', 'Kalimantan Tengah', 'HP004'),
+('ID023', 'Kalimantan Timur', 'HP004'),
+('ID024', 'Kalimantan Utara', 'HP004'),
+('ID025', 'Gorontalo', 'HP005'),
+('ID026', 'Sulawesi Barat', 'HP005'),
+('ID027', 'Sulawesi Selatan', 'HP005'),
+('ID028', 'Sulawesi Tengah', 'HP005'),
+('ID029', 'Sulawesi Tenggara', 'HP005'),
+('ID030', 'Sulawesi Utara', 'HP005'),
+('ID031', 'Maluku', 'HP006'),
+('ID032', 'Maluku Utara', 'HP006'),
+('ID033', 'Papua Barat', 'HP007'),
+('ID034', 'Papua', 'HP007');
 
 -- --------------------------------------------------------
 
