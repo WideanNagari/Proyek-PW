@@ -1,6 +1,9 @@
 <?php
     require_once("connection.php");
-    
+    $error=-1;
+    if(isset($_GET["error"])){
+        $error=$_GET["error"];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="sweetalert2.all.min.js"></script>
     <style>
         *{
             padding: 0;
@@ -20,6 +24,9 @@
         @font-face {
             font-family: "teen";
             src: url('teen.ttf');
+        }
+        .swal2-popup {
+            font-family: "teen";
         }
         .header{
             width: 100%;
@@ -77,7 +84,7 @@
             width: 20%;
         }
 
-        input[type=button]{
+        #btn{
             font-family: "teen";
             color: white;
             border: 0px;
@@ -88,7 +95,7 @@
             width: 20%;
         }
         
-        input[type=button]:hover{
+        #btn:hover{
             font-family: "teen";
             color: rgb(50, 50, 50);
             border: 0px;
@@ -107,13 +114,13 @@
     <div id="logo" style="padding-left: 110px; padding-top: 10px; margin-right: 170px;">OutfitLabs</div>
     </div>
     <div class="divform">
-        <form method="post">
+        <form method="post" action="registerTool.php">
             <h1>Daftar Akun Baru</h1><br>
-            <input type="text" name="username" placeholder="  username"><br><br>
-            <input type="password" name="password" placeholder="  password"><br><br>
-            <input type="password" name="confirmpassword" placeholder="  confirm password"><br><br>
-            <input type="email" name="email" placeholder="  email"><br><br>
-            <input type="text" name="alamat" placeholder="  alamat"><br><br>
+            <input type="text" name="username" placeholder="  username" required><br><br>
+            <input type="password" name="password" placeholder="  password" required><br><br>
+            <input type="password" name="confirmpassword" placeholder="  confirm password" required><br><br>
+            <input type="email" name="email" placeholder="  email" required><br><br>
+            <input type="text" name="alamat" placeholder="  alamat" required><br><br>
             Provinsi:<br>
             <select name="provinsi" style="width: 20%;height: 40px; margin-top: 10px; font-size: 18px;font-family: 'teen';">
             <?php
@@ -127,8 +134,30 @@
                 }
             ?>
             </select><br><br>
-            <input type="button" value="Daftar">
+            <button type="Submit" name="daftar" id="btn">Register</button>
         </form>
     </div>
 </body>
+<script>
+    var error = <?php echo json_encode($error)?>;
+    if(error!=-1){
+        if(error==1){
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal Register',
+                text: 'Password dan Confirm Password tidak sama!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal Register',
+                text: 'Username sudah ada!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    }
+</script>
 </html>

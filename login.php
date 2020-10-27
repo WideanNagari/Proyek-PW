@@ -1,5 +1,11 @@
 <?php
-
+    $error = -1;
+    if(isset($_GET["error"])){
+        $error=$_GET["error"];
+    }
+    if(isset($_GET["success"])){
+        $error = 0;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -8,6 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="sweetalert2.all.min.js"></script>
     <style>
         *{
             padding: 0;
@@ -20,6 +27,9 @@
         @font-face {
             font-family: "teen";
             src: url('teen.ttf');
+        }
+        .swal2-popup {
+            font-family: "teen";
         }
         .header{
             width: 100%;
@@ -65,7 +75,7 @@
             width: 20%;
         }
 
-        input[type=button]{
+        #btn{
             font-family: "teen";
             color: white;
             border: 0px;
@@ -76,7 +86,7 @@
             width: 20%;
         }
         
-        input[type=button]:hover{
+        #btn:hover{
             font-family: "teen";
             color: rgb(50, 50, 50);
             border: 0px;
@@ -104,14 +114,44 @@
     <div id="logo" style="padding-left: 110px; padding-top: 10px; margin-right: 170px;">OutfitLabs</div>
     </div>
     <div class="divform">
-        <form method="post">
+        <form method="post" action="loginTool.php">
             <h1>Login</h1><br>
-            <input type="text" name="username" placeholder="  username"><br><br>
-            <input type="password" name="password" placeholder="  password"><br><br>
+            <input type="text" name="username" placeholder="  username" required><br><br>
+            <input type="password" name="password" placeholder="  password" required><br><br>
             <input type="checkbox" name="remember"> Remember me<br><br>
-            <input type="button" value="Login"><br><br>
+            <button type="submit" name="login" id="btn">Login</button><br><br>
             <a href="register.php">Baru di OutfitLabs ? Daftar di sini</a>
         </form>
     </div>
 </body>
+<script>
+    var error = <?php echo json_encode($error)?>;
+    if(error!=-1){
+        if(error==1){
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal Login',
+                text: 'Username tidak ditemukan!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }else if(error==2){
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal Login',
+                text: 'Password Salah!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }else{
+            Swal.fire({
+                icon: 'success',
+                title: 'Selamat!',
+                text: 'Anda berhasil melakukan registrasi!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    }
+</script>
 </html>
