@@ -1,4 +1,5 @@
 <?php
+    require_once("connection.php");
     if(isset($_POST["checkout"])){
         echo "<script>alert('Berhasil Beli!')</script>";
     }
@@ -9,6 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="jquery-3.5.1.min.js"></script>
     <style>
         *{
             padding: 0;
@@ -57,13 +59,25 @@
             margin: auto;
             margin-top: 30px;
         }
-        .barang{
+        #barang{
             margin-top: 20px;
             width: 100%;
-            height: 520px;
+            height: 560px;
             border: 3px solid black;
+            overflow: auto;
         }
     </style>
+    <script>
+        $(document).ready(function(){
+            $("#cari").submit(function(e){
+                e.preventDefault();
+                document.getElementById("hasil").innerText = "Hasil Pencarian: " + $("#idQuery").val();
+                $.get("cari.php", { btnCari : "aaa" , query : $("#idQuery").val() }, function(hasil){
+                    $("#barang").html(hasil);
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="header">
@@ -75,15 +89,15 @@
             <li>Menu 4</li>
             <li>Menu 5</li>
         </ul>
-        <div id="cari">
-            <input type="text" placeholder=" Pencarian" style="width: 170px; height: 26px;">
-            <button id="btnCari" style="width: 50px; height: 30px; background-color: lightcyan;">Cari</button>
-        </div>
+        <form id="cari">
+            <input type="text" id="idQuery" name="query" placeholder=" Pencarian" style="width: 170px; height: 26px;">
+            <button type="submit" id="btnCari" name="btnCari"  style="width: 50px; height: 30px; background-color: lightcyan;">Cari</button>
+        </form>
     </div>
     <div class="pencarian">
-        <p>Hasil Pencarian: abcde fghij klmno pqrst uvwxy z ABCDE FGHIJ KLMNO PQRST UVWXY Z</p>
-        <p style="font-size: 20px; margin-top: 10px;">0 barang ditemukan.</p>
-        <div class="barang"></div>
+        <p id="hasil">Hasil Pencarian: -</p>
+        <div id="barang">
+        </div>
     </div>
 </body>
 </html>

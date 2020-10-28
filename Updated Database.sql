@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2020 at 07:51 AM
+-- Generation Time: Oct 28, 2020 at 10:00 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -156,13 +156,13 @@ CREATE TABLE `harga_pengiriman` (
 --
 
 INSERT INTO `harga_pengiriman` (`id_harga`, `harga_kirim`, `waktu_pengiriman`) VALUES
-('HP001', '45000', '5'),
-('HP002', '23000', '4'),
-('HP003', '60000', '10'),
-('HP004', '50000', '5'),
-('HP005', '56000', '7'),
-('HP006', '130000', '10'),
-('HP007', '140000', '10');
+('HP001', '45000', '300'),
+('HP002', '23000', '240'),
+('HP003', '60000', '600'),
+('HP004', '50000', '300'),
+('HP005', '56000', '420'),
+('HP006', '130000', '600'),
+('HP007', '140000', '600');
 
 -- --------------------------------------------------------
 
@@ -212,6 +212,18 @@ INSERT INTO `kurir` (`id_kurir`, `nama_kurir`, `tambahan_harga`) VALUES
 ('KU005', 'WAHANA', 10000),
 ('KU006', 'NINJA EXPRESS', 5000),
 ('KU007', 'SiCepat', 6000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pengiriman`
+--
+
+CREATE TABLE `pengiriman` (
+  `id_kirim` varchar(10) NOT NULL,
+  `id_transaksi` varchar(10) NOT NULL,
+  `waktu` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -276,10 +288,10 @@ CREATE TABLE `transaksi` (
   `id_customer` varchar(10) NOT NULL,
   `nama_barang` varchar(30) NOT NULL,
   `jumlah` varchar(20) NOT NULL,
-  `waktu` date NOT NULL,
   `harga` varchar(30) NOT NULL,
   `diskon` varchar(30) NOT NULL,
-  `total_harga` varchar(30) NOT NULL
+  `total_harga` varchar(30) NOT NULL,
+  `status` varchar(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -321,6 +333,12 @@ ALTER TABLE `jenis barang`
 --
 ALTER TABLE `kurir`
   ADD PRIMARY KEY (`id_kurir`);
+
+--
+-- Indexes for table `pengiriman`
+--
+ALTER TABLE `pengiriman`
+  ADD PRIMARY KEY (`id_kirim`);
 
 --
 -- Indexes for table `provinsi`
