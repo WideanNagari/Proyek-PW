@@ -1,4 +1,5 @@
 <?php
+    require_once("connection.php");
     $a = 0;
     if(isset($_POST["checkout"])){
         $a = 1;
@@ -105,8 +106,14 @@
     <script src="jquery-3.5.1.min.js"></script>
     <script>
         function pilihanKurir(){
-            let kurir = document.getElementById('kurirs').value;
-            document.getElementById("ongkos").innerText="Ongkos Kirim: "+kurir;
+            var harga = document.getElementById("kurirs").value;
+            var idx = document.getElementById("kurirs").selectedIndex;
+            var nama = document.getElementById("kurirs").getElementsByTagName('option')[idx].innerText;
+            //harga+=harga provinsi
+            document.getElementById("ongkos").innerText="Ongkos Kirim: "+harga+" ("+nama+")";
+        }
+        function r(){
+            alert("a");
         }
     </script>
 </head>
@@ -128,12 +135,18 @@
             <div class="kurir">
                 <p style="margin-bottom: 5px;">Opsi Pengiriman: </p>
                 <select id="kurirs" onchange="pilihanKurir()" style="width: 50%;height: 30px;border: 2px solid black; border-radius: 3px;font-family: 'teen';font-size: 17px;">
-                    <option value="10 rebu">JNE (10 rebu)</option>
-                    <option value="goceng">SiCepat (goceng)</option>
-                    <option value="bayar duit parkir aja">Ninja Express (bayar duit parkir aja)</option>
-                    <option value="gratis boiii">JnT (gratis boiii)</option>
-                </select>
-                <p style="margin-top: 5px;margin-bottom: 15px;" id="ongkos">Ongkos Kirim: 10 rebu</p>
+                    <?php
+                        $result = mysqli_query($conn, "select * from kurir");
+                        while($row = mysqli_fetch_array($result)){
+                            $nama = $row["nama_kurir"];
+                            $harga = $row["tambahan_harga"];
+                    ?>
+                    <option value="<?= $harga ?>"><?= $nama ?></option>
+                    <?php
+                        }
+                    ?>
+                </select><br>
+                <p style="margin-top: 5px;margin-bottom: 15px;" id="ongkos">Ongkos Kirim: 0</p>
             </div>
             <hr>
             <div class="Promo" style="margin-bottom: 20px;">
@@ -144,7 +157,7 @@
             </div>
             <hr>
         </div>
-        <div class="last2" id="harga">Total Harga: Rp. 50.000.000</div>
+        <div class="last2" id="harga">Total Harga: Rp. 0</div>
         <form method="POST">
             <?php //buat cookie untuk menampung barang yang dibeli?>
             <button class="last2" id="tombol" name="checkout" formaction="pencarian.php" style="font-family: 'teen';">Buat Pesanan</button>

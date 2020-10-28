@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2020 at 01:25 PM
+-- Generation Time: Oct 28, 2020 at 07:51 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -127,6 +127,17 @@ CREATE TABLE `event` (
   `diskon (%)` varchar(10) NOT NULL DEFAULT '0',
   `status` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `event`
+--
+
+INSERT INTO `event` (`id_event`, `nama_event`, `diskon`, `diskon (%)`, `status`) VALUES
+('EV001', 'OutfitLabs Anniversary', '0', '30', '0'),
+('EV002', 'OutfitLabs ShopFest', '40000', '0', '0'),
+('EV003', 'Hari Belanja Online Nasional', '15000', '10', '0'),
+('EV004', 'Black Friday', '20000', '20', '0'),
+('EV005', 'Super Shopping Day', '50000', '0', '0');
 
 -- --------------------------------------------------------
 

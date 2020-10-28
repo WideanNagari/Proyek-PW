@@ -53,7 +53,7 @@
 
         input[type=text]{
             font-family: "teen";
-            border: 0px;; 
+            border: 0px;
             color: #403866;
             line-height: 1.2;
             font-size: 18px;
@@ -91,20 +91,27 @@
             line-height: 1.2;
             font-size: 18px;
             background: rgb(50, 50, 50);
-            height: 55px;
+            height: 60px;
             width: 20%;
         }
-        
         #btn:hover{
-            font-family: "teen";
             color: rgb(50, 50, 50);
-            border: 0px;
-            line-height: 1.2;
-            font-size: 18px;
             background: white;
             border: 2px solid black;
-            height: 55px;
-            width: 20%;
+        }
+        #btnBack{
+            font-family: "goodTimes";
+            color: gray;
+            border: 0px;
+            font-size: 25px;
+            background: rgb(50, 50, 50);
+            margin-top: 5px;
+            margin-left: 730px;
+            height: 50px;
+            width: 10%;
+        }
+        #btnBack:hover{
+            color: white;
         }
 
     </style>
@@ -112,6 +119,9 @@
 <body>
     <div class="header">
     <div id="logo" style="padding-left: 110px; padding-top: 10px; margin-right: 170px;">OutfitLabs</div>
+        <form action="login.php" method="POST">
+            <button type="submit" id="btnBack">Back</button>
+        </form>
     </div>
     <div class="divform">
         <form method="post" action="registerTool.php">
