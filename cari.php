@@ -2,6 +2,7 @@
     require_once("connection.php");
     if(isset($_REQUEST["btnCari"])){
         $result = null;
+        $result2 = null;
         $barang = [];
         if(isset($_REQUEST["btnCari"])){
             $result = mysqli_query($conn, "select * from barang where nama_barang like '%" . $_REQUEST["query"] . "%'");
@@ -14,10 +15,12 @@
                 'nama' => $row["nama_barang"],
                 'harga' => $row["harga"],
                 'stok' => $row["stok"],
-                'deskripsi' => $row["deskripsi"]
+                'deskripsi' => $row["deskripsi"],
+                'id_jenis' => $row["id_jenis"]
             );
             $barang[] = $brg;
         }
+        
         echo json_encode($barang);
     }else{
         header("location: pencarian.php");

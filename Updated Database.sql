@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2020 at 10:00 AM
+-- Generation Time: Oct 28, 2020 at 02:36 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -73,23 +73,23 @@ INSERT INTO `barang` (`id_barang`, `id_jenis`, `nama_barang`, `harga`, `stok`, `
 ('BA028', 'JB004', 'Orange Ginger Hemal Wide Leg Trousser', '2190000', '2', ''),
 ('BA029', 'JB005', 'Checked Print Fringed Blazer', '1799000', '5', ''),
 ('BA030', 'JB005', 'Cross Button Blazer', '1399000', '5', ''),
-('BA032', 'JB005', 'Faux Shearling-Lined Corduroy Jacket', '1399000', '5', ''),
-('BA033', 'JB005', 'Faux Shearling-Lined Jacket', '1799000', '5', ''),
-('BA034', 'JB005', 'Tweed Blazer', '1799000', '5', ''),
-('BA035', 'JB005', 'Wool College Bomber Jacket', '1599000', '5', ''),
-('BA036', 'JB006', 'Chain Crossbody Bag', '479000', '4', ''),
-('BA037', 'JB006', 'External Pocket Tote Briefcase', '1199000', '4', ''),
-('BA038', 'JB006', 'Nylon Baguette Bag', '479000', '4', ''),
-('BA039', 'JB006', 'Technical Fabric Backpack', '999000', '4', ''),
-('BA040', 'JB006', 'Technical Fabric Cross-Body Bag', '479000', '4', ''),
-('BA041', 'JB006', 'Tortoiseshell Baguette Bag', '359000', '4', ''),
-('BA042', 'JB007', 'Black White Campo Sneakers', '2650000', '6', ''),
-('BA043', 'JB007', 'Fuchsia Hoya Heels Shoes', '6923000', '6', ''),
-('BA044', 'JB007', 'Gold Oversized Pearl Heeled Slip On', '2116000', '6', ''),
-('BA045', 'JB007', 'Men\'s Blue White Canvas Sneakers', '3750000', '6', ''),
-('BA046', 'JB007', 'Men\'s Orange Repeat Low Triplet Plain Light', '1990000', '6', ''),
-('BA047', 'JB007', 'Multicolor Raffia Printed Canvas Shoes', '4790000', '6', ''),
-('BA048', 'JB007', 'White Green Dreamy Leather Sabot', '6790000', '6', '');
+('BA031', 'JB005', 'Faux Shearling-Lined Corduroy Jacket', '1399000', '5', ''),
+('BA032', 'JB005', 'Faux Shearling-Lined Jacket', '1799000', '5', ''),
+('BA033', 'JB005', 'Tweed Blazer', '1799000', '5', ''),
+('BA034', 'JB005', 'Wool College Bomber Jacket', '1599000', '5', ''),
+('BA035', 'JB006', 'Chain Crossbody Bag', '479000', '4', ''),
+('BA036', 'JB006', 'External Pocket Tote Briefcase', '1199000', '4', ''),
+('BA037', 'JB006', 'Nylon Baguette Bag', '479000', '4', ''),
+('BA038', 'JB006', 'Technical Fabric Backpack', '999000', '4', ''),
+('BA039', 'JB006', 'Technical Fabric Cross-Body Bag', '479000', '4', ''),
+('BA040', 'JB006', 'Tortoiseshell Baguette Bag', '359000', '4', ''),
+('BA041', 'JB007', 'Black White Campo Sneakers', '2650000', '6', ''),
+('BA042', 'JB007', 'Fuchsia Hoya Heels Shoes', '6923000', '6', ''),
+('BA043', 'JB007', 'Gold Oversized Pearl Heeled Slip On', '2116000', '6', ''),
+('BA044', 'JB007', 'Men\'s Blue White Canvas Sneakers', '3750000', '6', ''),
+('BA045', 'JB007', 'Men\'s Orange Repeat Low Triplet Plain Light', '1990000', '6', ''),
+('BA046', 'JB007', 'Multicolor Raffia Printed Canvas Shoes', '4790000', '6', ''),
+('BA047', 'JB007', 'White Green Dreamy Leather Sabot', '6790000', '6', '');
 
 -- --------------------------------------------------------
 
@@ -167,19 +167,19 @@ INSERT INTO `harga_pengiriman` (`id_harga`, `harga_kirim`, `waktu_pengiriman`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jenis barang`
+-- Table structure for table `jenis_barang`
 --
 
-CREATE TABLE `jenis barang` (
+CREATE TABLE `jenis_barang` (
   `id_jenis` varchar(10) NOT NULL,
   `nama_jenis` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `jenis barang`
+-- Dumping data for table `jenis_barang`
 --
 
-INSERT INTO `jenis barang` (`id_jenis`, `nama_jenis`) VALUES
+INSERT INTO `jenis_barang` (`id_jenis`, `nama_jenis`) VALUES
 ('JB001', 'Man\'s clothes'),
 ('JB002', 'Woman\'s clothes'),
 ('JB003', 'Man\'s trousers'),
@@ -323,9 +323,9 @@ ALTER TABLE `harga_pengiriman`
   ADD PRIMARY KEY (`id_harga`);
 
 --
--- Indexes for table `jenis barang`
+-- Indexes for table `jenis_barang`
 --
-ALTER TABLE `jenis barang`
+ALTER TABLE `jenis_barang`
   ADD PRIMARY KEY (`id_jenis`);
 
 --

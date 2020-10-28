@@ -112,11 +112,11 @@
     <div class="header">
         <div id="logo" style="padding-left: 110px; padding-top: 10px; margin-right: 170px;">OutfitLabs</div>
         <ul>
-            <li>Menu 1</li>
-            <li>Menu 2</li>
-            <li>Menu 3</li>
-            <li>Menu 4</li>
-            <li>Menu 5</li>
+            <li>Clothes</li>
+            <li>Trousers</li>
+            <li>Jacket</li>
+            <li>Bag</li>
+            <li>Shoes</li>
         </ul>
         <form action="pencarian.php" method="POST">
             <button type="submit" id="btnBack" name="back">Back</button>
@@ -129,6 +129,7 @@
         <div id="status" style="position:absolute;bottom:0;">
             <p style="font-weight: 600;" id="nama">nama</p>
             <p style="font-size: 20px;margin-bottom: 15px;" id="harga">harga</p>
+            <p style="margin-bottom: 15px;" id="jenis">Jenis: -</p>
             <p style="margin-bottom: 15px;" id="stok">Stok: 1</p>
             <div style="height:250px;">
                 Deskripsi:
@@ -147,6 +148,7 @@
             document.getElementById("gambar").setAttribute("src",judul);
             document.getElementById("nama").innerText = barang["nama"];
             document.getElementById("harga").innerText = "Rp. "+barang["harga"];
+            document.getElementById("jenis").innerText = "Jenis: " + barang["nama_jenis"];
             document.getElementById("stok").innerText = "Stok: " + barang["stok"];
             document.getElementById("deskripsi").innerText = barang["deskripsi"];
         });

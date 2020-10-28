@@ -103,11 +103,11 @@
     <div class="header">
         <div id="logo" style="padding-left: 110px; padding-top: 10px; margin-right: 170px;">OutfitLabs</div>
         <ul>
-            <li>Menu 1</li>
-            <li>Menu 2</li>
-            <li>Menu 3</li>
-            <li>Menu 4</li>
-            <li>Menu 5</li>
+            <li>Clothes</li>
+            <li>Trousers</li>
+            <li>Jacket</li>
+            <li>Bag</li>
+            <li>Shoes</li>
         </ul>
         <div id="judul">MyBag</div>
     </div>
