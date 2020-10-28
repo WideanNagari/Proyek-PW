@@ -1,7 +1,11 @@
 <?php
     require_once("connection.php");
+    
     if(isset($_POST["checkout"])){
         echo "<script>alert('Berhasil Beli!')</script>";
+    }
+    if(isset($_POST["back"])){
+        setcookie("barang","",time()-1);
     }
 ?>
 <!DOCTYPE html>
@@ -61,23 +65,32 @@
         }
         #barang{
             margin-top: 20px;
+            padding: 20px;
             width: 100%;
-            height: 560px;
+            height: 530px;
             border: 3px solid black;
             overflow: auto;
         }
+        .barang2{
+            text-align: center;
+            font-size: 15px;
+            font-family: "teen";
+            width: 300px;
+            height: 400px;
+            float: left;
+            border: 2px solid black;
+            border-radius: 5px;
+            margin-left: 65px;
+            margin-bottom: 10px;
+            padding: 20px;
+        }
+
+        .barang2 img{
+            width: 80%;
+            height: 80%;
+            margin-bottom: 15px;
+        }
     </style>
-    <script>
-        $(document).ready(function(){
-            $("#cari").submit(function(e){
-                e.preventDefault();
-                document.getElementById("hasil").innerText = "Hasil Pencarian: " + $("#idQuery").val();
-                $.get("cari.php", { btnCari : "aaa" , query : $("#idQuery").val() }, function(hasil){
-                    $("#barang").html(hasil);
-                });
-            });
-        });
-    </script>
 </head>
 <body>
     <div class="header">
@@ -99,5 +112,44 @@
         <div id="barang">
         </div>
     </div>
+    <form method="POST">
+        <button type="hidden" id="btnn" formaction="display.php" style="position: absolute;"></button>
+    </form>
 </body>
+    <script>
+        var hasil2;
+        $(document).ready(function(){
+            $("#cari").submit(function(e){
+                e.preventDefault();
+                document.getElementById("hasil").innerText = "Hasil Pencarian: " + $("#idQuery").val();
+                $.getJSON("cari.php", { btnCari : "aaa" , query : $("#idQuery").val() }, function(hasil){
+                    hasil2 = hasil;
+                    while (document.getElementById("barang").firstChild) {
+                        document.getElementById("barang").removeChild(document.getElementById("barang").firstChild);
+                    }
+                    var jum = hasil2.length;
+                    $('#barang').append(`
+                        <p style='font-size: 20px;margin-bottom: 20px;'>${jum} barang ditemukan.</p>
+                    `);
+                    for(let i = 0; i<hasil2.length; i++){
+                        $('#barang').append(`
+                            <div id="${i}" name="" class="barang2">
+                                <img src="gambar/${hasil2[i]["id"]}.png" alt="">
+                                <p>${hasil2[i]["nama"]}</p>
+                                <p>Rp. ${hasil2[i]["harga"]}</p>
+                            </div>
+                        `);
+                        $(`#${i}`).click(function(){
+                            document.getElementById(`${i}`).setAttribute("name","query");
+                            e.preventDefault();
+                            $.get("sendInfo.php", { query : hasil2[i] }, function(){
+                                document.getElementById("btnn").click();
+                                
+                            });
+                        });   
+                    }
+                });
+            });
+        });
+    </script>
 </html>
