@@ -1,0 +1,92 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+@font-face {
+    font-family: "goodTimes";
+    src: url('good\ times\ rg.ttf');
+}
+@font-face {
+    font-family: "teen";
+    src: url('teen.ttf');
+}
+.header{
+    width: 100%;
+    height: 60px;
+    background: rgb(50, 50, 50);
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: "teen";
+}
+#logo{
+    font-size: 30px;
+    font-family: "goodTimes";
+    float: left;
+}
+.header ul li{
+    display: inline-block;
+    padding-left: 25px;
+    padding-top: 17px;
+}
+.header ul li:hover{
+    color: lightskyblue;
+}
+.display{
+    font-size: 25px;
+    font-family: "teen";
+    width: 85%;
+    height: 600px;
+    margin: auto;
+    margin-top: 30px;
+    border: 3px solid gray;
+    border-radius: 5px;
+}
+#btnBack{
+    font-family: "goodTimes";
+    color: gray;
+    border: 0px;
+    font-size: 25px;
+    background: rgb(50, 50, 50);
+    top: 5px;
+    right: 100px;
+    height: 50px;
+    width: 10%;
+    position: absolute;
+}
+#btnBack:hover{
+    color: white;
+}
+#btn{
+    font-family: "teen";
+    color: white;
+    border: 0px;
+    line-height: 1.2;
+    font-size: 18px;
+    background: rgb(50, 50, 50);
+    height: 60px;
+    width: 50%;
+    margin-left: 120px;
+}
+#btn:hover{
+    color: rgb(50, 50, 50);
+    background: white;
+    border: 2px solid black;
+}
+#gambarr{
+    width:60%;
+    height:100%;
+    display: inline-block;
+    background:  rgb(200, 250, 250);
+    border-right: 3px solid gray;
+}
+#gambar{
+    width: 40%;
+    margin: 50px 210px;
+}
+#status{
+    width:37%;
+    height:93%;
+    display: inline-block;
+    padding: 20px;
+}

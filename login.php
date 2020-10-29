@@ -14,7 +14,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="sweetalert2.all.min.js"></script>
+    <script src="./assets/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="./css/login.css">
     <style>
         *{
             padding: 0;
