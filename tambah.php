@@ -15,7 +15,7 @@
 <a href=""></a>
 <div class="header">
     <div id="logo" style="padding-left: 110px; padding-top: 10px; margin-right: 170px;" href="index.php">OutfitLabs</div>
-    <form action="" method="POST">
+    <form action="admin.php" method="POST">
         <button type="submit" id="btnBack">Back</button>
     </form>
 </div>

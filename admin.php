@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="sweetalert2.all.min.js"></script>
+    <script src="./assets/jquery-3.5.1.min.js"></script>
+    <script src="./assets/sweetalert2.all.min.js"></script>
     <style>
         *{
             padding: 0;
@@ -12,11 +13,11 @@
         }
         @font-face {
             font-family: "goodTimes";
-            src: url('good\ times\ rg.ttf');
+            src: url('./assets/fonts/good_times_rg.ttf');
         }
         @font-face {
             font-family: "teen";
-            src: url('teen.ttf');
+            src: url('./assets/fonts/teen.ttf');
         }
         body{
             background: linear-gradient(120deg,lightcyan,lightskyblue,lightcyan);
@@ -91,11 +92,11 @@
     <div class="main">
         <h1>Welcome back, Admin</h1>
         <form method="POST">
-            <button type="submit" class="menu" formaction="">Tambah Produk</button>
-            <button type="submit" class="menu" formaction="">Edit Produk</button>
+            <button type="submit" class="menu" name="addP" formaction="tambah.php">Tambah Produk</button>
+            <button type="submit" class="menu" name="editP" formaction="tambah.php">Edit Produk</button>
             <button type="submit" class="menu" formaction="">Lihat History Penjualan</button>
-            <button type="submit" class="menu" formaction="">Tambah Event</button>
-            <button type="submit" class="menu" formaction="">Edit Event</button>
+            <button type="submit" class="menu" name="addE" formaction="addevent.php">Tambah Event</button>
+            <button type="submit" class="menu" name="editE" formaction="addevent.php">Edit Event</button>
             <button type="submit" class="menu" formaction="listUser.php">Lihat User</button><br>
             <button type="submit" class="" id="logout" name="LogOut">Log Out</button>
         </form>

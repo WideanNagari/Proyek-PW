@@ -7,16 +7,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OutfitLabs</title>
-    <script src="jquery-3.5.1.min.js"></script>
-    <script src="sweetalert2.all.min.js"></script>
+    <script src="./assets/jquery-3.5.1.min.js"></script>
+    <script src="./assets/sweetalert2.all.min.js"></script>
     <style>
         @font-face {
             font-family: "goodTimes";
-            src: url('assets/fonts/good_times_rg.ttf');
+            src: url('./assets/fonts/good_times_rg.ttf');
         }
+
         @font-face {
             font-family: "teen";
-            src: url('assets/fonts/teen.ttf');
+            src: url('./assets/fonts/teen.ttf');
         }
         *{
             margin: 0;

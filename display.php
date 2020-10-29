@@ -51,7 +51,7 @@
     <script>
         var barang = <?= json_encode($barang)?>;
         $(document).ready(function(){
-            var judul = "gambar/"+barang["id"]+".png";
+            var judul = "./assets/pic/"+barang["id"]+".png";
             document.getElementById("gambar").setAttribute("src",judul);
             document.getElementById("nama").innerText = barang["nama"];
             document.getElementById("harga").innerText = "Rp. "+barang["harga"];

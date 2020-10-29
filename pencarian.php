@@ -26,7 +26,7 @@
             <li>Jacket</li>
             <li>Bag</li>
             <li>Shoes</li>
-            <li><form action="" method="POST"><button type="submit" id="back">Back</button></form></li>
+            <li><form action="index.php" method="POST"><button type="submit" id="back">Back</button></form></li>
         </ul>
         <form id="cari">
             <input type="text" id="idQuery" name="query" placeholder=" Pencarian" style="width: 170px; height: 26px;">
@@ -60,7 +60,7 @@
                     for(let i = 0; i<hasil2.length; i++){
                         $('#barang').append(`
                             <div id="${i}" name="" class="barang2">
-                                <img src="gambar/${hasil2[i]["id"]}.png" alt="">
+                                <img src="./assets/pic/${hasil2[i]["id"]}.png" alt="">
                                 <p>${hasil2[i]["nama"]}</p>
                                 <p>Rp. ${hasil2[i]["harga"]}</p>
                             </div>
