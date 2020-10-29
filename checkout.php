@@ -55,7 +55,7 @@
         }
         .header ul li{
             display: inline-block;
-            padding-left: 25px;
+            padding-left: 20px;
             padding-top: 17px;
         }
         .header ul li:hover{
@@ -102,6 +102,17 @@
             bottom: 15px;
             font-size: 30px;
         }
+        #back{
+            font-family: "teen";
+            color: gray;
+            border: 0px;
+            font-size: 20px;
+            font-weight: 600;
+            background: rgb(50, 50, 50);
+        }
+        #back:hover{
+            color: white;
+        }
     </style>
     <script src="jquery-3.5.1.min.js"></script>
     <script>
@@ -126,6 +137,9 @@
             <li>Jacket</li>
             <li>Bag</li>
             <li>Shoes</li>
+            <li>
+                <form action="mybag.php" method="POST"><button type="submit" id="back">Back</button></form>
+            </li>
         </ul>
         <div id="judul">Checkout</div>
     </div>

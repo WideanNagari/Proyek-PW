@@ -50,7 +50,7 @@
         }
         .header ul li{
             display: inline-block;
-            padding-left: 25px;
+            padding-left: 20px;
             padding-top: 17px;
         }
         .header ul li:hover{
@@ -90,17 +90,29 @@
             height: 80%;
             margin-bottom: 15px;
         }
+        #back{
+            font-family: "teen";
+            color: gray;
+            border: 0px;
+            font-size: 20px;
+            font-weight: 600;
+            background: rgb(50, 50, 50);
+        }
+        #back:hover{
+            color: white;
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <div id="logo" style="padding-left: 110px; padding-top: 10px; margin-right: 170px;">OutfitLabs</div>
+        <div id="logo" style="padding-left: 110px; padding-top: 10px; margin-right: 160px;">OutfitLabs</div>
         <ul>
             <li>Clothes</li>
             <li>Trousers</li>
             <li>Jacket</li>
             <li>Bag</li>
             <li>Shoes</li>
+            <li><form action="" method="POST"><button type="submit" id="back">Back</button></form></li>
         </ul>
         <form id="cari">
             <input type="text" id="idQuery" name="query" placeholder=" Pencarian" style="width: 170px; height: 26px;">
