@@ -108,7 +108,6 @@
             color: grey;
             text-decoration: none;
         }
-
         .divform a:hover{
             color: black;
             text-decoration: none;
