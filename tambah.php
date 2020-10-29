@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OutfitLabs</title>
-    <script src="jquery-3.5.1.min.js"></script>
-    <script src="sweetalert2.all.min.js"></script>
+    <script src="./assets/jquery-3.5.1.min.js"></script>
+    <script src="./assets/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="./css/tambah.css">
 </head>
 <body>
