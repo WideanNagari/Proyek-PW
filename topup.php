@@ -1,5 +1,12 @@
 <?php
     require_once("connection.php");
+    // if(isset($_POST["topup"])){
+    //     $user_login;
+    //     $user_login["saldo"]+=$_POST["nominal"];
+    //     $saldo = $user_login["saldo"];
+    //     $id = $user_login["id"];
+    //     mysqli_query($conn,"update customer set saldo = '$saldo' where id_customer='$id'");
+    // }
 ?>
 
 <!DOCTYPE html>
@@ -97,15 +104,19 @@
         </form>
     </div>
     <div class="divform">
-        <form method="post" action="">
+        <form method="post">
             <h1 style="margin-top:80px; font-size:50px;">Top Up</h1><br>
-            <input type="text" name="username" placeholder="  Nominal Top Up" style="margin-top: 90px;" required><br><br>
-            <button type="submit" name="topup" id="btn">Top Up!</button><br><br>
-            <h2>Saldo anda: Rp. 0</h1>
+            <input type="text" name="nominal" placeholder="  Nominal Top Up" style="margin-top: 90px;" required><br><br>
+            <button type="submit" name="topup" id="btn" formaction="#">Top Up!</button><br><br>
+            <h2 id="saldo">Saldo anda: Rp. 0</h2>
         </form>
     </div>
 </body>
 <script>
+    var user = <?= json_encode($user_login)?>
+    $(document).ready(function(){
+        document.getElementById("saldo").innerText = "Saldo anda: " + user["saldo"];
+    }); 
     // var error = <?php //echo json_encode($error)?>;
     // if(error!=-1){
     //     if(error==1){
