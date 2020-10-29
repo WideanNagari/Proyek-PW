@@ -4,11 +4,11 @@
 }
 @font-face {
     font-family: "goodTimes";
-    src: url('good\ times\ rg.ttf');
+    src: url('../assets/fonts/good_times_rg.ttf');
 }
 @font-face {
     font-family: "teen";
-    src: url('teen.ttf');
+    src: url('../assets/fonts/teen.ttf');
 }
 .header{
     width: 100%;
