@@ -1,11 +1,12 @@
-<html>
-    <!-- begin: :head -->
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <!-- end: :head -->
+<?php
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <style>
         @font-face {
             font-family: "goodTimes";
@@ -15,25 +16,18 @@
             font-family: "teen";
             src: url('./assets/fonts/teen.ttf');
         }
-        /* begin: :body */
         body{
             font-family: "teen";
             background: white;
             padding: 0;
             margin: 0;
         }
-        /* end: :body */
-
-        /* begin: :logo */
         #logo{
             font-family: "goodTimes";
             text-align: center;
             font-size: 30px;
             color: whitesmoke;
         }
-        /* end: :logo */
-
-        /* begin: :menu */
         .menu{
             text-align: center;
         }
@@ -57,22 +51,10 @@
             border-bottom: 2px solid white;
             color: whitesmoke;
         }
-        /* end: :menu */
-
-        /* begin: :product */
+        
         .product{
             text-align: center;
-        }
-        .row{
-            display: flex;
-            flex-wrap: wrap;
-            padding: 0px 10px;
-        }
-
-        .column{
-            flex: 25%;
-            max-width: 100%;
-            padding: 0px 10px;
+            margin-top: 40px;
         }
 
         .column img{
@@ -87,7 +69,8 @@
             display: inline-flex;
             width: 30%;
             height: 60%;
-            padding: 5px 5px 5px 5px;
+            padding: 5px;
+            margin-bottom: 50px;
         }
 
         .harga {
@@ -95,10 +78,9 @@
             bottom: 50;
             width: 95%;
             padding: 5px 5px 5px 5px;
+            bottom: -25px;
         }
 
-        /* end: :product */
-        /* start: :footer */
         .footer {
             background-color: rgb(13, 13, 13);
             text-align: center;
@@ -125,65 +107,60 @@
             color: lightsteelblue;
             text-decoration: none;
         }
-        /* end: :footer */
     </style>
-    <!-- begin: :body -->
-    <body>
-        <!-- begin: :header -->
-        <div class="header" style="background-color: rgb(13, 13, 13); height: 20%;">
-            <div id="logo">OutfitLabs</div>
-            <div class="menu">
-                <ul>
-                    <li><a href="#ladies">LADIES</a></li>
-                    <li><a href="#men">MEN</a></li>
-                    <li><a href="#3">MENU 3</a></li>
-                    <li><a href="#4">MENU 4</a></li>
-                    <li><a href="#5">MENU 5</a></li>
-                </ul>
+</head>
+<body>
+    <div class="header" style="background-color: black;height: 80px;padding:20px 0px;">
+        <div id="logo">OutfitLabs</div>
+        <div class="menu">
+            <ul>
+                <li><a href="#ladies">LADIES</a></li>
+                <li><a href="#men">MEN</a></li>
+                <li><a href="#3">MENU 3</a></li>
+                <li><a href="#4">MENU 4</a></li>
+                <li><a href="#5">MENU 5</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="product">
+        <div class="column">
+            <div class="content">
+                <img src="./assets/banner/product.jpg" alt="">
+                <div class="harga">nama - harga</div>
+            </div>
+            <div class="content">
+                <img src="./assets/banner/product.jpg" alt="">
+                <div class="harga">nama - harga</div>
+            </div>
+            <div class="content">
+                <img src="./assets/banner/product.jpg" alt="">
+                <div class="harga">nama - harga</div>
+            </div>
+            <div class="content">
+                <img src="./assets/banner/product.jpg" alt="">
+                <div class="harga">nama - harga</div>
+            </div>
+            <div class="content">
+                <img src="./assets/banner/product.jpg" alt="">
+                <div class="harga">nama - harga</div>
+            </div>
+            <div class="content">
+                <img src="./assets/banner/product.jpg" alt="">
+                <div class="harga">nama - harga</div>
             </div>
         </div>
-        <!-- end: :header -->
-        <!-- begin: :product -->
-        <div class="product" style="margin-top: 50px;">
-            <div class="row">
-                <div class="column">
-                    <div class="content">
-                        <img src="./assets/banner/product.jpg" alt="product">
-                        <div class="harga">nama - harga</div>
-                    </div>
-                    <div class="content">
-                        <img src="./assets/banner/product.jpg" alt="product">
-                        <div class="harga">nama - harga</div>
-                    </div>
-                    <div class="content">
-                        <img src="./assets/banner/product.jpg" alt="product">
-                        <div class="harga">nama - harga</div>
-                    </div>
-                    <div class="content">
-                        <img src="./assets/banner/product.jpg" alt="product">
-                        <div class="harga">nama - harga</div>
-                    </div>
-                    <div class="content">
-                        <img src="./assets/banner/product.jpg" alt="product">
-                        <div class="harga">nama - harga</div>
-                    </div>
-                    <div class="content">
-                        <img src="./assets/banner/product.jpg" alt="product">
-                        <div class="harga">nama - harga</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- end: :product -->
-        <div class="footer">
+    </div>
+    <div class="footer">
+        <div>
             <ul>
                 <li style="color: white;">Shop</li>
                 <li><a href="">Men</a></li>
                 <li><a href="">Ladies</a></li>
             </ul>
             <br><br>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur corrupti optio vero reiciendis dolor doloribus eligendi. Iusto quo ab eius rem saepe ducimus tempore necessitatibus neque. Placeat possimus quod dicta? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore et earum ipsa itaque voluptatem nemo
         </div>
-    </body>
-    <!-- end: :body -->
-</html>
+        <div style="padding-bottom: 30px;">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam laborum quia voluptas minus sapiente odit illo odio at commodi ex quo mollitia sunt, ipsa ipsam ipsum tempore nam ad quisquam.Iste unde sunt consequatur voluptates mollitia laborum, at nemo totam, nam ipsam optio sit distinctio ratione assumenda repellendus corrupti sed eligendi pariatur ducimus? Ipsum, voluptate aspernatur adipisci quisquam tenetur perspiciatis!
+        </div>
+    </div>
+</body>
