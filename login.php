@@ -88,6 +88,29 @@ if (isset($_GET["success"])) {
                 Don't have an account? <a href="register.php">Register </a>
             </form>
         </div>
+        <div class="footer">
+            <div class="subscribe">
+                <input type="text" name="email" placeholder="Enter your email"> <br>
+                <button type="submit" name="subscribe">SUBSCRIBE</button>
+            </div>
+            <div class="about">
+                <div class="logo">
+                    <h1>OUTFIT LABS</h1>
+                </div>
+                <div class="help">
+                    <a href="#">Help</a> <br>
+                    <a href="#">About</a> <br>
+                    <a href="#">Terms & Conditions</a> <br>
+                    <a href="#">How To Shop</a> <br>
+                </div>
+                <div class="contact">
+                    <h4>Contact Us</h4>
+                    <p><img src="./assets/icon/telp.png"> +62 0000000000</p>
+                    <p><img src="./assets/icon/email.png">  example@gmail.com</p>
+                    <p><img src="./assets/icon/instagram.png">outfit.labs</p>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 <script>

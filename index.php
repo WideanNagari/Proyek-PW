@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home-Index</title>
     <script src="./assets/jquery-3.5.1.min.js"></script>
-    <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
     <div class="container">
@@ -32,74 +32,39 @@
             </div>
             <div class="navbar">
                 <ul>
-                    <div class="dropdown">
-                        <li>NEW</li>
+                <div class="dropdown">
+                        <li>Clothes</li>
                         <div class="dropdown-content">
-                            <a href="#">New Now Woman</a>
-                            <a href="#">New Now Man</a>
-                            <a href="#">New Now Girl</a>
-                            <a href="#">New Now Boy</a>
+                            <a href="#">Women</a>
+                            <a href="#">Men</a>
                         </div>
                     </div>
                     <div class="dropdown">
-                        <li>WOMEN</li>
+                        <li>Trousers</li>
                         <div class="dropdown-content">
-                            <a href="#">Jackets</a>
-                            <a href="#">Suits</a>
-                            <a href="#">Dresses</a>
-                            <a href="#">Jumpsuits</a>
-                            <a href="#">Cardigans and sweaters</a>
-                            <a href="#">Shirts</a>
-                            <a href="#">T-shirts and tops</a>
-                            <a href="#">Jeans</a>
-                            <a href="#">Shorts</a>
-                            <a href="#">Skirts</a>
+                            <a href="#">Women</a>
+                            <a href="#">Men</a>
                         </div>
                     </div>
                     <div class="dropdown">
-                        <li>MEN</li>
+                        <li>Jacket</li>
                         <div class="dropdown-content">
-                            <a href="#">Coats</a>
-                            <a href="#">Jackets</a>
-                            <a href="#">Cardigans and sweaters</a>
-                            <a href="#">Blazers</a>
-                            <a href="#">Shirts</a>
-                            <a href="#">T-shirts</a>
-                            <a href="#">Underwear and pyjamas</a>
-                            <a href="#">Jeans</a>
-                            <a href="#">Trousers</a>
-                            <a href="#">Suits</a>
+                            <a href="#">Women</a>
+                            <a href="#">Men</a>
                         </div>
                     </div>
                     <div class="dropdown">
-                        <li>GIRLS</li>
+                        <li>Bag</li>
                         <div class="dropdown-content">
-                            <a href="#">Teen</a>
-                            <a href="#">Girls</a>
-                            <a href="#">Baby Girls</a>
+                            <a href="#">Women</a>
+                            <a href="#">Men</a>
                         </div>
                     </div>
                     <div class="dropdown">
-                        <li>BOYS</li>
+                        <li>Shoes</li>
                         <div class="dropdown-content">
-                            <a href="#">Teen</a>
-                            <a href="#">Boys</a>
-                            <a href="#">Baby Boys</a>
-                        </div>
-                    </div>
-                    <div class="dropdown">
-                        <li>PLUS SIZE</li>
-                        <div class="dropdown-content">
-                            <a href="#">Coats</a>
-                            <a href="#">Jackets</a>
-                            <a href="#">Suits</a>
-                            <a href="#">Dresses and jumpsuits</a>
-                            <a href="#">Cardigans and sweaters</a>
-                            <a href="#">Shirts</a>
-                            <a href="#">T-shirts and tops</a>
-                            <a href="#">Jeans</a>
-                            <a href="#">Trousers</a>
-                            <a href="#">Skirts</a>
+                            <a href="#">Women</a>
+                            <a href="#">Men</a>
                         </div>
                     </div>
                     <form action="" method="POST" style="display: inline;">
