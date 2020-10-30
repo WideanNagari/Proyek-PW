@@ -32,7 +32,7 @@
                     $id = $id . $jumlah;
                 }
                 
-                mysqli_query($conn, "insert into customer values('$id','$username','$password','$email','$alamat','$provinsi','0')");
+                mysqli_query($conn, "insert into customer values('$id','$username','$password','$email','$alamat','$provinsi','0','1')");
                 header("location: login.php?success=1");
             }
         }

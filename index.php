@@ -1,5 +1,9 @@
 <?php
-    
+    require_once("connection.php");
+    $logged = false;
+    if($user_login!=null){
+        $logged = true;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,6 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home-Index</title>
+    <script src="./assets/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="./css/home.css">
 </head>
 <body>
@@ -19,7 +24,7 @@
                         <img src="./assets/icon/shopBag.png"> <br>
                         Shop Bag 
                     </button>
-                    <button type="submit" name="signIn" formaction="login.php">
+                    <button type="submit" name="signIn" id ="login" formaction="login.php">
                         <img src="./assets/icon/signIn.png"> <br> 
                         Sign in 
                     </button>
@@ -225,4 +230,12 @@
         </div>
     </div>
 </body>
+<script>
+    var logged = <?= json_encode($logged) ?>;
+    $(document).ready(function(){
+        if(logged){
+            document.getElementById("login").style.display = "none";
+        }
+    });
+</script>
 </html>

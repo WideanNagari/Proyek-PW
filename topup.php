@@ -1,12 +1,13 @@
 <?php
     require_once("connection.php");
-    // if(isset($_POST["topup"])){
-    //     $user_login;
-    //     $user_login["saldo"]+=$_POST["nominal"];
-    //     $saldo = $user_login["saldo"];
-    //     $id = $user_login["id"];
-    //     mysqli_query($conn,"update customer set saldo = '$saldo' where id_customer='$id'");
-    // }
+    if(isset($_POST["topup"])){
+        $user_login;
+        $user_login["saldo"]+=$_POST["nominal"];
+        $saldo = $user_login["saldo"];
+        $id = $user_login["id"];
+        mysqli_query($conn,"update customer set saldo = '$saldo' where id_customer='$id'");
+        $_SESSION["user"] = $user_login;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="./assets/sweetalert2.all.min.js"></script>
+    <script src="./assets/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="./css/topup.css">
 </head>
 <body>
@@ -35,9 +37,9 @@
     </div>
 </body>
 <script>
-    var user = <?= json_encode($user_login)?>
+    var user = <?= json_encode($user_login)?>;
     $(document).ready(function(){
-        document.getElementById("saldo").innerText = "Saldo anda: " + user["saldo"];
+        document.getElementById("saldo").innerText = "Halo, "+user["nama"]+"! Saldo anda: " + user["saldo"];
     }); 
     // var error = <?php //echo json_encode($error)?>;
     // if(error!=-1){

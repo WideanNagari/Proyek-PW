@@ -54,6 +54,14 @@
                 showConfirmButton: false,
                 timer: 1500
             });
+        }else if(error==3){
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal Login',
+                text: 'Access Denied!',
+                showConfirmButton: false,
+                timer: 1500
+            });
         }else{
             Swal.fire({
                 icon: 'success',
