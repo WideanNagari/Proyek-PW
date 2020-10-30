@@ -23,6 +23,6 @@
         
         echo json_encode($barang);
     }else{
-        header("location: pencarian.php");
+        header("location: index.php");
     }
 ?>

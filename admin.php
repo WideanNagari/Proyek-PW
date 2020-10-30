@@ -1,3 +1,8 @@
+<?php
+    if(isset($_POST["back"])){
+        setcookie("item","",time()-1);
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,12 +98,12 @@
         <h1>Welcome back, Admin</h1>
         <form method="POST">
             <button type="submit" class="menu" name="addP" formaction="tambah.php">Tambah Produk</button>
-            <button type="submit" class="menu" name="editP" formaction="tambah.php">Edit Produk</button>
+            <button type="submit" class="menu" formaction="listBarang.php">Edit Produk</button>
             <button type="submit" class="menu" formaction="">Lihat History Penjualan</button>
             <button type="submit" class="menu" name="addE" formaction="addevent.php">Tambah Event</button>
-            <button type="submit" class="menu" name="editE" formaction="addevent.php">Edit Event</button>
+            <button type="submit" class="menu" formaction="listEvent.php">Edit Event</button>
             <button type="submit" class="menu" formaction="listUser.php">Lihat User</button><br>
-            <button type="submit" class="" id="logout" name="LogOut">Log Out</button>
+            <button type="submit" class="" id="logout" name="LogOut" formaction="index.php">Log Out</button>
         </form>
     </div>
 </body>

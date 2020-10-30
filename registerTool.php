@@ -24,9 +24,9 @@
                 $result = mysqli_query($conn, "select * from customer");
                 $jumlah = mysqli_num_rows($result);
                 $jumlah+=1;
-                if(jumlah<10){
+                if($jumlah<10){
                     $id = $id . "00" . $jumlah;
-                }else if(jumlah<100){
+                }else if($jumlah<100){
                     $id = $id . "0" . $jumlah;
                 }else{
                     $id = $id . $jumlah;

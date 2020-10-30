@@ -1,5 +1,75 @@
 <?php
+    require_once("connection.php");
+    $id="";
+    $hide=-1;
+    $barang;
+    if(isset($_POST["addE"])){
+        $id = "EV";
+        $result = mysqli_query($conn, "select * from event");
+        $jumlah = mysqli_num_rows($result);
+        $jumlah+=1;
+        if($jumlah<10){
+            $id = $id . "00" . $jumlah;
+        }else if($jumlah<100){
+            $id = $id . "0" . $jumlah;
+        }else{
+            $id = $id . $jumlah;
+        }
+        $hide = 0;
+    }
+    if(isset($_COOKIE["item"])){
+        $hide = 1;
+        $barang = json_decode($_COOKIE["item"],true);
+    }
+    if(isset($_POST["add"])){
+        if($_POST["diskon_percentage"]>100){
+            echo "<script>alert('terlalu besar!')</script>";
+        }else if(!isset($_POST["status1"]) && !isset($_POST["status2"])){
+            echo "<script>alert('mohon isi status event!')</script>";
+        }else{
+            $id=$_POST["id_event"];
+            $nama=$_POST["nama_event"];
+            $diskon=$_POST["diskon"];
+            $diskon2=$_POST["diskon_percentage"];
+            $status=0;
+            if(isset($_POST["status1"])){$status=$_POST["status1"];}
+            mysqli_query($conn, "insert into event values('$id','$nama','$diskon','$diskon2',$status)");
+        }
+        $id = "EV";
+        $result = mysqli_query($conn, "select * from event");
+        $jumlah = mysqli_num_rows($result);
+        $jumlah+=1;
+        if($jumlah<10){
+            $id = $id . "00" . $jumlah;
+        }else if($jumlah<100){
+            $id = $id . "0" . $jumlah;
+        }else{
+            $id = $id . $jumlah;
+        }
+        $hide = 0;
+    }
+    if(isset($_POST["edit"])){
+        $id=$_POST["id_event"];
+        $nama=$_POST["nama_event"];
+        $diskon1=$_POST["diskon"];
+        $diskon2=$_POST["diskon_percentage"];
+        $status=$_POST["status2"];
+        mysqli_query($conn,"update event set id_event = '$id' where id_event='$id'");
+        mysqli_query($conn,"update event set nama_event = '$nama' where id_event='$id'");
+        mysqli_query($conn,"update event set diskon = '$diskon1' where id_event='$id'");
+        mysqli_query($conn,"update event set diskon (%) = '$diskon2' where id_event='$id'");
+        mysqli_query($conn,"update event set status = '$status' where id_event='$id'");
 
+        $event = array(
+            'id' => $id,
+            'nama' => $nama,
+            'diskon1' => $diskon1,
+            'diskon2' => $diskon2,
+            'status' => $status
+        );
+        $barang = $event;
+        $hide = 1;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +86,7 @@
 <div class="header">
     <div id="logo" style="padding-left: 110px; padding-top: 10px; margin-right: 170px;" href="index.php">OutfitLabs</div>
     <form action="admin.php" method="POST">
-        <button type="submit" id="btnBack">Back</button>
+        <button type="submit" id="btnBack" name="back">Back</button>
     </form>
 </div>
 </div>
@@ -24,22 +94,48 @@
     <div class="contain">
         <form action="" method="POST">
             <h1>Tambah Event</h1>
-            ID Event  <input type="text" name="id_event" style="margin-left:50px;" readonly><br> <br>           
-            Nama Event  <input type="text" name="nama_event" style="margin-left:18px;"><br><br>
-            Diskon  <input type="text" name="diskon" style="margin-left:61px;"><br><br>
+            ID Event  <input type="text" id="id" name="id_event" style="margin-left:50px;" readonly><br> <br>           
+            Nama Event  <input type="text" name="nama_event" id="name" style="margin-left:18px;" required><br><br>
+            Diskon  <input type="text" name="diskon" id="diskon1" style="margin-left:61px;" required><br><br>
             Diskon (%)  <span>
-            <input type="text" name= "diskon_percentage" style="margin-left:36px;">
+            <input type="text" name= "diskon_percentage" id="diskon2" style="margin-left:36px;" required>
             </span>
             <span class= style="width=10%;">%</span>
             <br><br>
-            Status <input type="radio" name="status" value="1" style="margin-left:60px;">Aktif 
-            <input type="radio" name="status" value="0"> Non Aktif
+            Status <input type="radio" name="status2" id="rb1" value="1" style="margin-left:60px;">Aktif 
+            <input type="radio" name="status2" id="rb2" value="0"> Non Aktif
             <br> <br>
-            <button type="submit" style="margin-left:17%;">Edit</button>
-            <button type="submit">Tambah</button>
+            <button type="submit" id="ganti" name="edit" style="margin-left:17%;">Edit</button>
+            <button type="submit" id="tambah" name="add" style="margin-left:17%;">Tambah</button>
         </form>
     </div>
 </div>
-
+<script>
+    $(document).ready(function(){
+        var id = <?= json_encode($id)?>;
+        document.getElementById("id").value = id;
+        var hide = <?= json_encode($hide)?>;
+        if(hide==0){
+            document.getElementById("ganti").style.display = "none";
+        }else if(hide==1){
+            document.getElementById("tambah").style.display = "none";
+            <?php
+                if(isset($_COOKIE["item"])){
+            ?>
+                document.getElementById("id").value = <?= json_encode($barang["id"])?>;
+                document.getElementById("name").value = <?= json_encode($barang["nama"])?>;
+                document.getElementById("diskon1").value = <?= json_encode($barang["diskon1"])?>;
+                document.getElementById("diskon2").value = <?= json_encode($barang["diskon2"])?>;
+                var stat = <?= json_encode($barang["status"])?>;
+                if(stat==0){
+                    document.getElementById("rb2").checked = true;
+                }else{
+                    document.getElementById("rb1").checked = true;
+                }
+            <?php
+            }?>
+        }
+    });
+</script>
 </body>
 </html>

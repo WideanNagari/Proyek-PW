@@ -14,14 +14,16 @@
         <div class="header">
             <div class="menu">
                 <a href="home.html"><h1>Outfit Labs</h1></a>
-                <button type="submit" name="shopBag">
-                    <img src="./assets/icon/shopBag.png"> <br>
-                    Shop Bag 
-                </button>
-                <button type="submit" name="signIn">
-                    <img src="./assets/icon/signIn.png"> <br> 
-                    Sign in 
-                </button>
+                <form method="POST">
+                    <button type="submit" name="shopBag" formaction="mybag.php">
+                        <img src="./assets/icon/shopBag.png"> <br>
+                        Shop Bag 
+                    </button>
+                    <button type="submit" name="signIn" formaction="login.php">
+                        <img src="./assets/icon/signIn.png"> <br> 
+                        Sign in 
+                    </button>
+                </form>
             </div>
             <div class="navbar">
                 <ul>

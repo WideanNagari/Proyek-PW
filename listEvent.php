@@ -78,7 +78,7 @@
             overflow: auto;
         }
         tbody tr td{
-            width: 150px;
+            width: 200px;
             text-align: center;
         }
     </style>
@@ -92,67 +92,54 @@
 </div>
 </div>
 <div class="outline">
-    <h1 style="margin-bottom: 20px;">List User</h1>
+    <h1 style="margin-bottom: 20px;">List Barang</h1>
+    <form method="POST">
+        <button type="hidden" id="btnn" formaction="addevent.php" style="display: none;"></button>
+    </form>
     <form action="" method="POST">
         <table border=1>
         <thead>
-            <th>ID_Customer</th>
-            <th>Nama_Customer</th>
-            <th>Email</th>
-            <th>Alamat</th>
-            <th>Provinsi</th>
-            <th>Saldo</th>
-            <th>Akses</th>
-            <th>Ubah Akses</th>
+            <th>ID_Event</th>
+            <th>Nama_Event</th>
+            <th>Diskon</th>
+            <th>Diskon (%)</th>
+            <th>Status</th>
         </thead>
-        <tbody id="user">
+        <tbody id="barang">
             <?php
-            $result = mysqli_query($conn, "select * from customer");
+            $result = mysqli_query($conn, "select * from event");
             while($row = mysqli_fetch_array($result)){
-                $orang = array(
-                    'id' => $row["id_customer"],
-                    'nama' => $row["nama_customer"],
-                    'email' => $row["email"],
-                    'alamat' => $row["alamat"],
-                    'saldo' => $row["saldo"],
-                    'akses' => $row["akses"]
+                $event = array(
+                    'id' => $row["id_event"],
+                    'nama' => $row["nama_event"],
+                    'diskon1' => $row["diskon"],
+                    'diskon2' => $row["diskon (%)"],
+                    'status' => $row["status"]
                 );
-                $idprov = $row["id_provinsi"];
-                $result2 = mysqli_query($conn, "select * from provinsi where id_provinsi = '$idprov'");
-                while($row2 = mysqli_fetch_array($result2)){
-                    $orang['provinsi'] = $row2["nama_provinsi"];
-                }
-                $data[] = $orang;
+                $data[] = $event;
             }
             foreach($data as $key => $val){
             ?>
             <script>
                 $(document).ready(function(){
                     var id2 = <?= $key ?>;
-                    var idTr = "t"+id2;
-                    $('#user').append(`
-                    <tr id=${idTr}>
-                        <td><?= $val['id'] ?></td>
-                        <td><?= $val['nama'] ?></td>
-                        <td><?= $val['email'] ?></td>
-                        <td><?= $val['alamat'] ?></td>
-                        <td><?= $val['provinsi'] ?></td>
-                        <td><?= $val['saldo'] ?></td>
-                        <td><?= $val['akses'] ?></td>
-                        <td id=${id2} name=""><Button>Ubah</Button></td>
-                    </tr>
+                    $('#barang').append(`
+                        <tr id=${id2} name="">
+                            <td><?= $val['id'] ?></td>
+                            <td><?= $val['nama'] ?></td>
+                            <td><?= $val['diskon1'] ?></td>
+                            <td><?= $val['diskon2'] ?></td>
+                            <td><?= $val['status'] ?></td>
+                        </tr>
                     `);
                     
                     $(`#${id2}`).click(function(){
-                        var user = <?= json_encode($val)?>;
+                        var barang = <?= json_encode($val)?>;
                         document.getElementById(`${id2}`).setAttribute("name","query");
-                        $.get("gantiAkses.php", { query : user }, function(hasil){
-                            document.getElementById(`${idTr}`).removeChild(document.getElementById(`${idTr}`).lastChild);
-                            $(`#${idTr}`).append(`
-                                <td>${hasil}</td>
-                            `);
-                        }); 
-                    });
+                        $.get("sendItem.php", { query : barang }, function(){
+                            document.getElementById("btnn").click();
+                        });
+                    }); 
                 });
             </script>
             <?php

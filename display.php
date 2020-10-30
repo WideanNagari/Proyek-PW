@@ -3,7 +3,7 @@
     if(isset($_COOKIE["barang"])){
         $barang = json_decode($_COOKIE["barang"],true);
     }else{
-        header("location: pencarian.php");
+        header("location: index.php");
     }
 ?>
 <!DOCTYPE html>

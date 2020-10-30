@@ -12,6 +12,6 @@
         $barang["nama_jenis"] = $jenis;
         setcookie("barang",json_encode($barang),time()+60*10);
     }else{
-        header("location: pencarian.php");
+        header("location: index.php");
     }
 ?>
