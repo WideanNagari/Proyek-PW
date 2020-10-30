@@ -102,8 +102,10 @@
                             <a href="#">Skirts</a>
                         </div>
                     </div>
-                    <input type="text" name="searchText"> 
-                    <button type="submit" name="search_button" style="padding-top: 15px;"><img src="./assets/icon/search1.png"></button>
+                    <form action="" method="POST" style="display: inline;">
+                        <input type="text" name="searchText">
+                        <button type="submit" name="search_button" style="padding-top: 15px;" formaction="pencarian.php"><img src="./assets/icon/search1.png"></button>
+                    </form>
                 </ul>
             </div>
         </div>

@@ -7,6 +7,10 @@
     if(isset($_POST["back"])){
         setcookie("barang","",time()-1);
     }
+    $cari="";
+    if(isset($_POST["search_button"])){
+        $cari = $_POST["searchText"];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,6 +80,11 @@
                     }
                 });
             });
+            var cari = <?= json_encode($cari) ?>;
+            if(cari!=""){
+                document.getElementById("idQuery").value = cari;
+                document.getElementById("btnCari").click();
+            }
         });
     </script>
 </html>
