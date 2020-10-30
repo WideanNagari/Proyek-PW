@@ -73,7 +73,7 @@
         <div class="last2" id="harga">Total Harga: Rp. 0</div>
         <form method="POST">
             <?php //buat cookie untuk menampung barang yang dibeli?>
-            <button class="last2" id="tombol" name="checkout" formaction="pencarian.php" style="font-family: 'teen';">Buat Pesanan</button>
+            <button class="last2" id="tombol" name="checkout" formaction="index.php" style="font-family: 'teen';">Buat Pesanan</button>
         </form>
     </div>
     <div style="height: 24px;"></div>
