@@ -1,15 +1,16 @@
 <?php
-    $error = -1;
-    if(isset($_GET["error"])){
-        $error=$_GET["error"];
-    }
-    if(isset($_GET["success"])){
-        $error = 0;
-    }
+$error = -1;
+if (isset($_GET["error"])) {
+    $error = $_GET["error"];
+}
+if (isset($_GET["success"])) {
+    $error = 0;
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,28 +18,82 @@
     <script src="./assets/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="./css/login.css">
 </head>
+
 <body>
-    <div class="header">
-    <div id="logo" style="padding-left: 110px; padding-top: 10px; margin-right: 170px;">OutfitLabs</div>
-        <form action="login.php" method="POST">
-            <button type="submit" id="btnBack">Back</button>
-        </form>
-    </div>
-    <div class="divform">
-        <form method="post" action="loginTool.php">
-            <h1>Login</h1><br>
-            <input type="text" name="username" placeholder="  username" required><br><br>
-            <input type="password" name="password" placeholder="  password" required><br><br>
-            <input type="checkbox" name="remember"> Remember me<br><br>
-            <button type="submit" name="login" id="btn">Login</button><br><br>
-            <a href="register.php">Baru di OutfitLabs ? Daftar di sini</a>
-        </form>
+    <div class="container">
+        <div class="header">
+            <div class="menu">
+                <a href="home.html">
+                    <h1>Outfit Labs</h1>
+                </a>
+                <button type="submit" name="shopBag">
+                    <img src="./assets/icon/shopBag.png"> <br>
+                    Shop Bag
+                </button>
+                <button type="submit" name="signIn">
+                    <img src="./assets/icon/signIn.png"> <br>
+                    Sign in
+                </button>
+            </div>
+            <div class="navbar">
+                <ul>
+                    <div class="dropdown">
+                        <li>Clothes</li>
+                        <div class="dropdown-content">
+                            <a href="#">Women</a>
+                            <a href="#">Men</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <li>Trousers</li>
+                        <div class="dropdown-content">
+                            <a href="#">Women</a>
+                            <a href="#">Men</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <li>Jacket</li>
+                        <div class="dropdown-content">
+                            <a href="#">Women</a>
+                            <a href="#">Men</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <li>Bag</li>
+                        <div class="dropdown-content">
+                            <a href="#">Women</a>
+                            <a href="#">Men</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <li>Shoes</li>
+                        <div class="dropdown-content">
+                            <a href="#">Women</a>
+                            <a href="#">Men</a>
+                        </div>
+                    </div>
+                    <input type="text" name="searchText">
+                    <button type="submit" name="search_button" style="padding-top: 15px;"><img src="./assets/icon/search1.png"></button>
+                </ul>
+            </div>
+        </div>
+        <div class="main">
+            <a href="login.php"><button type="" style="border-bottom: 1px solid black;">Login</button></a>
+            <a href="register.php"><button type="" name="register">Register</button></a> <br>
+            <form method="post" action="loginTool.php">
+                <input type="text" name="username" placeholder="Username" required> <br>
+                <input type="password" name="password" placeholder="Password" required> <br>
+                <input type="radio" name="remember" checked id="check"> Keep me signed in <br>
+                <button type="submit" name="login" id="login">Enter</button> <br>
+                Don't have an account? <a href="register.php">Register </a>
+            </form>
+        </div>
     </div>
 </body>
 <script>
-    var error = <?php echo json_encode($error)?>;
-    if(error!=-1){
-        if(error==1){
+    var error = <?php echo json_encode($error) ?>;
+    if (error != -1) {
+        if (error == 1) {
             Swal.fire({
                 icon: 'error',
                 title: 'Gagal Login',
@@ -46,7 +101,7 @@
                 showConfirmButton: false,
                 timer: 1500
             });
-        }else if(error==2){
+        } else if (error == 2) {
             Swal.fire({
                 icon: 'error',
                 title: 'Gagal Login',
@@ -54,7 +109,7 @@
                 showConfirmButton: false,
                 timer: 1500
             });
-        }else{
+        } else {
             Swal.fire({
                 icon: 'success',
                 title: 'Selamat!',
@@ -65,4 +120,5 @@
         }
     }
 </script>
+
 </html>
