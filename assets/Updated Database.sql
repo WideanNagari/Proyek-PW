@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2020 at 03:23 PM
+-- Generation Time: Oct 30, 2020 at 02:20 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -89,7 +89,8 @@ INSERT INTO `barang` (`id_barang`, `id_jenis`, `nama_barang`, `harga`, `stok`, `
 ('BA044', 'JB007', 'Men\'s Blue White Canvas Sneakers', '3750000', '6', ''),
 ('BA045', 'JB007', 'Men\'s Orange Repeat Low Triplet Plain Light', '1990000', '6', ''),
 ('BA046', 'JB007', 'Multicolor Raffia Printed Canvas Shoes', '4790000', '6', ''),
-('BA047', 'JB007', 'White Green Dreamy Leather Sabot', '6790000', '6', '');
+('BA047', 'JB007', 'White Green Dreamy Leather Sabot', '6790000', '6', ''),
+('BA051', 'JB001', 'a', '1', '2331', '');
 
 -- --------------------------------------------------------
 
@@ -113,7 +114,8 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`id_customer`, `nama_customer`, `password`, `email`, `alamat`, `id_provinsi`, `saldo`, `akses`) VALUES
-('CU004', 'user1', '$2y$10$sKFPvKjsgGPqQNy5v0mau.8wU5Axl137PTAQdoF/iQ6avVELVB.Mu', 'user1@gmail.com', 'entah', 'ID027', '0', '1');
+('CU002', 'widean', '$2y$10$sQsx62XrmFx9IT/dCDseiOMyBWnirU1xlqBO9BJIo.oSwomTp5nYq', 'widean@gmail.com', 'dimana?', 'ID016', '36000', '1'),
+('CU004', 'user1', '$2y$10$sKFPvKjsgGPqQNy5v0mau.8wU5Axl137PTAQdoF/iQ6avVELVB.Mu', 'user1@gmail.com', 'entah', 'ID027', '0', '0');
 
 -- --------------------------------------------------------
 

@@ -1,5 +1,6 @@
 <?php
     require_once("connection.php");
+    $sukses = false;
     if(isset($_POST["topup"])){
         $user_login;
         $user_login["saldo"]+=$_POST["nominal"];
@@ -7,6 +8,7 @@
         $id = $user_login["id"];
         mysqli_query($conn,"update customer set saldo = '$saldo' where id_customer='$id'");
         $_SESSION["user"] = $user_login;
+        $sukses = true;
     }
 ?>
 
@@ -30,44 +32,31 @@
     <div class="divform">
         <form method="post">
             <h1 style="margin-top:80px; font-size:50px;">Top Up</h1><br>
-            <input type="text" name="nominal" placeholder="  Nominal Top Up" style="margin-top: 90px;" required><br><br>
+            <input type="text" name="nominal" placeholder="  Nominal Top Up" style="margin-top: 90px;" onkeypress="return hanyaAngka(event)" required><br><br>
             <button type="submit" name="topup" id="btn" formaction="#">Top Up!</button><br><br>
             <h2 id="saldo">Saldo anda: Rp. 0</h2>
         </form>
     </div>
 </body>
 <script>
+    function hanyaAngka(event) {
+        var angka = (event.which) ? event.which : event.keyCode
+        if (angka != 46 && angka > 31 && (angka < 48 || angka > 57)){return false;}
+        else{return true;}
+    }
     var user = <?= json_encode($user_login)?>;
     $(document).ready(function(){
         document.getElementById("saldo").innerText = "Halo, "+user["nama"]+"! Saldo anda: " + user["saldo"];
     }); 
-    // var error = <?php //echo json_encode($error)?>;
-    // if(error!=-1){
-    //     if(error==1){
-    //         Swal.fire({
-    //             icon: 'error',
-    //             title: 'Gagal Login',
-    //             text: 'Username tidak ditemukan!',
-    //             showConfirmButton: false,
-    //             timer: 1500
-    //         });
-    //     }else if(error==2){
-    //         Swal.fire({
-    //             icon: 'error',
-    //             title: 'Gagal Login',
-    //             text: 'Password Salah!',
-    //             showConfirmButton: false,
-    //             timer: 1500
-    //         });
-    //     }else{
-    //         Swal.fire({
-    //             icon: 'success',
-    //             title: 'Selamat!',
-    //             text: 'Anda berhasil melakukan registrasi!',
-    //             showConfirmButton: false,
-    //             timer: 1500
-    //         });
-    //     }
-    // }
+    var sukses = <?php echo json_encode($sukses)?>;
+    if(sukses){
+        Swal.fire({
+            icon: 'success',
+            title: 'Selamat!',
+            text: 'Anda berhasil melakukan top up!',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
 </script>
 </html>

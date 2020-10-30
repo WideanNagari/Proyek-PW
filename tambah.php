@@ -21,6 +21,7 @@
         $hide = 1;
         $barang = json_decode($_COOKIE["item"],true);
     }
+    $sukses = 0;
     if(isset($_POST["add"])){
         $id=$_POST["id_barang"];
         $idjenis=$_POST["jenis"];
@@ -42,6 +43,7 @@
             $id = $id . $jumlah;
         }
         $hide = 0;
+        $sukses = 1;
     }
     if(isset($_POST["edit"])){
         $id=$_POST["id_barang"];
@@ -66,6 +68,7 @@
         );
         $barang = $barang2;
         $hide = 1;
+        $sukses = 2;
     }
 ?>
 
@@ -107,8 +110,8 @@
             ?>
             </select><br><br>
             Nama Barang  <input type="text" name="nama_barang" id="name" style="margin-left:18px;" required><br><br>
-            Harga  <input type="text" name="harga" id="price" style="margin-left:76px;" required><br><br>
-            Stok  <input type="text" name= "stok" id="stock" style="margin-left:87px;" required><br><br>
+            Harga  <input type="text" name="harga" id="price" style="margin-left:76px;" onkeypress="return hanyaAngka(event)" required><br><br>
+            Stok  <input type="text" name= "stok" id="stock" style="margin-left:87px;" onkeypress="return hanyaAngka(event)" required><br><br>
             Deskripsi: <textarea name="deskripsi" id="desc" cols="73" rows="23" style="margin-left:91px; resize:none; border-radius:7px;padding:10px;"></textarea>
             <button type="submit" style="margin-left: 90px;" id="ganti" name="edit">Edit</button>
             <button type="submit" style="margin-left: 90px;" id="tambah" name="add">Tambah</button>
@@ -117,6 +120,11 @@
 </div>
 </body>
 <script>
+    function hanyaAngka(event) {
+        var angka = (event.which) ? event.which : event.keyCode
+        if (angka != 46 && angka > 31 && (angka < 48 || angka > 57)){return false;}
+        else{return true;}
+    }
     $(document).ready(function(){
         var hide = <?= json_encode($hide)?>;
         if(hide==0){
@@ -133,6 +141,25 @@
             document.getElementById("price").value = <?= json_encode($barang["harga"])?>;
             document.getElementById("desc").value = <?= json_encode($barang["desc"])?>;
             <?php } ?>
+        }
+
+        var sukses = <?php echo json_encode($sukses)?>;
+        if(sukses==1){
+            Swal.fire({
+                icon: 'success',
+                title: 'Selamat!',
+                text: 'Anda berhasil menambahkan produk!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }else if(sukses==2){
+            Swal.fire({
+                icon: 'success',
+                title: 'Selamat!',
+                text: 'Anda berhasil mengedit produk!',
+                showConfirmButton: false,
+                timer: 1500
+            });
         }
     });
 </script>

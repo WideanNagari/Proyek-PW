@@ -21,6 +21,7 @@
         $hide = 1;
         $barang = json_decode($_COOKIE["item"],true);
     }
+    $sukses = 0;
     if(isset($_POST["add"])){
         if($_POST["diskon_percentage"]>100){
             echo "<script>alert('terlalu besar!')</script>";
@@ -31,8 +32,7 @@
             $nama=$_POST["nama_event"];
             $diskon=$_POST["diskon"];
             $diskon2=$_POST["diskon_percentage"];
-            $status=0;
-            if(isset($_POST["status1"])){$status=$_POST["status1"];}
+            $status=$_POST["status2"];
             mysqli_query($conn, "insert into event values('$id','$nama','$diskon','$diskon2',$status)");
         }
         $id = "EV";
@@ -47,6 +47,7 @@
             $id = $id . $jumlah;
         }
         $hide = 0;
+        $sukses = 1;
     }
     if(isset($_POST["edit"])){
         $id=$_POST["id_event"];
@@ -69,6 +70,7 @@
         );
         $barang = $event;
         $hide = 1;
+        $sukses = 2;
     }
 ?>
 <!DOCTYPE html>
@@ -79,7 +81,7 @@
     <title>OutfitLabs</title>   
     <script src="./assets/jquery-3.5.1.min.js"></script>
     <script src="./assets/sweetalert2.all.min.js"></script>
-    <link rel="stylesheet" href="./css/addevent.css">
+    <link rel="stylesheet" href="css/addevent.css">
 </head>
 <body>
 <a href=""></a>
@@ -96,9 +98,9 @@
             <h1>Tambah Event</h1>
             ID Event  <input type="text" id="id" name="id_event" style="margin-left:50px;" readonly><br> <br>           
             Nama Event  <input type="text" name="nama_event" id="name" style="margin-left:18px;" required><br><br>
-            Diskon  <input type="text" name="diskon" id="diskon1" style="margin-left:61px;" required><br><br>
+            Diskon  <input type="text" name="diskon" id="diskon1" style="margin-left:61px;" onkeypress="return hanyaAngka(event)" required><br><br>
             Diskon (%)  <span>
-            <input type="text" name= "diskon_percentage" id="diskon2" style="margin-left:36px;" required>
+            <input type="text" name= "diskon_percentage" id="diskon2" style="margin-left:36px;" onkeypress="return hanyaAngka(event)" required>
             </span>
             <span class= style="width=10%;">%</span>
             <br><br>
@@ -111,6 +113,11 @@
     </div>
 </div>
 <script>
+    function hanyaAngka(event) {
+        var angka = (event.which) ? event.which : event.keyCode
+        if (angka != 46 && angka > 31 && (angka < 48 || angka > 57)){return false;}
+        else{return true;}
+    }
     $(document).ready(function(){
         var id = <?= json_encode($id)?>;
         document.getElementById("id").value = id;
@@ -134,6 +141,25 @@
                 }
             <?php
             }?>
+        }
+
+        var sukses = <?php echo json_encode($sukses)?>;
+        if(sukses==1){
+            Swal.fire({
+                icon: 'success',
+                title: 'Selamat!',
+                text: 'Anda berhasil menambahkan event!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }else if(sukses==2){
+            Swal.fire({
+                icon: 'success',
+                title: 'Selamat!',
+                text: 'Anda berhasil mengedit event!',
+                showConfirmButton: false,
+                timer: 1500
+            });
         }
     });
 </script>
