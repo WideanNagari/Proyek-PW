@@ -11,6 +11,11 @@
         }
         $barang["nama_jenis"] = $jenis;
         setcookie("barang",json_encode($barang),time()+60*10);
+    }else if(isset($_REQUEST["query2"])){
+        $mybag = $_REQUEST["query2"];
+        setcookie("mybag",json_encode($mybag),time()+60*10);
+    }else if(isset($_REQUEST["query3"])){
+        setcookie("mybag","",time()-1);
     }else{
         header("location: index.php");
     }

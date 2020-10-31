@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2020 at 02:20 PM
+-- Generation Time: Oct 31, 2020 at 09:11 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -71,26 +71,25 @@ INSERT INTO `barang` (`id_barang`, `id_jenis`, `nama_barang`, `harga`, `stok`, `
 ('BA026', 'JB004', 'Bubblegum Nini Pants', '2250000', '2', ''),
 ('BA027', 'JB004', 'Grey Long Wide-Leg Paperbag Pants', '11980000', '2', ''),
 ('BA028', 'JB004', 'Orange Ginger Hemal Wide Leg Trousser', '2190000', '2', ''),
-('BA029', 'JB005', 'Checked Print Fringed Blazer', '1799000', '5', ''),
-('BA030', 'JB005', 'Cross Button Blazer', '1399000', '5', ''),
+('BA029', 'JB008', 'Checked Print Fringed Blazer', '1799000', '5', ''),
+('BA030', 'JB008', 'Cross Button Blazer', '1399000', '5', ''),
 ('BA031', 'JB005', 'Faux Shearling-Lined Corduroy Jacket', '1399000', '5', ''),
 ('BA032', 'JB005', 'Faux Shearling-Lined Jacket', '1799000', '5', ''),
-('BA033', 'JB005', 'Tweed Blazer', '1799000', '5', ''),
+('BA033', 'JB008', 'Tweed Blazer', '1799000', '5', ''),
 ('BA034', 'JB005', 'Wool College Bomber Jacket', '1599000', '5', ''),
-('BA035', 'JB006', 'Chain Crossbody Bag', '479000', '4', ''),
+('BA035', 'JB009', 'Chain Crossbody Bag', '479000', '4', ''),
 ('BA036', 'JB006', 'External Pocket Tote Briefcase', '1199000', '4', ''),
-('BA037', 'JB006', 'Nylon Baguette Bag', '479000', '4', ''),
+('BA037', 'JB009', 'Nylon Baguette Bag', '479000', '4', ''),
 ('BA038', 'JB006', 'Technical Fabric Backpack', '999000', '4', ''),
 ('BA039', 'JB006', 'Technical Fabric Cross-Body Bag', '479000', '4', ''),
-('BA040', 'JB006', 'Tortoiseshell Baguette Bag', '359000', '4', ''),
+('BA040', 'JB009', 'Tortoiseshell Baguette Bag', '359000', '4', ''),
 ('BA041', 'JB007', 'Black White Campo Sneakers', '2650000', '6', ''),
-('BA042', 'JB007', 'Fuchsia Hoya Heels Shoes', '6923000', '6', ''),
-('BA043', 'JB007', 'Gold Oversized Pearl Heeled Slip On', '2116000', '6', ''),
+('BA042', 'JB010', 'Fuchsia Hoya Heels Shoes', '6923000', '6', ''),
+('BA043', 'JB010', 'Gold Oversized Pearl Heeled Slip On', '2116000', '6', ''),
 ('BA044', 'JB007', 'Men\'s Blue White Canvas Sneakers', '3750000', '6', ''),
 ('BA045', 'JB007', 'Men\'s Orange Repeat Low Triplet Plain Light', '1990000', '6', ''),
-('BA046', 'JB007', 'Multicolor Raffia Printed Canvas Shoes', '4790000', '6', ''),
-('BA047', 'JB007', 'White Green Dreamy Leather Sabot', '6790000', '6', ''),
-('BA051', 'JB001', 'a', '1', '2331', '');
+('BA046', 'JB010', 'Multicolor Raffia Printed Canvas Shoes', '4790000', '6', ''),
+('BA047', 'JB007', 'White Green Dreamy Leather Sabot', '6790000', '6', '');
 
 -- --------------------------------------------------------
 
@@ -140,7 +139,8 @@ INSERT INTO `event` (`id_event`, `nama_event`, `diskon`, `diskon (%)`, `status`)
 ('EV002', 'OutfitLabs ShopFest', '40000', '0', '0'),
 ('EV003', 'Hari Belanja Online Nasional', '15000', '10', '0'),
 ('EV004', 'Black Friday', '20000', '20', '0'),
-('EV005', 'Super Shopping Day', '50000', '0', '0');
+('EV005', 'Super Shopping Day', '50000', '0', '0'),
+('EV006', 'x', '12500', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -187,9 +187,12 @@ INSERT INTO `jenis_barang` (`id_jenis`, `nama_jenis`) VALUES
 ('JB002', 'Woman\'s clothes'),
 ('JB003', 'Man\'s trousers'),
 ('JB004', 'Woman\'s trousers'),
-('JB005', 'Jacket'),
-('JB006', 'Bag'),
-('JB007', 'Shoes');
+('JB005', 'Man\'s Jacket'),
+('JB006', 'Man\'s Bag'),
+('JB007', 'Man\'s Shoes'),
+('JB008', 'Woman\'s Jacket'),
+('JB009', 'Woman\'s Bag'),
+('JB010', 'Woman\'s Shoes');
 
 -- --------------------------------------------------------
 

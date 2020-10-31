@@ -5,6 +5,33 @@
     }else{
         header("location: index.php");
     }
+    $mybag = [];
+    $sukses = -1;
+    if(isset($_POST["tambahkan"])){
+        $sukses = 0;
+        //sudah ada 1 atau belum 0
+        if(isset($_COOKIE["mybag"])){
+            $mybag = json_decode($_COOKIE["mybag"],true);
+            foreach($mybag as $key => $val){
+                if($val["id"]==$barang["id"]){
+                    $sukses = 1;
+                }
+            }
+        }
+        if($sukses == 0){
+            $brg = array(
+                'id' => $barang["id"],
+                'nama' => $barang["nama"],
+                'harga' => $barang["harga"],
+                'stok' => $barang["stok"],
+                'deskripsi' => $barang["deskripsi"],
+                'nama_jenis' => $barang["nama_jenis"]
+            );
+            $brg['jumlah'] = 1;
+            $mybag[] = $brg;
+            setcookie("mybag",json_encode($mybag),time()+60*10);  
+        }    
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +40,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="./assets/jquery-3.5.1.min.js"></script>
+    <script src="./assets/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="./css/display.css">
 </head>
 <body>
@@ -42,8 +70,8 @@
                 Deskripsi:
                 <p style="height:160px; border: 2px solid gray;font-size:20px;padding:10px;border-radius: 5px;" id="deskripsi">awawawa</p>
             </div>
-            <form action="">
-                <button id="btn" type="submit">Tambahkan ke MyBag!</button>
+            <form method="POST">
+                <button id="btn" name="tambahkan" type="submit">Tambahkan ke MyBag!</button>
             </form>
         </div>
     </div>
@@ -58,6 +86,25 @@
             document.getElementById("jenis").innerText = "Jenis: " + barang["nama_jenis"];
             document.getElementById("stok").innerText = "Stok: " + barang["stok"];
             document.getElementById("deskripsi").innerText = barang["deskripsi"];
+
+            var sukses = <?php echo json_encode($sukses)?>;
+            if(sukses==0){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Selamat!',
+                    text: 'Anda berhasil menambahkan produk ke myBag!',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }else if(sukses==1){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: 'Barang sudah ada di myBag!',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
         });
     </script>
 </html>
