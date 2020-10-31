@@ -1,5 +1,32 @@
 <?php
-
+    require_once("connection.php");
+    $tipe = "";
+    $barang=[];
+    if(isset($_GET["type"])){
+        if($_GET["type"]=="clothes-men"){$tipe = "JB001";}
+        else if($_GET["type"]=="clothes-woman"){$tipe = "JB002";}
+        else if($_GET["type"]=="trousers-men"){$tipe = "JB003";}
+        else if($_GET["type"]=="trousers-woman"){$tipe = "JB004";}
+        else if($_GET["type"]=="jacket-men"){$tipe = "JB005";}
+        else if($_GET["type"]=="bag-men"){$tipe = "JB006";}
+        else if($_GET["type"]=="shoes-men"){$tipe = "JB007";}
+        else if($_GET["type"]=="jacket-woman"){$tipe = "JB008";}
+        else if($_GET["type"]=="bag-woman"){$tipe = "JB009";}
+        else if($_GET["type"]=="shoes-woman"){$tipe = "JB010";}
+        
+        $result = mysqli_query($conn, "select * from barang where id_jenis='$tipe'");
+        while($row = mysqli_fetch_array($result)){
+            $brg = array(
+                'id' => $row["id_barang"],
+                'nama' => $row["nama_barang"],
+                'harga' => $row["harga"],
+                'stok' => $row["stok"],
+                'deskripsi' => $row["deskripsi"],
+                'id_jenis' => $row["id_jenis"]
+            );
+            $barang[] = $brg;
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,6 +34,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="./assets/jquery-3.5.1.min.js"></script>
     <style>
         @font-face {
             font-family: "goodTimes";
@@ -124,30 +152,6 @@
     </div>
     <div class="product">
         <div class="column">
-            <div class="content">
-                <img src="./assets/banner/product.jpg" alt="">
-                <div class="harga">nama - harga</div>
-            </div>
-            <div class="content">
-                <img src="./assets/banner/product.jpg" alt="">
-                <div class="harga">nama - harga</div>
-            </div>
-            <div class="content">
-                <img src="./assets/banner/product.jpg" alt="">
-                <div class="harga">nama - harga</div>
-            </div>
-            <div class="content">
-                <img src="./assets/banner/product.jpg" alt="">
-                <div class="harga">nama - harga</div>
-            </div>
-            <div class="content">
-                <img src="./assets/banner/product.jpg" alt="">
-                <div class="harga">nama - harga</div>
-            </div>
-            <div class="content">
-                <img src="./assets/banner/product.jpg" alt="">
-                <div class="harga">nama - harga</div>
-            </div>
         </div>
     </div>
     <div class="footer">
@@ -163,4 +167,30 @@
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam laborum quia voluptas minus sapiente odit illo odio at commodi ex quo mollitia sunt, ipsa ipsam ipsum tempore nam ad quisquam.Iste unde sunt consequatur voluptates mollitia laborum, at nemo totam, nam ipsam optio sit distinctio ratione assumenda repellendus corrupti sed eligendi pariatur ducimus? Ipsum, voluptate aspernatur adipisci quisquam tenetur perspiciatis!
         </div>
     </div>
+    <form method="POST">
+        <button type="hidden" id="btnn" formaction="display.php" style="display:none;"></button>
+    </form>
 </body>
+    <script>
+        var barang = <?= json_encode($barang)?>;
+        $(document).ready(function(){
+            for(let i = 0; i<barang.length; i++){
+                var id = barang[i]["id"];
+                var harga = barang[i]["harga"];
+                var nama = barang[i]["nama"];
+                $('.column').append(`
+                    <div class="content" id=${i} name="">
+                        <img src="./assets/pic/${id}.png" alt="">
+                        <div class="harga">${harga} - ${nama}</div>
+                    </div>
+                `);
+                $(`#${i}`).click(function(){
+                    document.getElementById(`${i}`).setAttribute("name","query");
+                    $.get("sendInfo.php", { query : barang[i] }, function(){
+                        document.getElementById("btnn").click(); 
+                    });
+                });   
+            }
+        });
+    </script>
+</html>

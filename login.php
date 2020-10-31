@@ -83,7 +83,7 @@ if (isset($_GET["success"])) {
             <form method="post" action="loginTool.php">
                 <input type="text" name="username" placeholder="Username" required> <br>
                 <input type="password" name="password" placeholder="Password" required> <br>
-                <input type="radio" name="remember" checked id="check"> Keep me signed in <br>
+                <input type="checkbox" name="remember" id="check"> Keep me signed in <br>
                 <button type="submit" name="login" id="login">Enter</button> <br>
                 Don't have an account? <a href="register.php">Register </a>
             </form>

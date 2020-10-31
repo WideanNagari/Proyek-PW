@@ -43,7 +43,7 @@
         </div>
     </div>
     <form method="POST">
-        <button type="hidden" id="btnn" formaction="display.php" style="position: absolute;"></button>
+        <button type="hidden" id="btnn" formaction="display.php" style="display:none;"></button>
     </form>
 </body>
     <script>
