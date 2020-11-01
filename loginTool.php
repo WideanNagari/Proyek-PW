@@ -35,7 +35,7 @@
                             //buat cookie remember me
                         }
                         $_SESSION["user"] = $user;
-                        header("location: index.php");
+                        header("location: user.php");
                     }else{
                         header("location: login.php?error=2");
                     }

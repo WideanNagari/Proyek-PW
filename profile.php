@@ -1,10 +1,15 @@
 <?php
 require_once("connection.php");
-$idprov = $user_login["provinsi"];
-$provinsi = "";
-$result = mysqli_query($conn, "select * from provinsi where id_provinsi='$idprov'");
-while ($row = mysqli_fetch_array($result)) {
-    $provinsi = $row["nama_provinsi"];
+
+if($user_login==null) {
+    header("location: index.php");
+} else {
+    $idprov = $user_login["provinsi"];
+    $provinsi = "";
+    $result = mysqli_query($conn, "select * from provinsi where id_provinsi='$idprov'");
+    while ($row = mysqli_fetch_array($result)) {
+        $provinsi = $row["nama_provinsi"];
+    }
 }
 
 ?>
@@ -14,7 +19,7 @@ while ($row = mysqli_fetch_array($result)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>User-Profile</title>
     <script src="./assets/sweetalert2.all.min.js"></script>
     <script src="./assets/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="./css/profile.css">
@@ -38,7 +43,7 @@ while ($row = mysqli_fetch_array($result)) {
                     </button>
                     <button type="submit" name="signIn" id="login" formaction="profile.php">
                         <img src="./assets/icon/signIn.png"> <br>
-                        Nama_User
+                        <?=$user_login['nama']?>
                     </button>
                 </form>
             </div>
@@ -102,12 +107,12 @@ while ($row = mysqli_fetch_array($result)) {
                     <p>Saldo : </p>
                 </div>
                 <div class="isi">
-                    <p id="id">CU001</p>
-                    <p id="nama">Widean</p>
-                    <p id="email">aaaa@gmail.com</p>
-                    <p id="alamat">jalan jalan</p>
-                    <p id="provinsi">Jawa Timur</p>
-                    <p id="saldo">Rp. 36000</p>
+                    <p id="id"><?=$user_login['id']?></p>
+                    <p id="nama"><?=$user_login['nama']?></p>
+                    <p id="email"><?=$user_login['email']?></p>
+                    <p id="alamat"><?=$user_login['alamat']?></p>
+                    <p id="provinsi"><?=$user_login['provinsi']?></p>
+                    <p id="saldo"><?="Rp. " . $user_login['saldo']?></p>
                 </div>
             </div>
             <div class="menu2">
@@ -144,7 +149,7 @@ while ($row = mysqli_fetch_array($result)) {
         </div>
     </div>
 </body>
-<script>
+<!-- <script>
     $(document).ready(function() {
         document.getElementById("id").innerText = <?= json_encode($user_login["id"]) ?>;
         document.getElementById("nama").innerText = <?= json_encode($user_login["nama"]) ?>;
@@ -153,6 +158,6 @@ while ($row = mysqli_fetch_array($result)) {
         document.getElementById("provinsi").innerText = <?= json_encode($provinsi) ?>;
         document.getElementById("saldo").innerText = "Rp. " + <?= json_encode($user_login["saldo"]) ?>;
     });
-</script>
+</script> -->
 
 </html>

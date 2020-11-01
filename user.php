@@ -3,7 +3,15 @@ require_once("connection.php");
 $logged = false;
 if ($user_login != null) {
     $logged = true;
+} else {
+    header("location: index.php");
 }
+
+if(isset($_POST['logOut'])) {
+    unset($_SESSION['user']);
+    header("location: index.php");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +19,7 @@ if ($user_login != null) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home-Index</title>
+    <title>Home-User</title>
     <script src="./assets/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="./css/index.css">
 </head>
@@ -24,7 +32,7 @@ if ($user_login != null) {
                     <h1>Outfit Labs</h1>
                 </a>
                 <form method="POST">
-                    <button type="submit" name="logOut" formaction="index.php">
+                    <button type="submit" name="logOut">
                         <img src="./assets/icon/logout.png"> <br>
                         Log Out
                     </button>
@@ -32,9 +40,9 @@ if ($user_login != null) {
                         <img src="./assets/icon/shopBag.png"> <br>
                         Shop Bag
                     </button>
-                    <button type="submit" name="signIn" id="login" formaction="profile.php">
+                    <button type="submit" name="signIn" formaction="profile.php">
                         <img src="./assets/icon/signIn.png"> <br>
-                        Nama_User
+                        <?=$user_login['nama']?>
                     </button>
                 </form>
             </div>
