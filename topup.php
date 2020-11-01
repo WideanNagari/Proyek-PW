@@ -25,7 +25,7 @@
 <body>
     <div class="header">
     <div id="logo" style="padding-left: 110px; padding-top: 10px; margin-right: 170px;">OutfitLabs</div>
-        <form action="login.php" method="POST">
+        <form action="profile.php" method="POST">
             <button type="submit" id="btnBack">Back</button>
         </form>
     </div>
