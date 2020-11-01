@@ -36,7 +36,7 @@
 }
 
 .header .menu h1 {
-    margin-left: 38%;
+    margin-left: 41.5%;
     color: black;
     float: left;
     font-family: 'goodTimes';
@@ -79,7 +79,6 @@ button {
     margin-right: 50px;
     margin-left: 50px;
 }
-
 a:visited{
     color: white;
 }
@@ -155,7 +154,6 @@ nav ul li:hover {
     transition: 0.4s;
     cursor: pointer;
     /* background: white; */
-
     background-color: Transparent;
     background-repeat:no-repeat;
     border: none;
@@ -183,7 +181,7 @@ nav ul li:hover {
 }
 
 .main {
-    margin-left: 450px;
+    margin: auto;
     height: 400px;
     width: 400px;
 }
