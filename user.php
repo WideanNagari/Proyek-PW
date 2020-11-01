@@ -1,9 +1,5 @@
 <?php
-require_once("connection.php");
-$logged = false;
-if ($user_login != null) {
-    $logged = true;
-}
+    require_once("connection.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -231,13 +227,4 @@ if ($user_login != null) {
         </div>
     </div>
 </body>
-<script>
-    var logged = <?= json_encode($logged) ?>;
-    $(document).ready(function() {
-        if (logged) {
-            document.getElementById("login").style.display = "none";
-        }
-    });
-</script>
-
 </html>

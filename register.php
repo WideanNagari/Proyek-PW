@@ -23,10 +23,6 @@ if (isset($_GET["error"])) {
                 <a href="home.html">
                     <h1>Outfit Labs</h1>
                 </a>
-                <button type="submit" name="shopBag">
-                    <img src="./assets/icon/shopBag.png"> <br>
-                    Shop Bag
-                </button>
                 <button type="submit" name="signIn">
                     <img src="./assets/icon/signIn.png"> <br>
                     Sign in
@@ -68,6 +64,11 @@ if (isset($_GET["error"])) {
                             <a href="#">Women</a>
                             <a href="#">Men</a>
                         </div>
+                    </div>
+                    <div class="dropdown">
+                        <form method="POST">
+                            <button formaction="index.php" style="font-size:15px; margin-left: 20px;">home</button>
+                        </form>
                     </div>
                     <form action="" method="POST">
                         <div class="search-box">

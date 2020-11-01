@@ -8,29 +8,33 @@
     $mybag = [];
     $sukses = -1;
     if(isset($_POST["tambahkan"])){
-        $sukses = 0;
-        //sudah ada 1 atau belum 0
-        if(isset($_COOKIE["mybag"])){
-            $mybag = json_decode($_COOKIE["mybag"],true);
-            foreach($mybag as $key => $val){
-                if($val["id"]==$barang["id"]){
-                    $sukses = 1;
+        if(isset($_SESSION["user"])){
+            $sukses = 0;
+            //sudah ada 1 atau belum 0
+            if(isset($_COOKIE["mybag"])){
+                $mybag = json_decode($_COOKIE["mybag"],true);
+                foreach($mybag as $key => $val){
+                    if($val["id"]==$barang["id"]){
+                        $sukses = 1;
+                    }
                 }
             }
+            if($sukses == 0){
+                $brg = array(
+                    'id' => $barang["id"],
+                    'nama' => $barang["nama"],
+                    'harga' => $barang["harga"],
+                    'stok' => $barang["stok"],
+                    'deskripsi' => $barang["deskripsi"],
+                    'nama_jenis' => $barang["nama_jenis"]
+                );
+                $brg['jumlah'] = 1;
+                $mybag[] = $brg;
+                setcookie("mybag",json_encode($mybag),time()+60*10);  
+            } 
+        }else{
+            $sukses = 2;
         }
-        if($sukses == 0){
-            $brg = array(
-                'id' => $barang["id"],
-                'nama' => $barang["nama"],
-                'harga' => $barang["harga"],
-                'stok' => $barang["stok"],
-                'deskripsi' => $barang["deskripsi"],
-                'nama_jenis' => $barang["nama_jenis"]
-            );
-            $brg['jumlah'] = 1;
-            $mybag[] = $brg;
-            setcookie("mybag",json_encode($mybag),time()+60*10);  
-        }    
     }
 ?>
 <!DOCTYPE html>
@@ -101,6 +105,14 @@
                     icon: 'error',
                     title: 'Gagal!',
                     text: 'Barang sudah ada di myBag!',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }else if(sukses==2){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: 'Mohon login terlebih dahulu!',
                     showConfirmButton: false,
                     timer: 1500
                 });
