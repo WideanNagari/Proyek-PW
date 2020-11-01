@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'goodTimes';
-    src: url(../assets/fonts/good_times_rg.ttf);
+    src: url('../assets/fonts/good_times_rg.ttf');
 }
 
 @font-face {
     font-family: 'teen';
-    src: url(../assets/fonts/teen.ttf);
+    src: url('../assets/fonts/teen.ttf');
 }
 
 * {
@@ -20,9 +20,8 @@
 }
 
 .header {
-    height: 150px;
-    background: rgb(183, 228, 255);
-    margin-bottom: 40px;
+    height: 200px;
+    background: white;
 }
 
 .header .menu {
@@ -42,7 +41,7 @@
     margin-right: 50px;
 }
 
-.header button {
+button {
     padding: 10px;
     background-color: Transparent;
     background-repeat:no-repeat;
@@ -59,11 +58,12 @@
 
 .navbar {
     height: 50px;
-    width: 80%;
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    margin: auto;
+    margin-left: 20px;
+    /* background: #000; */
+    /* color: white; */
     color: black;
 }
 
@@ -72,6 +72,10 @@
     padding: 10px;
     margin-right: 50px;
     margin-left: 50px;
+}
+
+a:visited{
+    color: white;
 }
 
 nav ul li:hover {
@@ -105,6 +109,71 @@ nav ul li:hover {
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+.search-box {
+    margin-left: 380px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 40px;
+    border-radius: 40px;
+    /* background: white; */
+
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+.search-box:hover > .search-txt {
+    width: 240px;
+    padding: 0 6px;
+}
+
+.search-box:hover > .search-btn {
+    background: white;
+}
+
+.search-btn {
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    cursor: pointer;
+    /* background: white; */
+
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+.search-txt {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: black;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+}
+
+.search-box button img{
+    height: 20px;
+    width: 20px;
 }
 
 .main {

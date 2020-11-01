@@ -20,17 +20,21 @@ if ($user_login != null) {
     <div class="container">
         <div class="header">
             <div class="menu">
-                <a href="index.php">
+                <a href="home.html">
                     <h1>Outfit Labs</h1>
                 </a>
                 <form method="POST">
+                    <button type="submit" name="logOut" formaction="index.php">
+                        <img src="./assets/icon/logout.png"> <br>
+                        Log Out
+                    </button>
                     <button type="submit" name="shopBag" formaction="mybag.php">
                         <img src="./assets/icon/shopBag.png"> <br>
                         Shop Bag
                     </button>
-                    <button type="submit" name="signIn" id="login" formaction="login.php">
+                    <button type="submit" name="signIn" id="login" formaction="profile.php">
                         <img src="./assets/icon/signIn.png"> <br>
-                        Sign in
+                        Nama_User
                     </button>
                 </form>
             </div>

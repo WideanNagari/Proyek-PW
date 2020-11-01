@@ -84,9 +84,7 @@ if (isset($_GET["error"])) {
             <a href="login.php"><button type="" name="login">Login</button></a>
             <a href="register.php"><button type="" name="register_pilih" style="border-bottom: 1px solid black;">Register</button></a> <br>
             <form action="registerTool.php" method="post">
-                How would you like us to address you? <br> <br>
-                <input type="text" name="name" placeholder="Name" required> <br>
-                Enter an e-mail and password to access your account wherever and whenever you like. <br> <br>
+                Enter an e-mail, username and password to access your account wherever and whenever you like. <br> <br>
                 <input type="text" name="email" placeholder="Email" required>
                 <input type="text" name="username" placeholder="Username" required>
                 <input type="password" name="password" placeholder="Password" required>
@@ -106,9 +104,6 @@ if (isset($_GET["error"])) {
                 </select> <br>
                 <input type="text" name="city" placeholder="Town/City"> <br>
                 <input type="text" name="address" placeholder="Address"> <br>
-                Select the category that interests you for a personalised experience. <br> <br>
-                <input type="radio" name="check_female" value="female" class="check"> Female
-                <input type="radio" name="check_male" value="male" class="check"> Male <br>
                 <button type="submit" name="daftar" id="register">Create Account</button>
             </form>
         </div>
