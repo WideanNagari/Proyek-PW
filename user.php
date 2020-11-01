@@ -239,13 +239,4 @@ if(isset($_POST['logOut'])) {
         </div>
     </div>
 </body>
-<script>
-    var logged = <?= json_encode($logged) ?>;
-    $(document).ready(function() {
-        if (logged) {
-            document.getElementById("login").style.display = "none";
-        }
-    });
-</script>
-
 </html>

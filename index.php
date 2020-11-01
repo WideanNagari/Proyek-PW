@@ -24,10 +24,6 @@ if ($user_login != null) {
                     <h1>Outfit Labs</h1>
                 </a>
                 <form method="POST">
-                    <button type="submit" name="shopBag" formaction="mybag.php">
-                        <img src="./assets/icon/shopBag.png"> <br>
-                        Shop Bag
-                    </button>
                     <button type="submit" name="signIn" id="login" formaction="login.php">
                         <img src="./assets/icon/signIn.png"> <br>
                         Sign in

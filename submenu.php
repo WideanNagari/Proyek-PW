@@ -27,6 +27,13 @@
             $barang[] = $brg;
         }
     }
+    if(isset($_POST["home"])){
+        if(isset($_SESSION["user"])){
+            header("location: user.php");
+        }else{
+            header("location: index.php");
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,19 +70,19 @@
         .menu ul{
             padding: 0px;
         }
-        .menu li{
-            display: inline;
+        .menu li, #btn{
+            display: inline-block;
             font-family: "teen";
         }
 
-        .menu a{
+        .menu a, #btn{
             color: lightsteelblue;
             text-decoration: none;
             font-weight: bold;
             padding: 0px 10px;
         }
 
-        .menu a:hover{
+        .menu a:hover, #btn:hover{
             border-bottom: 2px solid white;
             color: whitesmoke;
         }
@@ -147,6 +154,18 @@
                 <li><a href="#3">MENU 3</a></li>
                 <li><a href="#4">MENU 4</a></li>
                 <li><a href="#5">MENU 5</a></li>
+                <li>
+                    <form method="POST">                    
+                        <button name="home" id="btn" style="
+                        font-size:15px;
+                        background-color: Transparent;
+                        background-repeat:no-repeat;
+                        border: none;
+                        cursor:pointer;
+                        overflow: hidden;
+                        outline:none;">HOME</button>
+                    </form>
+                </li>
             </ul>
         </div>
     </div>

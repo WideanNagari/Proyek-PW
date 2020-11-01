@@ -26,7 +26,7 @@
             <li>Jacket</li>
             <li>Bag</li>
             <li>Shoes</li>
-            <li><form action="" method="POST"><button type="submit" id="back">Back</button></form></li>
+            <li><form action="user.php" method="POST"><button type="submit" id="back">Back</button></form></li>
         </ul>
         <div id="judul">MyBag</div>
     </div>

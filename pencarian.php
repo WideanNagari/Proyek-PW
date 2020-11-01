@@ -11,6 +11,13 @@
     if(isset($_POST["search_button"])){
         $cari = $_POST["searchText"];
     }
+    if(isset($_POST["kembali"])){
+        if(isset($_SESSION["user"])){
+            header("location: user.php");
+        }else{
+            header("location: index.php");
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +37,7 @@
             <li>Jacket</li>
             <li>Bag</li>
             <li>Shoes</li>
-            <li><form action="index.php" method="POST"><button type="submit" id="back">Back</button></form></li>
+            <li><form method="POST"><button type="submit" name="kembali" id="back">Back</button></form></li>
         </ul>
         <form id="cari">
             <input type="text" id="idQuery" name="query" placeholder=" Pencarian" style="width: 170px; height: 26px;">

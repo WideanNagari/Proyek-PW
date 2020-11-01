@@ -1,21 +1,16 @@
 <?php
-require_once("connection.php");
-
-if($user_login==null) {
-    header("location: index.php");
-} else {
-    $idprov = $user_login["provinsi"];
-    $provinsi = "";
-    $result = mysqli_query($conn, "select * from provinsi where id_provinsi='$idprov'");
-    while ($row = mysqli_fetch_array($result)) {
-        $provinsi = $row["nama_provinsi"];
+    require_once("connection.php");
+    if(isset($user_login)){
+        $idprov = $user_login["provinsi"];
+        $provinsi = "";
+        $result = mysqli_query($conn, "select * from provinsi where id_provinsi='$idprov'");
+        while ($row = mysqli_fetch_array($result)) {
+            $provinsi = $row["nama_provinsi"];
+        }
     }
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,7 +79,11 @@ if($user_login==null) {
                             <a href="submenu.php?type=shoes-men">Men</a>
                         </div>
                     </div>
-
+                    <div class="dropdown">
+                        <form method="POST">
+                            <button formaction="user.php" style="font-size:15px; margin-left: 20px;">home</button>
+                        </form>
+                    </div>
                     <form action="" method="POST">
                         <div class="search-box">
                             <input type="text" name="searchText" class="search-txt" placeholder="Type to search" />
