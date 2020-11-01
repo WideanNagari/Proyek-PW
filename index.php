@@ -1,12 +1,13 @@
 <?php
-    require_once("connection.php");
-    $logged = false;
-    if($user_login!=null){
-        $logged = true;
-    }
+require_once("connection.php");
+$logged = false;
+if ($user_login != null) {
+    $logged = true;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,25 +15,28 @@
     <script src="./assets/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="./css/index.css">
 </head>
+
 <body>
     <div class="container">
         <div class="header">
             <div class="menu">
-                <a href="home.html"><h1>Outfit Labs</h1></a>
+                <a href="home.html">
+                    <h1>Outfit Labs</h1>
+                </a>
                 <form method="POST">
                     <button type="submit" name="shopBag" formaction="mybag.php">
                         <img src="./assets/icon/shopBag.png"> <br>
-                        Shop Bag 
+                        Shop Bag
                     </button>
-                    <button type="submit" name="signIn" id ="login" formaction="login.php">
-                        <img src="./assets/icon/signIn.png"> <br> 
-                        Sign in 
+                    <button type="submit" name="signIn" id="login" formaction="login.php">
+                        <img src="./assets/icon/signIn.png"> <br>
+                        Sign in
                     </button>
                 </form>
             </div>
             <div class="navbar">
                 <ul>
-                <div class="dropdown">
+                    <div class="dropdown">
                         <li>Clothes</li>
                         <div class="dropdown-content">
                             <a href="submenu.php?type=clothes-woman">Woman</a>
@@ -67,9 +71,14 @@
                             <a href="submenu.php?type=shoes-men">Men</a>
                         </div>
                     </div>
-                    <form action="" method="POST" style="display: inline;">
-                        <input type="text" name="searchText">
-                        <button type="submit" name="search_button" style="padding-top: 15px;" formaction="pencarian.php"><img src="./assets/icon/search1.png"></button>
+
+                    <form action="" method="POST">
+                        <div class="search-box">
+                            <input type="text" name="searchText" class="search-txt" placeholder="Type to search" />
+                            <a class="search-btn" href="#">
+                                <button type="submit" name="search_button" formaction="pencarian.php"><img src="./assets/icon/search1.png"></img></button>
+                            </a>
+                        </div>
                     </form>
                 </ul>
             </div>
@@ -91,14 +100,24 @@
             </div>
             <div class="content">
                 <p>Select the line you want to shop: </p>
-                <select name="content">
+                <select name="content" id="content" onchange="showhide()">
                     <option value="woman">Woman</option>
                     <option value="man">Man</option>
-                    <option value="girl">Girl</option>
-                    <option value="boy">Boy</option>
                 </select>
                 <p style="float: none; text-align: center; margin-left: 0; margin-top: 50px;">FREE SHIPPING FOR ORDERS OVER RP1.000.000 AND FREE RETURNS - RETURNS EXTENDED TO 60 DAYS</p>
-                <div class="content-gbr">
+                <script>
+                    function showhide() {
+                        var show = document.getElementById('content').value;
+                        if (show == "woman") {
+                            document.getElementById('gbrW').style.display = "block";
+                            document.getElementById('gbrM').style.display = "none";
+                        } else if (show=="man") {
+                            document.getElementById('gbrW').style.display = "none";
+                            document.getElementById('gbrM').style.display = "block";
+                        }
+                    }
+                </script>
+                <div class="content-gbr" id="gbrW" style="display: block;">
                     <div class="contKiri">
                         <img src="./assets/pic/BA030.png">
                     </div>
@@ -109,60 +128,71 @@
                         <img src="./assets/pic/BA012.png">
                     </div>
                 </div>
+                <div class="content-gbr" id="gbrM" style="display: none;">
+                    <div class="contKiri">
+                        <img src="./assets/pic/BA032.png">
+                    </div>
+                    <div class="contKanan">
+                        <h2>Garments</h2>
+                        <h1>MODERN AND SMART PIECES DESIGNED FOR THE URBAN MAN</h1>
+                        <img src="./assets/pic/BA034.png" style="float: left;">
+                        <img src="./assets/pic/BA031.png">
+                    </div>
+                </div>
             </div>
             <div class="popular">
                 <h2>Popular</h2> <br><br>
                 <div class="scroll">
-                    <div class="piece"> 
+                    <div class="piece">
                         <img src="./assets/pic/BA054.jpg">
                         <div class="middle">
                             <h4>Black Leather</h4>
                             <p>Rp,600,000</p>
                         </div>
                     </div>
-                    <div class="piece"> 
+                    <div class="piece">
                         <img src="./assets/pic/BA055.jpg">
                         <div class="middle">
                             <h4>Floral Crop Tee</h4>
                             <p>Rp,400,000</p>
                         </div>
                     </div>
-                    <div class="piece"> 
+                    <div class="piece">
                         <img src="./assets/pic/BA048.jpg">
                         <div class="middle">
                             <h4>Kirsty Knitted Two Piece</h4>
                             <p>Rp,500,000</p>
                         </div>
                     </div>
-                    <div class="piece"> 
+                    <div class="piece">
                         <img src="./assets/pic/BA049.jpg">
                         <div class="middle">
                             <h4>Maya Bottoms</h4>
                             <p>Rp,550,000</p>
                         </div>
                     </div>
-                    <div class="piece"> 
+                    <div class="piece">
                         <img src="./assets/pic/BA050.jpg">
                         <div class="middle">
                             <h4>Winter Turtleneck Pullover Dress</h4>
                             <p>Rp,450,000</p>
                         </div>
                     </div>
-                    <div class="piece"> 
+                    <div class="piece">
                         <img src="./assets/pic/BA051.jpg">
                         <div class="middle">
                             <h4>Winter Warmer Sweater</h4>
                             <p>Rp,650,000</p>
                         </div>
                     </div>
-                    <div class="piece"> 
+                    <div class="piece">
                         <img src="./assets/pic/BA052.jpg">
                         <div class="middle">
                             <h4>OH YES Hooded Sweater</h4>
                             <p>Rp,350,000</p>
                         </div>
                     </div>
-                    <div class="piece"> 
+                    <div class="piece">
                         <img src="./assets/pic/BA053.jpg">
                         <div class="middle">
                             <h4>Blue Work Blazer</h4>
@@ -190,7 +220,7 @@
                 <div class="contact">
                     <h4>Contact Us</h4>
                     <p><img src="./assets/icon/telp.png"> +62 0000000000</p>
-                    <p><img src="./assets/icon/email.png">  example@gmail.com</p>
+                    <p><img src="./assets/icon/email.png"> example@gmail.com</p>
                     <p><img src="./assets/icon/instagram.png">outfit.labs</p>
                 </div>
             </div>
@@ -199,10 +229,11 @@
 </body>
 <script>
     var logged = <?= json_encode($logged) ?>;
-    $(document).ready(function(){
-        if(logged){
+    $(document).ready(function() {
+        if (logged) {
             document.getElementById("login").style.display = "none";
         }
     });
 </script>
+
 </html>

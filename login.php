@@ -72,8 +72,14 @@ if (isset($_GET["success"])) {
                             <a href="#">Men</a>
                         </div>
                     </div>
-                    <input type="text" name="searchText">
-                    <button type="submit" name="search_button" style="padding-top: 15px;"><img src="./assets/icon/search1.png"></button>
+                    <form action="" method="POST">
+                        <div class="search-box">
+                            <input type="text" name="searchText" class="search-txt" placeholder="Type to search" />
+                            <a class="search-btn" href="#">
+                                <button type="submit" name="search_button" formaction="pencarian.php"><img src="./assets/icon/search1.png"></img></button>
+                            </a>
+                        </div>
+                    </form>
                 </ul>
             </div>
         </div>

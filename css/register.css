@@ -110,6 +110,71 @@ nav ul li:hover {
     display: block;
 }
 
+.search-box {
+    margin-left: 380px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 40px;
+    border-radius: 40px;
+    /* background: white; */
+
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+.search-box:hover > .search-txt {
+    width: 240px;
+    padding: 0 6px;
+}
+
+.search-box:hover > .search-btn {
+    background: white;
+}
+
+.search-btn {
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    cursor: pointer;
+    /* background: white; */
+
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+.search-txt {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: black;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+}
+
+.search-box button img{
+    height: 20px;
+    width: 20px;
+}
+
 .main {
     margin-left: 430px;
     width: 520px;
@@ -124,7 +189,7 @@ nav ul li:hover {
     background: white;
 }
 
-form input{
+.main form input{
     width: 500px;
     height: 50px;
     border: none;
@@ -133,7 +198,7 @@ form input{
     margin-bottom: 20px;
 }
 
-form .check {
+.main form .check {
     width: 20px;
     height: 20px;
     margin: 0;
@@ -142,14 +207,14 @@ form .check {
     margin-top: 20px;
 }
 
-form #register {
+.main form #register {
     margin-top: 40px;
     width: 500px;
     background: black;
     color: white;
 }
 
-form select {
+.main form select {
     width: 500px;
     height: 50px;
     border: none;
