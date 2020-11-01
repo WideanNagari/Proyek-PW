@@ -20,7 +20,7 @@
 }
 
 .header {
-    height: 200px;
+    height: 180px;
     background: white;
 }
 
@@ -178,10 +178,6 @@ nav ul li:hover {
 .main{
     margin-bottom: 40px;
     text-align: center;
-}
-
-.main h1{
-    margin-top:20px; 
 }
 
 .main .isi input[type=text], .main .isi input[type=email], #prov{

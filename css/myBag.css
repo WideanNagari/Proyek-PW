@@ -20,7 +20,7 @@ body{
 }
 
 .header {
-    height: 200px;
+    height: 180px;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -192,7 +192,7 @@ nav ul li:hover {
     background: white;
 }
 .barang{
-    width: 88%;
+    width: 90%;
     height: 440px;
     margin: auto;
     margin-top: 20px;

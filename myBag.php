@@ -94,8 +94,8 @@ if (isset($_POST["hapus"])) {
             <div class="checkout">
                 <div class="barang" id="brg">
                     <div>
-                        <div class="titlee" style="width:450px;">Item</div>
-                        <div class="titlee" style="width:300px;">Price</div>
+                        <div class="titlee" style="width:430px;">Item</div>
+                        <div class="titlee" style="width:250px;">Price</div>
                         <div class="titlee">Quantity</div>
                         <div class="titlee" style="margin-right:0;">Remove</div>
                     </div>
@@ -183,10 +183,10 @@ if (isset($_POST["hapus"])) {
             var jumlah = mybag[i]["jumlah"];
             $('.barang').append(`
                 <div class="barang2" id="ke${i}">
-                    <div class="isi" style="width:450px;">${nama}</div>
-                    <div class="isi" style="width:300px;">Rp. ${harga}</div>
+                    <div class="isi" style="width:430px;">${nama}</div>
+                    <div class="isi" style="width:250px;">Rp. ${harga}</div>
                     <input type="number" name="" id="${i}" value="${jumlah}" min="1" max="${max}" oninput="inputJumlah(value,max,id)" onchange="gantiJumlah(value,id)" class="isi" style="width:125px;height:20px;border:2px solid black;position:relative; bottom: 3px;">
-                    <div class="isi" style="margin-right:0;"><button id=remove${i} name="" style="width:115px;height:23px;border:2px solid black;position:relative; bottom: 3px;">Remove</button></div>
+                    <div class="isi" style="margin-right:0;"><button id=remove${i} name="" style="width:115px;height:25px;border:2px solid black;position:relative;padding:0;bottom:3px;">Remove</button></div>
                 </div>
             `);
             document.getElementById(`remove${i}`).setAttribute("nomor", id);
