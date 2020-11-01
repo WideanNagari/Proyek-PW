@@ -223,13 +223,13 @@ if ($user_login != null) {
         </div>
     </div>
 </body>
-<script>
+<!-- <script>
     var logged = <?= json_encode($logged) ?>;
     $(document).ready(function() {
         if (logged) {
             document.getElementById("login").style.display = "none";
         }
     });
-</script>
+</script> -->
 
 </html>

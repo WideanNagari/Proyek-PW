@@ -1,5 +1,16 @@
 <?php
     require_once("connection.php");
+    if($user_login==null){
+        header("location: index.php");
+    }
+
+    if(isset($_POST['logOut'])) {
+        unset($_SESSION["user"]);
+        unset($user_login);
+        header("location: index.php");
+        $logged = false;
+    }
+    
     $sukses = -1;
     if(isset($_POST["ganti"])){
         $id = $_POST["id"];
@@ -34,13 +45,75 @@
 <body>
     <div class="container">
         <div class="header">
-            <div id="logo" style="padding-left: 110px; padding-top: 10px; margin-right: 170px;">OutfitLabs</div>
-            <form action="profile.php" method="POST">
-                <button type="submit" id="btnBack">Back</button>
-            </form>
+            <div class="menu">
+                <a href="user.php">
+                    <h1>Outfit Labs</h1>
+                </a>
+                <form method="POST">
+                    <button type="submit" name="logOut">
+                        <img src="./assets/icon/logout.png"> <br>
+                        Log Out
+                    </button>
+                    <button type="submit" name="shopBag" formaction="mybag.php">
+                        <img src="./assets/icon/shopBag.png"> <br>
+                        Shop Bag
+                    </button>
+                    <button type="submit" name="signIn" id="login" formaction="profile.php">
+                        <img src="./assets/icon/signIn.png"> <br>
+                        <?=$user_login['nama']?>
+                    </button>
+                </form>
+            </div>
+            <div class="navbar">
+                <ul>
+                    <div class="dropdown">
+                        <li>Clothes</li>
+                        <div class="dropdown-content">
+                            <a href="submenu.php?type=clothes-woman">Woman</a>
+                            <a href="submenu.php?type=clothes-men">Men</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <li>Trousers</li>
+                        <div class="dropdown-content">
+                            <a href="submenu.php?type=trousers-woman">Woman</a>
+                            <a href="submenu.php?type=trousers-men">Men</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <li>Jacket</li>
+                        <div class="dropdown-content">
+                            <a href="submenu.php?type=jacket-woman">Woman</a>
+                            <a href="submenu.php?type=jacket-men">Men</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <li>Bag</li>
+                        <div class="dropdown-content">
+                            <a href="submenu.php?type=bag-woman">Woman</a>
+                            <a href="submenu.php?type=bag-men">Men</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <li>Shoes</li>
+                        <div class="dropdown-content">
+                            <a href="submenu.php?type=shoes-woman">Woman</a>
+                            <a href="submenu.php?type=shoes-men">Men</a>
+                        </div>
+                    </div>
+                    <form action="" method="POST">
+                        <div class="search-box">
+                            <input type="text" name="searchText" class="search-txt" placeholder="Type to search" />
+                            <a class="search-btn" href="#">
+                                <button type="submit" name="search_button" formaction="pencarian.php"><img src="./assets/icon/search1.png"></img></button>
+                            </a>
+                        </div>
+                    </form>
+                </ul>
+            </div>
         </div>
         <div class="main">
-                <h1 style="margin-top:40px; font-size:50px; text-align: center;">Edit Profil</h1><br>
+                <h1>Edit Profil</h1><br>
                 <div class="judul">
                     <p style="margin-bottom: 28px;">ID : </p>
                     <p style="margin-bottom: 28px;">Username : </p>
@@ -54,7 +127,7 @@
                         <input type="text" name="nama" id="namaUser" placeholder="  Username" required><br><br>
                         <input type="email" name="email" id="emailUser" placeholder="  Email" required><br><br>
                         <input type="text" name="alamat" id="alamatUser" placeholder="  Alamat" required><br><br>
-                        <select name="provinsi" id="prov" style="margin-bottom: 20px;">
+                        <select name="provinsi" id="prov" style="margin-bottom: 20px;">>
                             <?php
                             $result = mysqli_query($conn, "select * from provinsi");
                             while ($row = mysqli_fetch_array($result)) {
@@ -66,7 +139,7 @@
                             }
                             ?>
                         </select> <br>
-                        <button type="submit" name="ganti" id="btn" formaction="#">Ganti!</button><br><br>
+                        <button type="submit" name="ganti" id="btn">Ganti!</button><br><br>
                     </form>
                 </div>
         </div>

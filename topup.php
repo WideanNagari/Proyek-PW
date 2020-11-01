@@ -9,6 +9,15 @@ if (isset($_POST["topup"])) {
     mysqli_query($conn, "update customer set saldo = '$saldo' where id_customer='$id'");
     $_SESSION["user"] = $user_login;
     $sukses = true;
+} else {
+    header("location: index.php");
+}
+
+if(isset($_POST['logOut'])) {
+    unset($_SESSION["user"]);
+    unset($user_login);
+    header("location: index.php");
+    $logged = false;
 }
 ?>
 

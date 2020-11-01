@@ -1,16 +1,26 @@
 <?php
-    require_once("connection.php");
-    if(isset($user_login)){
-        $idprov = $user_login["provinsi"];
-        $provinsi = "";
-        $result = mysqli_query($conn, "select * from provinsi where id_provinsi='$idprov'");
-        while ($row = mysqli_fetch_array($result)) {
-            $provinsi = $row["nama_provinsi"];
-        }
+require_once("connection.php");
+if (isset($user_login)) {
+    $idprov = $user_login["provinsi"];
+    $provinsi = "";
+    $result = mysqli_query($conn, "select * from provinsi where id_provinsi='$idprov'");
+    while ($row = mysqli_fetch_array($result)) {
+        $provinsi = $row["nama_provinsi"];
     }
+} else {
+    header("location: index.php");
+}
+
+if (isset($_POST['logOut'])) {
+    unset($_SESSION["user"]);
+    unset($user_login);
+    header("location: index.php");
+    $logged = false;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +38,7 @@
                     <h1>Outfit Labs</h1>
                 </a>
                 <form method="POST">
-                    <button type="submit" name="logOut" formaction="index.php">
+                    <button type="submit" name="logOut">
                         <img src="./assets/icon/logout.png"> <br>
                         Log Out
                     </button>
@@ -38,7 +48,7 @@
                     </button>
                     <button type="submit" name="signIn" id="login" formaction="profile.php">
                         <img src="./assets/icon/signIn.png"> <br>
-                        <?=$user_login['nama']?>
+                        <?= $user_login['nama'] ?>
                     </button>
                 </form>
             </div>
@@ -79,11 +89,7 @@
                             <a href="submenu.php?type=shoes-men">Men</a>
                         </div>
                     </div>
-                    <div class="dropdown">
-                        <form method="POST">
-                            <button formaction="user.php" style="font-size:15px; margin-left: 20px;">home</button>
-                        </form>
-                    </div>
+
                     <form action="" method="POST">
                         <div class="search-box">
                             <input type="text" name="searchText" class="search-txt" placeholder="Type to search" />
@@ -106,12 +112,12 @@
                     <p>Saldo : </p>
                 </div>
                 <div class="isi">
-                    <p id="id"><?=$user_login['id']?></p>
-                    <p id="nama"><?=$user_login['nama']?></p>
-                    <p id="email"><?=$user_login['email']?></p>
-                    <p id="alamat"><?=$user_login['alamat']?></p>
-                    <p id="provinsi"><?=$user_login['provinsi']?></p>
-                    <p id="saldo"><?="Rp. " . $user_login['saldo']?></p>
+                    <p id="id"><?= $user_login['id'] ?></p>
+                    <p id="nama"><?= $user_login['nama'] ?></p>
+                    <p id="email"><?= $user_login['email'] ?></p>
+                    <p id="alamat"><?= $user_login['alamat'] ?></p>
+                    <p id="provinsi"><?= $provinsi ?></p>
+                    <p id="saldo"><?= "Rp. " . $user_login['saldo'] ?></p>
                 </div>
             </div>
             <div class="menu2">

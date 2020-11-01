@@ -8,8 +8,10 @@ if ($user_login != null) {
 }
 
 if(isset($_POST['logOut'])) {
-    unset($_SESSION['user']);
+    unset($_SESSION["user"]);
+    unset($user_login);
     header("location: index.php");
+    $logged = false;
 }
 
 ?>
