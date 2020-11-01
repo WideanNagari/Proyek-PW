@@ -83,7 +83,11 @@ if (isset($_POST["topup"])) {
                             <a href="submenu.php?type=shoes-men">Men</a>
                         </div>
                     </div>
-
+                    <div class="dropdown">
+                        <form method="POST">
+                            <button formaction="profile.php" style="font-size:15px; margin-left: 20px;">Back</button>
+                        </form>
+                    </div>
                     <form action="" method="POST">
                         <div class="search-box">
                             <input type="text" name="searchText" class="search-txt" placeholder="Type to search" />

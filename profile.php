@@ -110,7 +110,7 @@
                     <p id="nama"><?=$user_login['nama']?></p>
                     <p id="email"><?=$user_login['email']?></p>
                     <p id="alamat"><?=$user_login['alamat']?></p>
-                    <p id="provinsi"><?=$user_login['provinsi']?></p>
+                    <p id="provinsi"><?=$provinsi?></p>
                     <p id="saldo"><?="Rp. " . $user_login['saldo']?></p>
                 </div>
             </div>
@@ -148,15 +148,4 @@
         </div>
     </div>
 </body>
-<!-- <script>
-    $(document).ready(function() {
-        document.getElementById("id").innerText = <?= json_encode($user_login["id"]) ?>;
-        document.getElementById("nama").innerText = <?= json_encode($user_login["nama"]) ?>;
-        document.getElementById("email").innerText = <?= json_encode($user_login["email"]) ?>;
-        document.getElementById("alamat").innerText = <?= json_encode($user_login["alamat"]) ?>;
-        document.getElementById("provinsi").innerText = <?= json_encode($provinsi) ?>;
-        document.getElementById("saldo").innerText = "Rp. " + <?= json_encode($user_login["saldo"]) ?>;
-    });
-</script> -->
-
 </html>
