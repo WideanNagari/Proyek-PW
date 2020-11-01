@@ -1,5 +1,25 @@
 <?php
     require_once("connection.php");
+    $sukses = -1;
+    if(isset($_POST["ganti"])){
+        $id = $_POST["id"];
+        $nama = $_POST["nama"];
+        $email = $_POST["email"];
+        $alamat = $_POST["alamat"];
+        $provinsi = $_POST["provinsi"];
+        mysqli_query($conn,"update customer set nama_customer = '$nama' where id_customer='$id'");
+        mysqli_query($conn,"update customer set email = '$email' where id_customer='$id'");
+        mysqli_query($conn,"update customer set alamat = '$alamat' where id_customer='$id'");
+        mysqli_query($conn,"update customer set id_provinsi = '$provinsi' where id_customer='$id'");
+
+        $user_login["nama"] = $_POST["nama"];
+        $user_login["email"] = $_POST["email"];
+        $user_login["alamat"] = $_POST["alamat"];
+        $user_login["provinsi"] = $_POST["provinsi"];
+
+        $_SESSION["user"] = $user_login;
+        $sukses = 1;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +28,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="./assets/sweetalert2.all.min.js"></script>
+    <script src="./assets/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="./css/editprofil.css">
 </head>
 <body>
@@ -29,10 +50,10 @@
                 </div>
                 <div class="isi">
                     <form method="post">
-                        <input type="text" name="id" style="margin-top: 40px;" readonly><br><br>
-                        <input type="text" name="nama" placeholder="  Username" required><br><br>
-                        <input type="email" name="email" placeholder="  Email" required><br><br>
-                        <input type="text" name="alamat" placeholder="  Alamat" required><br><br>
+                        <input type="text" name="id" id="idUser" style="margin-top: 40px;" readonly><br><br>
+                        <input type="text" name="nama" id="namaUser" placeholder="  Username" required><br><br>
+                        <input type="email" name="email" id="emailUser" placeholder="  Email" required><br><br>
+                        <input type="text" name="alamat" id="alamatUser" placeholder="  Alamat" required><br><br>
                         <select name="provinsi" id="prov" style="margin-bottom: 20px;">
                             <?php
                             $result = mysqli_query($conn, "select * from provinsi");
@@ -45,7 +66,7 @@
                             }
                             ?>
                         </select> <br>
-                        <button type="submit" name="topup" id="btn" formaction="#">Ganti!</button><br><br>
+                        <button type="submit" name="ganti" id="btn" formaction="#">Ganti!</button><br><br>
                     </form>
                 </div>
         </div>
@@ -74,4 +95,24 @@
         </div>
     </div>
 </body>
+<script>
+    $(document).ready(function(){
+        document.getElementById("idUser").value = <?= json_encode($user_login["id"])?>;
+        document.getElementById("namaUser").value = <?= json_encode($user_login["nama"])?>;
+        document.getElementById("emailUser").value = <?= json_encode($user_login["email"])?>;
+        document.getElementById("alamatUser").value = <?= json_encode($user_login["alamat"])?>;
+        document.getElementById("provi").value = <?= json_encode($user_login["provinsi"])?>;
+    });
+
+    var sukses = <?php echo json_encode($sukses)?>;
+    if(sukses==1){
+        Swal.fire({
+            icon: 'success',
+            title: 'Selamat!',
+            text: 'Anda berhasil mengedit profil!',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
+</script>
 </html>

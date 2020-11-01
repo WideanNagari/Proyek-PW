@@ -1,3 +1,13 @@
+<?php
+    require_once("connection.php");
+    $idprov = $user_login["provinsi"];
+    $provinsi = "";
+    $result = mysqli_query($conn, "select * from provinsi where id_provinsi='$idprov'");
+    while($row = mysqli_fetch_array($result)){
+        $provinsi = $row["nama_provinsi"];
+    }
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="./assets/sweetalert2.all.min.js"></script>
+    <script src="./assets/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="./css/profile.css">
 </head>
 <body>
@@ -76,12 +87,12 @@
                     <p>Saldo : </p>
                 </div>
                 <div class="isi">
-                    <p>CU001</p>
-                    <p>Widean</p>
-                    <p>aaaa@gmail.com</p>
-                    <p>jalan jalan</p>
-                    <p>Jawa Timur</p>
-                    <p>Rp. 36000</p>
+                    <p id="id">CU001</p>
+                    <p id="nama">Widean</p>
+                    <p id="email">aaaa@gmail.com</p>
+                    <p id="alamat">jalan jalan</p>
+                    <p id="provinsi">Jawa Timur</p>
+                    <p id="saldo">Rp. 36000</p>
                 </div>
             </div>
             <div class="menu2">
@@ -118,4 +129,14 @@
         </div>
     </div>
 </body>
+<script>
+    $(document).ready(function(){
+        document.getElementById("id").innerText = <?= json_encode($user_login["id"])?>;
+        document.getElementById("nama").innerText = <?= json_encode($user_login["nama"])?>;
+        document.getElementById("email").innerText = <?= json_encode($user_login["email"])?>;
+        document.getElementById("alamat").innerText = <?= json_encode($user_login["alamat"])?>;
+        document.getElementById("provinsi").innerText = <?= json_encode($provinsi)?>;
+        document.getElementById("saldo").innerText = "Rp. " + <?= json_encode($user_login["saldo"])?>;
+    });
+</script>
 </html>
