@@ -1,8 +1,12 @@
 <?php
-require_once("connection.php");
-if ($user_login != null) {
-    header("location: user.php");
-}
+    require_once("connection.php");
+    if(isset($_COOKIE['userLog'])){
+        $_SESSION['user'] = json_decode($_COOKIE['userLog'], true);
+        header("location: user.php");
+    }
+    if ($user_login != null) {
+        header("location: user.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">

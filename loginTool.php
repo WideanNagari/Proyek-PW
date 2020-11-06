@@ -32,7 +32,7 @@
                 }else{
                     if(password_verify($_POST["password"],$password)){
                         if(isset($_POST["remember"])){
-                            //buat cookie remember me
+                            setcookie("userLog",json_encode($user),time()+60*60);  
                         }
                         $_SESSION["user"] = $user;
                         header("location: user.php");

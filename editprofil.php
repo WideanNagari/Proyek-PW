@@ -50,7 +50,7 @@
                     <h1>Outfit Labs</h1>
                 </a>
                 <form method="POST">
-                    <button type="submit" name="logOut">
+                    <button type="submit" name="logOut" formaction="logout.php">
                         <img src="./assets/icon/logout.png"> <br>
                         Log Out
                     </button>

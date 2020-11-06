@@ -1,13 +1,11 @@
 <?php
     require_once("connection.php");
-    $a = 0;
-    if(isset($_POST["checkout"])){
-        $a = 1;
-    }
     $idprov = $user_login["provinsi"];
     $mybag = [];
     if(isset($_COOKIE["mybag"])){
         $mybag = json_decode($_COOKIE["mybag"],true);
+    }else{
+        header("location: index.php");
     }
     if(isset($_POST["checkout"])){
         //cek saldo
@@ -125,10 +123,7 @@
     <div style="height: 24px;"></div>
 </body>
 <script>
-    var aa = <?php echo json_encode($a)?>;
-    if(aa==1){
-        Swal.fire('CheckOut','Yuk lanjutkan ke pembayaran!','success');
-    }
+    Swal.fire('CheckOut','Yuk lanjutkan ke pembayaran!','success');
     $(document).ready(function(){
         pilihanKurir();
     });

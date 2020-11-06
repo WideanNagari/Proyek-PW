@@ -1,12 +1,24 @@
 <?php
-require_once("connection.php");
-$mybag = [];
-if (isset($_COOKIE["mybag"])) {
-    $mybag = json_decode($_COOKIE["mybag"], true);
-}
-if (isset($_POST["hapus"])) {
-    setcookie("mybag", "", time() - 1);
-}
+    require_once("connection.php");
+    $mybag = [];
+    if (isset($_COOKIE["mybag"])) {
+        $mybag = json_decode($_COOKIE["mybag"], true);
+    }
+    if (isset($_POST["hapus"])) {
+        setcookie("mybag", "", time() - 1);
+    }
+    $gagal = -1;
+    if(isset($_POST['checkout'])){
+        if(isset($_COOKIE["mybag"])){
+            if(count($mybag)>0){
+                header("location: checkout.php");
+            }else{
+                $gagal = 1;
+            }
+        }else{
+            $gagal = 1;
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +29,7 @@ if (isset($_POST["hapus"])) {
     <title>Document</title>
     <script src="./assets/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="./css/myBag.css">
+    <script src="./assets/sweetalert2.all.min.js"></script>
 </head>
 
 <body>
@@ -27,7 +40,7 @@ if (isset($_POST["hapus"])) {
                     <h1>Outfit Labs</h1>
                 </a>
                 <form method="POST">
-                    <button type="submit" name="logOut">
+                    <button type="submit" name="logOut" formaction="logout.php">
                         <img src="./assets/icon/logout.png"> <br>
                         Log Out
                     </button>
@@ -103,9 +116,7 @@ if (isset($_POST["hapus"])) {
                 <div class="last2" id="jumlah">Jumlah Item: 10</div>
                 <div class="last2" id="harga">Harga: Rp. 10000000</div>
                 <form method="POST">
-                    <?php //buat cookie untuk menampung barang yang dibeli
-                    ?>
-                    <button class="last2" id="tombol" name="checkout" formaction="checkout.php" style="font-family: 'teen';">Checkout</button>
+                    <button class="last2" id="tombol" name="checkout" style="font-family: 'teen';">Checkout</button>
                 </form>
                 <form method="POST">
                     <button type="hidden" name="hapus" id="btnn" style="display:none;"></button>
@@ -146,7 +157,6 @@ if (isset($_POST["hapus"])) {
             return true;
         }
     }
-
     function gantiJumlah(value, id) {
         mybag[id]["jumlah"] = value;
         var total = 0;
@@ -223,6 +233,15 @@ if (isset($_POST["hapus"])) {
             });
         }
     });
+    var error = <?php echo json_encode($gagal) ?>;
+    if (error == 1) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal CheckOut',
+            text: 'MyBag Kosong! Silahkan Masukkan Barang ke MyBag Anda!',
+            showConfirmButton: false,
+            timer: 2000
+        });
+    }
 </script>
-
 </html>

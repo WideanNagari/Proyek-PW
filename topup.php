@@ -10,13 +10,6 @@ if (isset($_POST["topup"])) {
     $_SESSION["user"] = $user_login;
     $sukses = true;
 }
-
-if(isset($_POST['logOut'])) {
-    unset($_SESSION["user"]);
-    unset($user_login);
-    header("location: index.php");
-    $logged = false;
-}
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +32,7 @@ if(isset($_POST['logOut'])) {
                     <h1>Outfit Labs</h1>
                 </a>
                 <form method="POST">
-                    <button type="submit" name="logOut" formaction="index.php">
+                    <button type="submit" name="logOut" formaction="logout.php">
                         <img src="./assets/icon/logout.png"> <br>
                         Log Out
                     </button>
