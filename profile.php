@@ -10,13 +10,6 @@ if (isset($user_login)) {
 } else {
     header("location: index.php");
 }
-
-if (isset($_POST['logOut'])) {
-    unset($_SESSION["user"]);
-    unset($user_login);
-    header("location: index.php");
-    $logged = false;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +31,7 @@ if (isset($_POST['logOut'])) {
                     <h1>Outfit Labs</h1>
                 </a>
                 <form method="POST">
-                    <button type="submit" name="logOut">
+                    <button type="submit" name="logOut" formaction="logout.php">
                         <img src="./assets/icon/logout.png"> <br>
                         Log Out
                     </button>

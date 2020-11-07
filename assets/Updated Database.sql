@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2020 at 09:11 AM
+-- Generation Time: Nov 07, 2020 at 11:18 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `outfitlabs`
 --
+DROP DATABASE IF EXISTS `outfitlabs`;
 CREATE DATABASE IF NOT EXISTS `outfitlabs` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `outfitlabs`;
 
@@ -29,6 +30,7 @@ USE `outfitlabs`;
 -- Table structure for table `barang`
 --
 
+DROP TABLE IF EXISTS `barang`;
 CREATE TABLE `barang` (
   `id_barang` varchar(10) NOT NULL,
   `id_jenis` varchar(10) NOT NULL,
@@ -49,7 +51,7 @@ INSERT INTO `barang` (`id_barang`, `id_jenis`, `nama_barang`, `harga`, `stok`, `
 ('BA004', 'JB001', 'RickAndMorty T-Shirt', '249000', '3', ''),
 ('BA005', 'JB001', 'RipnDip Hiker Nerm Tee', '680000', '3', ''),
 ('BA006', 'JB001', 'Thrasher Flame T-shirt', '699000', '3', ''),
-('BA007', 'JB001', 'V-neck T-shirt Regular', '149000', '3', ''),
+('BA007', 'JB001', 'V-neck T-shirt Regular', '149000', '2', ''),
 ('BA008', 'JB002', 'Fred Perry High Neck Dress', '1899000', '4', ''),
 ('BA009', 'JB002', 'Glittery Shirt', '899000', '4', ''),
 ('BA010', 'JB002', 'Imitation Leather Shirt Jacket', '599000', '4', ''),
@@ -57,7 +59,7 @@ INSERT INTO `barang` (`id_barang`, `id_jenis`, `nama_barang`, `harga`, `stok`, `
 ('BA012', 'JB002', 'Large-collared Blouse leopard', '349000', '4', ''),
 ('BA013', 'JB002', 'Short Polo-neck Top', '149000', '4', ''),
 ('BA014', 'JB002', 'Tie-detail Dress', '349000', '4', ''),
-('BA015', 'JB003', 'Black Embroidered Unisex Jogger Pants', '240000', '3', ''),
+('BA015', 'JB003', 'Black Embroidered Unisex Jogger Pants', '240000', '1', ''),
 ('BA016', 'JB003', 'Dark Blue Straight Pants', '5960000', '3', ''),
 ('BA017', 'JB003', 'Dark Green Mens Chino', '1199000', '3', ''),
 ('BA018', 'JB003', 'Lead Pants Speed', '1199000', '3', ''),
@@ -72,20 +74,20 @@ INSERT INTO `barang` (`id_barang`, `id_jenis`, `nama_barang`, `harga`, `stok`, `
 ('BA027', 'JB004', 'Grey Long Wide-Leg Paperbag Pants', '11980000', '2', ''),
 ('BA028', 'JB004', 'Orange Ginger Hemal Wide Leg Trousser', '2190000', '2', ''),
 ('BA029', 'JB008', 'Checked Print Fringed Blazer', '1799000', '5', ''),
-('BA030', 'JB008', 'Cross Button Blazer', '1399000', '5', ''),
+('BA030', 'JB008', 'Cross Button Blazer', '1399000', '2', ''),
 ('BA031', 'JB005', 'Faux Shearling-Lined Corduroy Jacket', '1399000', '5', ''),
 ('BA032', 'JB005', 'Faux Shearling-Lined Jacket', '1799000', '5', ''),
 ('BA033', 'JB008', 'Tweed Blazer', '1799000', '5', ''),
 ('BA034', 'JB005', 'Wool College Bomber Jacket', '1599000', '5', ''),
 ('BA035', 'JB009', 'Chain Crossbody Bag', '479000', '4', ''),
 ('BA036', 'JB006', 'External Pocket Tote Briefcase', '1199000', '4', ''),
-('BA037', 'JB009', 'Nylon Baguette Bag', '479000', '4', ''),
-('BA038', 'JB006', 'Technical Fabric Backpack', '999000', '4', ''),
-('BA039', 'JB006', 'Technical Fabric Cross-Body Bag', '479000', '4', ''),
+('BA037', 'JB009', 'Nylon Baguette Bag', '479000', '2', ''),
+('BA038', 'JB006', 'Technical Fabric Backpack', '999000', '3', ''),
+('BA039', 'JB006', 'Technical Fabric Cross-Body Bag', '479000', '2', ''),
 ('BA040', 'JB009', 'Tortoiseshell Baguette Bag', '359000', '4', ''),
 ('BA041', 'JB007', 'Black White Campo Sneakers', '2650000', '6', ''),
 ('BA042', 'JB010', 'Fuchsia Hoya Heels Shoes', '6923000', '6', ''),
-('BA043', 'JB010', 'Gold Oversized Pearl Heeled Slip On', '2116000', '6', ''),
+('BA043', 'JB010', 'Gold Oversized Pearl Heeled Slip On', '2116000', '3', ''),
 ('BA044', 'JB007', 'Men\'s Blue White Canvas Sneakers', '3750000', '6', ''),
 ('BA045', 'JB007', 'Men\'s Orange Repeat Low Triplet Plain Light', '1990000', '6', ''),
 ('BA046', 'JB010', 'Multicolor Raffia Printed Canvas Shoes', '4790000', '6', ''),
@@ -97,6 +99,7 @@ INSERT INTO `barang` (`id_barang`, `id_jenis`, `nama_barang`, `harga`, `stok`, `
 -- Table structure for table `customer`
 --
 
+DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
   `id_customer` varchar(10) NOT NULL,
   `nama_customer` varchar(50) NOT NULL,
@@ -113,7 +116,8 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`id_customer`, `nama_customer`, `password`, `email`, `alamat`, `id_provinsi`, `saldo`, `akses`) VALUES
-('CU002', 'widean', '$2y$10$sQsx62XrmFx9IT/dCDseiOMyBWnirU1xlqBO9BJIo.oSwomTp5nYq', 'widean@gmail.com', 'dimana?', 'ID016', '36000', '1'),
+('CU002', 'widean', '$2y$10$sQsx62XrmFx9IT/dCDseiOMyBWnirU1xlqBO9BJIo.oSwomTp5nYq', 'widean@gmail.com', 'aaaas', 'ID016', '5592000', '1'),
+('CU003', 'wideann', '$2y$10$ehuhlg6OG.CPMEfSpq9vheacEfSti7HdD1hEzMPkEL6uS00/Crkkq', 'widean@gmail.coms', '', 'ID012', '4674000', '1'),
 ('CU004', 'user1', '$2y$10$sKFPvKjsgGPqQNy5v0mau.8wU5Axl137PTAQdoF/iQ6avVELVB.Mu', 'user1@gmail.com', 'entah', 'ID027', '0', '0');
 
 -- --------------------------------------------------------
@@ -122,6 +126,7 @@ INSERT INTO `customer` (`id_customer`, `nama_customer`, `password`, `email`, `al
 -- Table structure for table `event`
 --
 
+DROP TABLE IF EXISTS `event`;
 CREATE TABLE `event` (
   `id_event` varchar(10) NOT NULL,
   `nama_event` varchar(30) NOT NULL,
@@ -148,6 +153,7 @@ INSERT INTO `event` (`id_event`, `nama_event`, `diskon`, `diskon (%)`, `status`)
 -- Table structure for table `harga_pengiriman`
 --
 
+DROP TABLE IF EXISTS `harga_pengiriman`;
 CREATE TABLE `harga_pengiriman` (
   `id_harga` varchar(10) NOT NULL,
   `harga_kirim` varchar(30) NOT NULL,
@@ -173,6 +179,7 @@ INSERT INTO `harga_pengiriman` (`id_harga`, `harga_kirim`, `waktu_pengiriman`) V
 -- Table structure for table `jenis_barang`
 --
 
+DROP TABLE IF EXISTS `jenis_barang`;
 CREATE TABLE `jenis_barang` (
   `id_jenis` varchar(10) NOT NULL,
   `nama_jenis` varchar(30) NOT NULL
@@ -200,6 +207,7 @@ INSERT INTO `jenis_barang` (`id_jenis`, `nama_jenis`) VALUES
 -- Table structure for table `kurir`
 --
 
+DROP TABLE IF EXISTS `kurir`;
 CREATE TABLE `kurir` (
   `id_kurir` varchar(10) NOT NULL,
   `nama_kurir` varchar(30) NOT NULL,
@@ -225,10 +233,14 @@ INSERT INTO `kurir` (`id_kurir`, `nama_kurir`, `tambahan_harga`) VALUES
 -- Table structure for table `pengiriman`
 --
 
+DROP TABLE IF EXISTS `pengiriman`;
 CREATE TABLE `pengiriman` (
   `id_kirim` varchar(10) NOT NULL,
   `id_transaksi` varchar(10) NOT NULL,
-  `waktu` varchar(10) NOT NULL
+  `waktu_kirim` varchar(30) NOT NULL,
+  `waktu_sampai` varchar(30) NOT NULL,
+  `time` varchar(20) NOT NULL,
+  `status` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -237,6 +249,7 @@ CREATE TABLE `pengiriman` (
 -- Table structure for table `provinsi`
 --
 
+DROP TABLE IF EXISTS `provinsi`;
 CREATE TABLE `provinsi` (
   `id_provinsi` varchar(10) NOT NULL,
   `nama_provinsi` varchar(30) NOT NULL,
@@ -289,6 +302,7 @@ INSERT INTO `provinsi` (`id_provinsi`, `nama_provinsi`, `id_harga`) VALUES
 -- Table structure for table `transaksi`
 --
 
+DROP TABLE IF EXISTS `transaksi`;
 CREATE TABLE `transaksi` (
   `id_transaksi` varchar(10) NOT NULL,
   `id_customer` varchar(10) NOT NULL,
@@ -296,8 +310,8 @@ CREATE TABLE `transaksi` (
   `jumlah` varchar(20) NOT NULL,
   `harga` varchar(30) NOT NULL,
   `diskon` varchar(30) NOT NULL,
-  `total_harga` varchar(30) NOT NULL,
-  `status` varchar(1) NOT NULL DEFAULT '1'
+  `ongkos_kirim` varchar(10) NOT NULL,
+  `total_harga` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
