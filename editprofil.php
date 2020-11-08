@@ -3,7 +3,6 @@
     if($user_login==null){
         header("location: index.php");
     }
-
     if(isset($_POST['logOut'])) {
         unset($_SESSION["user"]);
         unset($user_login);
@@ -179,7 +178,7 @@
         document.getElementById("namaUser").value = <?= json_encode($user_login["nama"])?>;
         document.getElementById("emailUser").value = <?= json_encode($user_login["email"])?>;
         document.getElementById("alamatUser").value = <?= json_encode($user_login["alamat"])?>;
-        document.getElementById("provi").value = <?= json_encode($user_login["provinsi"])?>;
+        document.getElementById("prov").value = <?= json_encode($user_login["provinsi"])?>;
     });
 
     var sukses = <?php echo json_encode($sukses)?>;

@@ -12,7 +12,11 @@
     if(isset($_POST["checkout2"])){
         if($user_login["saldo"]>=$_POST['checkout2']){
             $mybag = json_decode($_COOKIE["mybag"],true);
-            
+            $kirim = mysqli_query($conn, "SELECT * FROM provinsi p, harga_pengiriman h WHERE p.id_provinsi = '$idprov' AND p.id_harga=h.id_harga");
+            $waktu = 0;
+            while($row = mysqli_fetch_array($kirim)){
+                $waktu = $row["waktu_pengiriman"];
+            }
             foreach($mybag as $key => $barang){
                 mysqli_query($conn, "UPDATE barang SET stok = stok-$barang[jumlah] WHERE id_barang='$barang[id]'");
                 $idTransaksi = "TR";
@@ -41,12 +45,12 @@
                 $timeStamp = $timeStamp . "at" . date(' H:i', time());
 
                 $timeStamp2 = date('d F Y ');
-                $timeStamp2= $timeStamp2 . "at" . date(' H:i', time() + 30);
+                $timeStamp2= $timeStamp2 . "at" . date(' H:i', time() + $waktu);
 
                 $diskon = 0;
                 //sementara diskon 0 dulu
                 $totalHarga = (($barang['harga'] * $barang['jumlah']) - $diskon) + $_POST['ongkir'];
-                $times = time()+30;
+                $times = time()+$waktu;
                 mysqli_query($conn, "insert into transaksi values('$idTransaksi','$user_login[id]','$barang[nama]','$barang[jumlah]', '$barang[harga]','$diskon','$_POST[ongkir]','$totalHarga')");
                 mysqli_query($conn, "insert into pengiriman values('$idKirim','$idTransaksi','$timeStamp','$timeStamp2', '$times','onGoing')");
             }
@@ -142,7 +146,7 @@
                             $nama = $row["nama_kurir"];
                             $harga2 = $harga + $row["tambahan_harga"];
                     ?>
-                    <option value="<?= $harga2 ?>"><?= $nama ?></option>
+                    <option value=<?= $harga2 ?>><?= $nama ?></option>
                     <?php
                         }
                     ?>
