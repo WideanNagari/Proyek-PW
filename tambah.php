@@ -22,6 +22,7 @@
         $barang = json_decode($_COOKIE["item"],true);
     }
     $sukses = 0;
+    $berhasil = -1;
     if(isset($_POST["add"])){
         $id=$_POST["id_barang"];
         $idjenis=$_POST["jenis"];
@@ -29,7 +30,26 @@
         $harga=$_POST["harga"];
         $stok=$_POST["stok"];
         $desc=$_POST["deskripsi"];
-        mysqli_query($conn, "insert into barang values('$id','$idjenis','$nama','$harga','$stok','$desc')");
+        $path = "";
+        if($_FILES["myFile"]["size"]>0){
+            if($_FILES["myFile"]["type"]=="image/jpeg" ||$_FILES["myFile"]["type"]=="image/png"){
+                $path = "./assets/pic/$id" . "." . pathinfo($_FILES["myFile"]["name"], PATHINFO_EXTENSION);
+                if(move_uploaded_file($_FILES["myFile"]["tmp_name"], $path)){
+                    $berhasil = 1;
+                }else{
+                    $berhasil = 0;
+                }
+            }else{
+                $berhasil = 2;
+            }
+        }else{
+            $berhasil = 1;
+        }
+        if($berhasil == 1){
+            $sukses = 1;
+            mysqli_query($conn, "insert into barang values('$id','$idjenis','$nama','$harga','$stok','$desc','$path')");
+        }
+        
 
         $id = "BA";
         $result = mysqli_query($conn, "select * from barang");
@@ -43,7 +63,7 @@
             $id = $id . $jumlah;
         }
         $hide = 0;
-        $sukses = 1;
+        
     }
     if(isset($_POST["edit"])){
         $id=$_POST["id_barang"];
@@ -52,11 +72,30 @@
         $harga=$_POST["harga"];
         $stok=$_POST["stok"];
         $desc=$_POST["deskripsi"];
-        mysqli_query($conn,"update barang set id_jenis = '$idjenis' where id_barang='$id'");
-        mysqli_query($conn,"update barang set nama_barang = '$nama' where id_barang='$id'");
-        mysqli_query($conn,"update barang set harga = '$harga' where id_barang='$id'");
-        mysqli_query($conn,"update barang set stok = '$stok' where id_barang='$id'");
-        mysqli_query($conn,"update barang set deskripsi = '$desc' where id_barang='$id'");
+        $path = "";
+        if(isset($_FILES["myFile"])){
+            if($_FILES["myFile"]["type"]=="image/jpeg" ||$_FILES["myFile"]["type"]=="image/png"){
+                $path = "./assets/pic/$id" . "." . pathinfo($_FILES["myFile"]["name"], PATHINFO_EXTENSION);
+                if(move_uploaded_file($_FILES["myFile"]["tmp_name"], $path)){
+                    $berhasil = 1;
+                }else{
+                    $berhasil = 0;
+                }
+            }else{
+                $berhasil = 2;
+            }
+        }else{
+            $berhasil = 1;
+        }
+        if($berhasil == 1){
+            $sukses = 2;
+            mysqli_query($conn,"update barang set id_jenis = '$idjenis' where id_barang='$id'");
+            mysqli_query($conn,"update barang set nama_barang = '$nama' where id_barang='$id'");
+            mysqli_query($conn,"update barang set harga = '$harga' where id_barang='$id'");
+            mysqli_query($conn,"update barang set stok = '$stok' where id_barang='$id'");
+            mysqli_query($conn,"update barang set deskripsi = '$desc' where id_barang='$id'");
+            mysqli_query($conn,"update barang set path = '$path' where id_barang='$id'");
+        }
 
         $barang2 = array(
             'id' => $id,
@@ -68,7 +107,6 @@
         );
         $barang = $barang2;
         $hide = 1;
-        $sukses = 2;
     }
 ?>
 
@@ -93,7 +131,7 @@
 </div>
 <div class="outline">
     <div class="contain">
-        <form action="" method="POST">
+        <form action="" method="POST"  enctype="multipart/form-data">
             <h1>Tambah Barang</h1>
             ID Barang  <input type="text" id="id" name="id_barang" style="margin-left:50px;" readonly><br> <br>
             Jenis Barang
@@ -112,6 +150,7 @@
             Nama Barang  <input type="text" name="nama_barang" id="name" style="margin-left:18px;" required><br><br>
             Harga  <input type="text" name="harga" id="price" style="margin-left:76px;" onkeypress="return hanyaAngka(event)" required><br><br>
             Stok  <input type="text" name= "stok" id="stock" style="margin-left:87px;" onkeypress="return hanyaAngka(event)" required><br><br>
+            Import Gambar <input type="file" name="myFile" id="" style="margin-left:5px;background:white;" /><br /><br>
             Deskripsi: <textarea name="deskripsi" id="desc" cols="73" rows="23" style="margin-left:91px; resize:none; border-radius:7px;padding:10px;"></textarea>
             <button type="submit" style="margin-left: 90px;" id="ganti" name="edit">Edit</button>
             <button type="submit" style="margin-left: 90px;" id="tambah" name="add">Tambah</button>
@@ -159,6 +198,25 @@
                 text: 'Anda berhasil mengedit produk!',
                 showConfirmButton: false,
                 timer: 1500
+            });
+        }
+
+        var sukses2 = <?php echo json_encode($berhasil)?>;
+        if(sukses2==0){
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: 'Gagal menambahkan produk! Ada kesalahan dalam upload gambar!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }else if(sukses2==2){
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: 'Gagal menambahkan produk! Mohon upload gambar berextension .jpg/.jpeg/.png!',
+                showConfirmButton: false,
+                timer: 2000
             });
         }
     });

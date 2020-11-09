@@ -71,7 +71,7 @@
                     for(let i = 0; i<hasil2.length; i++){
                         $('#barang').append(`
                             <div id="${i}" name="" class="barang2">
-                                <img src="./assets/pic/${hasil2[i]["id"]}.png" alt="">
+                                <img src="${hasil2[i]["path"]}" alt="">
                                 <p>${hasil2[i]["nama"]}</p>
                                 <p>Rp. ${hasil2[i]["harga"]}</p>
                             </div>

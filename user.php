@@ -150,56 +150,56 @@
                 <h2>Popular</h2> <br><br>
                 <div class="scroll">
                     <div class="piece">
-                        <img src="./assets/pic/BA054.jpg">
+                        <img src="./assets/pic/B054.jpg">
                         <div class="middle">
                             <h4>Black Leather</h4>
                             <p>Rp,600,000</p>
                         </div>
                     </div>
                     <div class="piece">
-                        <img src="./assets/pic/BA055.jpg">
+                        <img src="./assets/pic/B055.jpg">
                         <div class="middle">
                             <h4>Floral Crop Tee</h4>
                             <p>Rp,400,000</p>
                         </div>
                     </div>
                     <div class="piece">
-                        <img src="./assets/pic/BA048.jpg">
+                        <img src="./assets/pic/B048.jpg">
                         <div class="middle">
                             <h4>Kirsty Knitted Two Piece</h4>
                             <p>Rp,500,000</p>
                         </div>
                     </div>
                     <div class="piece">
-                        <img src="./assets/pic/BA049.jpg">
+                        <img src="./assets/pic/B049.jpg">
                         <div class="middle">
                             <h4>Maya Bottoms</h4>
                             <p>Rp,550,000</p>
                         </div>
                     </div>
                     <div class="piece">
-                        <img src="./assets/pic/BA050.jpg">
+                        <img src="./assets/pic/B050.jpg">
                         <div class="middle">
                             <h4>Winter Turtleneck Pullover Dress</h4>
                             <p>Rp,450,000</p>
                         </div>
                     </div>
                     <div class="piece">
-                        <img src="./assets/pic/BA051.jpg">
+                        <img src="./assets/pic/B051.jpg">
                         <div class="middle">
                             <h4>Winter Warmer Sweater</h4>
                             <p>Rp,650,000</p>
                         </div>
                     </div>
                     <div class="piece">
-                        <img src="./assets/pic/BA052.jpg">
+                        <img src="./assets/pic/B052.jpg">
                         <div class="middle">
                             <h4>OH YES Hooded Sweater</h4>
                             <p>Rp,350,000</p>
                         </div>
                     </div>
                     <div class="piece">
-                        <img src="./assets/pic/BA053.jpg">
+                        <img src="./assets/pic/B053.jpg">
                         <div class="middle">
                             <h4>Blue Work Blazer</h4>
                             <p>Rp,450,000</p>

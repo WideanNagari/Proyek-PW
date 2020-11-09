@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2020 at 10:22 AM
+-- Generation Time: Nov 09, 2020 at 12:42 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -36,61 +36,62 @@ CREATE TABLE `barang` (
   `nama_barang` varchar(50) NOT NULL,
   `harga` varchar(30) NOT NULL,
   `stok` varchar(20) NOT NULL,
-  `deskripsi` varchar(100) NOT NULL
+  `deskripsi` varchar(100) NOT NULL,
+  `path` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `barang`
 --
 
-INSERT INTO `barang` (`id_barang`, `id_jenis`, `nama_barang`, `harga`, `stok`, `deskripsi`) VALUES
-('BA001', 'JB001', 'Adidas Athletics Graphic Tee', '330000', '3', ''),
-('BA002', 'JB001', 'ASSC X Undefeated 2015 Tee', '2400000', '3', ''),
-('BA003', 'JB001', 'Long-sleeved Top Long', '179000', '3', ''),
-('BA004', 'JB001', 'RickAndMorty T-Shirt', '249000', '3', ''),
-('BA005', 'JB001', 'RipnDip Hiker Nerm Tee', '680000', '3', ''),
-('BA006', 'JB001', 'Thrasher Flame T-shirt', '699000', '3', ''),
-('BA007', 'JB001', 'V-neck T-shirt Regular', '149000', '2', ''),
-('BA008', 'JB002', 'Fred Perry High Neck Dress', '1899000', '4', ''),
-('BA009', 'JB002', 'Glittery Shirt', '899000', '4', ''),
-('BA010', 'JB002', 'Imitation Leather Shirt Jacket', '599000', '4', ''),
-('BA011', 'JB002', 'Jersey Top', '70000', '4', ''),
-('BA012', 'JB002', 'Large-collared Blouse leopard', '349000', '4', ''),
-('BA013', 'JB002', 'Short Polo-neck Top', '149000', '4', ''),
-('BA014', 'JB002', 'Tie-detail Dress', '349000', '4', ''),
-('BA015', 'JB003', 'Black Embroidered Unisex Jogger Pants', '240000', '1', ''),
-('BA016', 'JB003', 'Dark Blue Straight Pants', '5960000', '3', ''),
-('BA017', 'JB003', 'Dark Green Mens Chino', '1199000', '3', ''),
-('BA018', 'JB003', 'Lead Pants Speed', '1199000', '3', ''),
-('BA019', 'JB003', 'Mens Shredded Slit Wool Pants', '1156000', '3', ''),
-('BA020', 'JB003', 'Stripes Davi Pleated Pants', '750000', '3', ''),
-('BA021', 'JB003', 'Washed Denim Elastic Pants', '3318000', '3', ''),
-('BA022', 'JB004', 'Beige Mina Quarter Check Pants', '6850000', '2', ''),
-('BA023', 'JB004', 'Black Faux Leather Patch Jogger Pants', '6190000', '2', ''),
-('BA024', 'JB004', 'Blue Stripes Denim Pants', '5580000', '2', ''),
-('BA025', 'JB004', 'Brown Check Elba Pants', '5980000', '2', ''),
-('BA026', 'JB004', 'Bubblegum Nini Pants', '2250000', '2', ''),
-('BA027', 'JB004', 'Grey Long Wide-Leg Paperbag Pants', '11980000', '2', ''),
-('BA028', 'JB004', 'Orange Ginger Hemal Wide Leg Trousser', '2190000', '2', ''),
-('BA029', 'JB008', 'Checked Print Fringed Blazer', '1799000', '5', ''),
-('BA030', 'JB008', 'Cross Button Blazer', '1399000', '2', ''),
-('BA031', 'JB005', 'Faux Shearling-Lined Corduroy Jacket', '1399000', '5', ''),
-('BA032', 'JB005', 'Faux Shearling-Lined Jacket', '1799000', '5', ''),
-('BA033', 'JB008', 'Tweed Blazer', '1799000', '5', ''),
-('BA034', 'JB005', 'Wool College Bomber Jacket', '1599000', '5', ''),
-('BA035', 'JB009', 'Chain Crossbody Bag', '479000', '4', ''),
-('BA036', 'JB006', 'External Pocket Tote Briefcase', '1199000', '4', ''),
-('BA037', 'JB009', 'Nylon Baguette Bag', '479000', '2', ''),
-('BA038', 'JB006', 'Technical Fabric Backpack', '999000', '3', ''),
-('BA039', 'JB006', 'Technical Fabric Cross-Body Bag', '479000', '2', ''),
-('BA040', 'JB009', 'Tortoiseshell Baguette Bag', '359000', '4', ''),
-('BA041', 'JB007', 'Black White Campo Sneakers', '2650000', '6', ''),
-('BA042', 'JB010', 'Fuchsia Hoya Heels Shoes', '6923000', '6', ''),
-('BA043', 'JB010', 'Gold Oversized Pearl Heeled Slip On', '2116000', '3', ''),
-('BA044', 'JB007', 'Mens Blue White Canvas Sneakers', '3750000', '3', ''),
-('BA045', 'JB007', 'Mens Orange Repeat Low Triplet Plain Light', '1990000', '6', ''),
-('BA046', 'JB010', 'Multicolor Raffia Printed Canvas Shoes', '4790000', '6', ''),
-('BA047', 'JB007', 'White Green Dreamy Leather Sabot', '6790000', '6', '');
+INSERT INTO `barang` (`id_barang`, `id_jenis`, `nama_barang`, `harga`, `stok`, `deskripsi`, `path`) VALUES
+('BA001', 'JB001', 'Adidas Athletics Graphic Tee', '330000', '3', '', './assets/pic/BA001.png'),
+('BA002', 'JB001', 'ASSC X Undefeated 2015 Tee', '2400000', '3', '', './assets/pic/BA002.png'),
+('BA003', 'JB001', 'Long-sleeved Top Long', '179000', '3', '', './assets/pic/BA003.png'),
+('BA004', 'JB001', 'RickAndMorty T-Shirt', '249000', '3', '', './assets/pic/BA004.png'),
+('BA005', 'JB001', 'RipnDip Hiker Nerm Tee', '680000', '3', '', './assets/pic/BA005.png'),
+('BA006', 'JB001', 'Thrasher Flame T-shirt', '699000', '3', '', './assets/pic/BA006.png'),
+('BA007', 'JB001', 'V-neck T-shirt Regular', '149000', '2', '', './assets/pic/BA007.png'),
+('BA008', 'JB002', 'Fred Perry High Neck Dress', '1899000', '4', '', './assets/pic/BA008.png'),
+('BA009', 'JB002', 'Glittery Shirt', '899000', '4', '', './assets/pic/BA009.png'),
+('BA010', 'JB002', 'Imitation Leather Shirt Jacket', '599000', '4', '', './assets/pic/BA010.png'),
+('BA011', 'JB002', 'Jersey Top', '70000', '4', '', './assets/pic/BA011.png'),
+('BA012', 'JB002', 'Large-collared Blouse leopard', '349000', '4', '', './assets/pic/BA012.png'),
+('BA013', 'JB002', 'Short Polo-neck Top', '149000', '4', '', './assets/pic/BA013.png'),
+('BA014', 'JB002', 'Tie-detail Dress', '349000', '4', '', './assets/pic/BA014.png'),
+('BA015', 'JB003', 'Black Embroidered Unisex Jogger Pants', '240000', '1', '', './assets/pic/BA015.png'),
+('BA016', 'JB003', 'Dark Blue Straight Pants', '5960000', '3', '', './assets/pic/BA016.png'),
+('BA017', 'JB003', 'Dark Green Mens Chino', '1199000', '3', '', './assets/pic/BA017.png'),
+('BA018', 'JB003', 'Lead Pants Speed', '1199000', '3', '', './assets/pic/BA018.png'),
+('BA019', 'JB003', 'Mens Shredded Slit Wool Pants', '1156000', '3', '', './assets/pic/BA019.png'),
+('BA020', 'JB003', 'Stripes Davi Pleated Pants', '750000', '3', '', './assets/pic/BA020.png'),
+('BA021', 'JB003', 'Washed Denim Elastic Pants', '3318000', '3', '', './assets/pic/BA021.png'),
+('BA022', 'JB004', 'Beige Mina Quarter Check Pants', '6850000', '2', '', './assets/pic/BA022.png'),
+('BA023', 'JB004', 'Black Faux Leather Patch Jogger Pants', '6190000', '2', '', './assets/pic/BA023.png'),
+('BA024', 'JB004', 'Blue Stripes Denim Pants', '5580000', '2', '', './assets/pic/BA024.png'),
+('BA025', 'JB004', 'Brown Check Elba Pants', '5980000', '2', '', './assets/pic/BA025.png'),
+('BA026', 'JB004', 'Bubblegum Nini Pants', '2250000', '2', '', './assets/pic/BA026.png'),
+('BA027', 'JB004', 'Grey Long Wide-Leg Paperbag Pants', '11980000', '2', '', './assets/pic/BA027.png'),
+('BA028', 'JB004', 'Orange Ginger Hemal Wide Leg Trousser', '2190000', '2', '', './assets/pic/BA028.png'),
+('BA029', 'JB008', 'Checked Print Fringed Blazer', '1799000', '5', '', './assets/pic/BA029.png'),
+('BA030', 'JB008', 'Cross Button Blazer', '1399000', '2', '', './assets/pic/BA030.png'),
+('BA031', 'JB005', 'Faux Shearling-Lined Corduroy Jacket', '1399000', '5', '', './assets/pic/BA031.png'),
+('BA032', 'JB005', 'Faux Shearling-Lined Jacket', '1799000', '5', '', './assets/pic/BA032.png'),
+('BA033', 'JB008', 'Tweed Blazer', '1799000', '5', '', './assets/pic/BA033.png'),
+('BA034', 'JB005', 'Wool College Bomber Jacket', '1599000', '5', '', './assets/pic/BA034.png'),
+('BA035', 'JB009', 'Chain Crossbody Bag', '479000', '4', '', './assets/pic/BA035.png'),
+('BA036', 'JB006', 'External Pocket Tote Briefcase', '1199000', '4', '', './assets/pic/BA036.png'),
+('BA037', 'JB009', 'Nylon Baguette Bag', '479000', '2', '', './assets/pic/BA037.png'),
+('BA038', 'JB006', 'Technical Fabric Backpack', '999000', '3', '', './assets/pic/BA038.png'),
+('BA039', 'JB006', 'Technical Fabric Cross-Body Bag', '479000', '2', '', './assets/pic/BA039.png'),
+('BA040', 'JB009', 'Tortoiseshell Baguette Bag', '359000', '4', '', './assets/pic/BA040.png'),
+('BA041', 'JB007', 'Black White Campo Sneakers', '2650000', '6', '', './assets/pic/BA041.png'),
+('BA042', 'JB010', 'Fuchsia Hoya Heels Shoes', '6923000', '6', '', './assets/pic/BA042.png'),
+('BA043', 'JB010', 'Gold Oversized Pearl Heeled Slip On', '2116000', '3', '', './assets/pic/BA043.png'),
+('BA044', 'JB007', 'Mens Blue White Canvas Sneakers', '3750000', '3', '', './assets/pic/BA044.png'),
+('BA045', 'JB007', 'Mens Orange Repeat Low Triplet Plain Light', '1990000', '6', '', './assets/pic/BA045.png'),
+('BA046', 'JB010', 'Multicolor Raffia Printed Canvas Shoes', '4790000', '6', '', './assets/pic/BA046.png'),
+('BA047', 'JB007', 'White Green Dreamy Leather Sabot', '6790000', '6', '', './assets/pic/BA047.png');
 
 -- --------------------------------------------------------
 

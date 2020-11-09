@@ -29,7 +29,7 @@ body{
 }
 .outline{
     width:50%;
-    height:870px;
+    height:880px;
     margin:auto;
     margin-top:3%;
     border:solid gray 3px;
@@ -45,7 +45,7 @@ input{
     width:90%;
     margin-left:25px;
     margin-right:20px;
-    height:90%;
+    height:93%;
     margin-top:5%;
     border:3px solid gray;
     border-radius:20px;

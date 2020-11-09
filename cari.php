@@ -16,7 +16,8 @@
                 'harga' => $row["harga"],
                 'stok' => $row["stok"],
                 'deskripsi' => $row["deskripsi"],
-                'id_jenis' => $row["id_jenis"]
+                'id_jenis' => $row["id_jenis"],
+                'path' => $row["path"]
             );
             $barang[] = $brg;
         }
