@@ -51,7 +51,7 @@
                 //sementara diskon 0 dulu
                 $totalHarga = (($barang['harga'] * $barang['jumlah']) - $diskon) + $_POST['ongkir'];
                 $times = time()+$waktu;
-                mysqli_query($conn, "insert into transaksi values('$idTransaksi','$user_login[id]','$barang[nama]','$barang[jumlah]', '$barang[harga]','$diskon','$_POST[ongkir]','$totalHarga')");
+                mysqli_query($conn, "insert into transaksi values('$idTransaksi','$user_login[id]','$barang[nama]','$barang[jumlah]', '$barang[harga]','$diskon','$_POST[ongkir]','$totalHarga', '-')");
                 mysqli_query($conn, "insert into pengiriman values('$idKirim','$idTransaksi','$timeStamp','$timeStamp2', '$times','onGoing')");
             }
             setcookie("mybag","",time()-1);

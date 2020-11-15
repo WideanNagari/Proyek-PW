@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2020 at 12:42 PM
+-- Generation Time: Nov 15, 2020 at 09:36 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -310,15 +310,9 @@ CREATE TABLE `transaksi` (
   `harga` varchar(30) NOT NULL,
   `diskon` varchar(30) NOT NULL,
   `ongkos_kirim` varchar(10) NOT NULL,
-  `total_harga` varchar(30) NOT NULL
+  `total_harga` varchar(30) NOT NULL,
+  `Rating` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `transaksi`
---
-
-INSERT INTO `transaksi` (`id_transaksi`, `id_customer`, `nama_barang`, `jumlah`, `harga`, `diskon`, `ongkos_kirim`, `total_harga`) VALUES
-('TR001', 'CU002', 'Mens Blue White Canvas Sneaker', '1', '3750000', '0', '26000', '3776000');
 
 --
 -- Indexes for dumped tables
