@@ -103,8 +103,7 @@ if (isset($_GET["error"])) {
                     }
                     ?>
                 </select> <br>
-                <input type="text" name="city" placeholder="Town/City"> <br>
-                <input type="text" name="address" placeholder="Address"> <br>
+                <input type="text" name="alamat" placeholder="Address"> <br>
                 <button type="submit" name="daftar" id="register">Create Account</button>
             </form>
         </div>

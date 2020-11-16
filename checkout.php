@@ -80,10 +80,11 @@
             var harga = document.getElementById("kurirs").value;
             var idx = document.getElementById("kurirs").selectedIndex;
             var nama = document.getElementById("kurirs").getElementsByTagName('option')[idx].innerText;
-            document.getElementById("ongkos").innerText="Ongkos Kirim: Rp."+harga;
+            document.getElementById("ongkos").innerText="Ongkos Kirim: Rp. "+harga;
             document.getElementById("jumBarang").innerText="Jumlah Jenis Barang: "+mybag.length;
             document.getElementById("TotOngkos").innerText="Subtotal Ongkos Kirim: Rp. "+(harga * mybag.length)+" ("+nama+")";
             var totHarga = (harga * mybag.length);
+            var totHarga2 = 0;
             while (document.getElementById("collection").firstChild) {
                 document.getElementById("collection").removeChild(document.getElementById("collection").firstChild);
             }
@@ -93,14 +94,44 @@
                 var jumlah = mybag[i]["jumlah"];
                 var harga2 = mybag[i]["harga"]*jumlah;
                 totHarga= Number(totHarga)+Number(harga2);
+                totHarga2= Number(totHarga2)+Number(harga2);
                 var nama = mybag[i]["nama"];
                 var nomor = i+1;
                 $('.barang_apa_aja').append(`
                     <div style="padding-top: 10px;">${nomor}. ${nama} (x${jumlah}) = Rp. ${harga2}</div>
                 `);
             }
+
+            var diskon = JSON.parse(document.getElementById("event").value);
+            var dis = Number(diskon[0])+(diskon[1] * totHarga2/100);
+            totHarga = totHarga-dis;
             document.getElementById("tombol").setAttribute('value',totHarga);
             document.getElementById("harga").innerText="Total Harga: Rp. "+totHarga;
+        }
+        function pilihanEvent(){
+            if(document.getElementById("event").value!=""){
+                var mybag = <?= json_encode($mybag) ?>;
+                var diskon = JSON.parse(document.getElementById("event").value);
+                var harga = document.getElementById("kurirs").value;
+                var totHarga1 = (harga * mybag.length);
+                var totHarga = 0;
+                for(let i = 0; i<mybag.length; i++){
+                    var jumlah = mybag[i]["jumlah"];
+                    var harga2 = mybag[i]["harga"]*jumlah;
+                    totHarga = Number(totHarga)+Number(harga2);
+                }
+
+                var dis1 = diskon[0];
+                var dis2 = diskon[1] * totHarga/100;
+                var dis = Number(dis1)+Number(dis2);
+                document.getElementById("diskon2").innerText="Diskon (0%): Rp. "+dis2;
+                document.getElementById("diskon1").innerText="Tambahan Diskon: "+dis1;
+                document.getElementById("TotDiskon").innerText="Subtotal Diskon: Rp. "+dis;
+                totHarga = Number(totHarga)-Number(dis)+totHarga1;
+                
+                document.getElementById("tombol").setAttribute('value',totHarga);
+                document.getElementById("harga").innerText="Total Harga: Rp. "+totHarga;
+            }
         }
         function r(){
             alert("a");
@@ -151,16 +182,41 @@
                         }
                     ?>
                 </select><br>
-                <p style="margin-top: 5px;margin-bottom: 15px;" id="jumBarang">Jumlah Jenis Barang: 0</p>
-                <p style="margin-top: 5px;margin-bottom: 15px;" id="ongkos">Ongkos Kirim: 0</p>
-                <p style="margin-top: 5px;margin-bottom: 15px;" id="TotOngkos">Subtotal Ongkos Kirim: 0</p>
+                <p style="margin-top: 15px;margin-bottom: 10px;" id="jumBarang">Jumlah Jenis Barang: 0</p>
+                <p style="margin-top: 5px;margin-bottom: 10px;" id="ongkos">Ongkos Kirim: 0</p>
+                <p style="margin-top: 5px;margin-bottom: 10px;" id="TotOngkos">Subtotal Ongkos Kirim: 0</p>
             </div>
             <hr>
             <div class="Promo" style="margin-bottom: 20px;">
                 <p style="margin-bottom: 5px; margin-top: 15px;">Voucher Promo: </p>
-                <select style="width: 50%;height: 30px;border: 2px solid black; border-radius: 3px;font-family: 'teen';font-size: 17px;">
-                    <option value="0">Tidak ada voucher promo</option>
+                <select id="event" onchange="pilihanEvent()" style="width: 50%;height: 30px;border: 2px solid black; border-radius: 3px;font-family: 'teen';font-size: 17px;">
+                    <?php
+                        $event = mysqli_query($conn, "select * from event where status='1'");
+                        $idharga = "";
+                        if(mysqli_num_rows($event)==0){?>
+                            <option value="">Tidak Ada Voucher Promo</option>
+                    <?php
+                        }else{
+                            while($row = mysqli_fetch_array($event)){
+                                $nama = $row["nama_event"];
+                                $diskon1 = $row["diskon"];
+                                $diskon2 = $row["diskon (%)"];
+                                $diskon = array($diskon1,$diskon2);
+                        
+                    ?>
+                        <option value=<?= json_encode($diskon) ?>><?php
+                        if($diskon1=="0") echo $nama." (".$diskon2."%).";
+                        else if($diskon2=="0") echo $nama." (Rp.".$diskon1.").";
+                        else echo $nama." (".$diskon2."% + Rp. ".$diskon1.").";
+                         ?></option>
+                    <?php
+                            }
+                        }
+                    ?>
                 </select>
+                <p style="margin-top: 15px;margin-bottom: 10px;" id="diskon2">Diskon (0%): Rp. 0</p>
+                <p style="margin-top: 5px;margin-bottom: 10px;" id="diskon1">Tambahan Diskon: Rp. 0</p>
+                <p style="margin-top: 5px;margin-bottom: 10px;" id="TotDiskon">Subtotal Diskon: Rp. 0</p>
             </div>
             <hr>
         </div>
@@ -192,6 +248,7 @@
     
     $(document).ready(function(){
         pilihanKurir();
+        pilihanEvent();
     });
 </script>
 </html>

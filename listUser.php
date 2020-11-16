@@ -125,6 +125,9 @@
                 $data[] = $orang;
             }
             foreach($data as $key => $val){
+                $aksess = "";
+                if($val['akses']=="1") $aksess = "Aktif";
+                else $aksess = "Non-Aktif";
             ?>
             <script>
                 $(document).ready(function(){
@@ -138,7 +141,7 @@
                         <td><?= $val['alamat'] ?></td>
                         <td><?= $val['provinsi'] ?></td>
                         <td><?= $val['saldo'] ?></td>
-                        <td><?= $val['akses'] ?></td>
+                        <td><?= $aksess ?></td>
                         <td id=${id2} name=""><Button>Ubah</Button></td>
                     </tr>
                     `);

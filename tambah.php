@@ -73,7 +73,7 @@
         $stok=$_POST["stok"];
         $desc=$_POST["deskripsi"];
         $path = "";
-        if(isset($_FILES["myFile"])){
+        if($_FILES["myFile"]["size"]>0){
             if($_FILES["myFile"]["type"]=="image/jpeg" ||$_FILES["myFile"]["type"]=="image/png"){
                 $path = "./assets/pic/$id" . "." . pathinfo($_FILES["myFile"]["name"], PATHINFO_EXTENSION);
                 if(move_uploaded_file($_FILES["myFile"]["tmp_name"], $path)){
@@ -94,7 +94,7 @@
             mysqli_query($conn,"update barang set harga = '$harga' where id_barang='$id'");
             mysqli_query($conn,"update barang set stok = '$stok' where id_barang='$id'");
             mysqli_query($conn,"update barang set deskripsi = '$desc' where id_barang='$id'");
-            mysqli_query($conn,"update barang set path = '$path' where id_barang='$id'");
+            if($path!="") mysqli_query($conn,"update barang set path = '$path' where id_barang='$id'");
         }
 
         $barang2 = array(
@@ -132,7 +132,7 @@
 <div class="outline">
     <div class="contain">
         <form action="" method="POST"  enctype="multipart/form-data">
-            <h1>Tambah Barang</h1>
+            <h1 id="judul">Tambah Barang</h1>
             ID Barang  <input type="text" id="id" name="id_barang" style="margin-left:50px;" readonly><br> <br>
             Jenis Barang
             <select name="jenis" id="jenis" style="margin-left:25px;width:305px;height:30px;">
@@ -170,15 +170,17 @@
             document.getElementById("ganti").style.display = "none";
             var id = <?= json_encode($id)?>;
             document.getElementById("id").value = id;
+            document.getElementById("judul").innerText = "Tambah Barang";
         }else if(hide==1){
             document.getElementById("tambah").style.display = "none";
+            document.getElementById("judul").innerText = "Edit Barang";
             <?php if(isset($_COOKIE["item"])){?>
             document.getElementById("id").value = <?= json_encode($barang["id"])?>;
             document.getElementById("jenis").value = <?= json_encode($barang["jenis"])?>;
             document.getElementById("name").value = <?= json_encode($barang["nama"])?>;
             document.getElementById("stock").value = <?= json_encode($barang["stok"])?>;
             document.getElementById("price").value = <?= json_encode($barang["harga"])?>;
-            document.getElementById("desc").value = <?= json_encode($barang["desc"])?>;
+            document.getElementById("desc").value = <?= json_encode($barang["desc"])?>
             <?php } ?>
         }
 

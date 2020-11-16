@@ -10,6 +10,7 @@
             $jenis = $row["nama_jenis"];
         }
         $barang["nama_jenis"] = $jenis;
+        echo $barang["path"];
         setcookie("barang",json_encode($barang),time()+60*10);
     }else if(isset($_REQUEST["query2"])){
         $mybag = $_REQUEST["query2"];

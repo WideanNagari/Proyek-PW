@@ -22,7 +22,8 @@
                 'harga' => $row["harga"],
                 'stok' => $row["stok"],
                 'deskripsi' => $row["deskripsi"],
-                'id_jenis' => $row["id_jenis"]
+                'id_jenis' => $row["id_jenis"],
+                'path' => $row["path"],
             );
             $barang[] = $brg;
         }
@@ -197,15 +198,16 @@
                 var id = barang[i]["id"];
                 var harga = barang[i]["harga"];
                 var nama = barang[i]["nama"];
+                var path = barang[i]["path"];
                 $('.column').append(`
                     <div class="content" id=${i} name="">
-                        <img src="./assets/pic/${id}.png" alt="">
+                        <img src="${path}" alt="">
                         <div class="harga">${harga} - ${nama}</div>
                     </div>
                 `);
                 $(`#${i}`).click(function(){
                     document.getElementById(`${i}`).setAttribute("name","query");
-                    $.get("sendInfo.php", { query : barang[i] }, function(){
+                    $.get("sendInfo.php", { query : barang[i] }, function(a){
                         document.getElementById("btnn").click(); 
                     });
                 });   

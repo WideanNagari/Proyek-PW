@@ -10,7 +10,8 @@
             $akses = 1;
         }
         mysqli_query($conn, "update customer set akses = '$akses' where id_customer = '$idd'");
-        echo $akses;
+        if($akses=="0") echo "Non-Aktif";
+        else echo "Aktif";
     }else{
         header("location: index.php");
     }
