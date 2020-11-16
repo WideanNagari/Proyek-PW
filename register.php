@@ -20,7 +20,7 @@ if (isset($_GET["error"])) {
     <div class="container">
         <div class="header">
             <div class="menu">
-                <a href="home.html">
+                <a href="index.php">
                     <h1>Outfit Labs</h1>
                 </a>
                 <button type="submit" name="signIn">
