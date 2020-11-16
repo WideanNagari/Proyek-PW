@@ -212,9 +212,9 @@
                 </div>
                 <div class="help">
                     <a href="#">Help</a> <br>
-                    <a href="#">About</a> <br>
+                    <a href="about.php">About</a> <br>
                     <a href="#">Terms & Conditions</a> <br>
-                    <a href="#">How To Shop</a> <br>
+                    <a href="HowTS.php">How To Shop</a> <br>
                 </div>
                 <div class="contact">
                     <h4>Contact Us</h4>

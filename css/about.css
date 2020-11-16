@@ -1,0 +1,128 @@
+@font-face {
+    font-family: 'goodTimes';
+    src: url('../assets/fonts/good_times_rg.ttf');
+}
+
+@font-face {
+    font-family: 'teen';
+    src: url('../assets/fonts/teen.ttf');
+}
+
+* {
+    box-sizing: border-box;
+    padding : 0;
+    margin : 0;
+    font-family: 'teen';
+}
+
+.cb{
+    clear: both;
+}
+.back{
+    font-size: 25px;
+    padding: 10px;
+    width: 150px;
+    background: linear-gradient(120deg,lightskyblue,lightcyan,lightskyblue);
+    position: absolute;
+    right: 30px;
+    border: white;
+    border-radius: 10px;
+}
+
+.back:hover{
+    font-size: 28px;
+    padding: 10px;
+    width: 180px;
+    background: linear-gradient(120deg,lightcyan,lightskyblue,lightcyan);
+}
+
+.isi{
+    margin-top: 30px;
+    text-align: center;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.isi h1{
+    margin-bottom: 50px;
+}
+.isi p{
+    font-size: 20px;
+}
+#last{
+    margin: 50px 0; 
+    font-size: 25px; 
+    font-weight: 600;
+}
+#identitas p{
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 100;
+}
+.footer {
+    border-top: 1px solid rgb(182, 182, 250);
+}
+
+.footer .subscribe {
+    text-align: center;
+    height: 200px;
+    padding-top: 80px;
+    float: none;
+}
+
+.subscribe input {
+    width: 400px;
+    height: 50px;
+}
+
+.subscribe button {
+    margin-top: 10px;
+    color: white;
+    background: #000;
+    width: 200px;
+    height: 50px;
+    border: none;
+}
+
+.about  {
+    margin: 50px;
+    height: 150px;
+}
+
+.about .logo{
+    width: 200px;
+    height: 150px;
+    float: left;
+    padding: 20px;
+    border-right: 1px solid rgb(182, 182, 250);
+}
+
+.about .logo h1{
+    font-family: 'goodTimes';
+}
+
+.help {
+    margin-left: 50px;
+    padding-top: 20px;
+    width: 200px;
+    height: 150px;
+    float: left;
+}
+
+.help a{
+    color: black;
+}
+
+.contact {
+    float: left;
+    margin-left: 50px;
+    padding-top: 20px;
+}
+
+.contact img {
+    width: 20px;
+    height: 20px;
+    margin: 2px;
+    margin-right: 10px;
+}
