@@ -12,6 +12,7 @@ if (isset($_POST['logOut'])) {
 $mybag = [];
 if (isset($_COOKIE["mybag"])) {
     $mybag = json_decode($_COOKIE["mybag"], true);
+    print_r($mybag);
 }
 if (isset($_POST["hapus"])) {
     setcookie("mybag", "", time() - 1);
@@ -39,10 +40,11 @@ if (isset($_POST['checkout'])) {
     <script src="./assets/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="./css/myBag.css">
     <script src="./assets/sweetalert2.all.min.js"></script>
+    <!-- <script src="./js/myBag.js" async></script> -->
 </head>
 
 <body>
-    <div class="container">
+    <div class="all-container">
         <div class="header">
             <div class="menu">
                 <a href="user.php">
@@ -113,7 +115,7 @@ if (isset($_POST['checkout'])) {
             </div>
         </div>
         <div class="main">
-            <div class="checkout">
+            <!-- <div class="checkout">
                 <div class="barang" id="brg">
                     <div>
                         <div class="titlee" style="width:430px;">Item</div>
@@ -130,7 +132,46 @@ if (isset($_POST['checkout'])) {
                 <form method="POST">
                     <button type="hidden" name="hapus" id="btnn" style="display:none;"></button>
                 </form>
-            </div>
+            </div> -->
+            <section class="container content-section">
+                <h2 class="section-header">MY BAG</h2>
+                <div class="shop-items">
+                    <?php
+                    foreach ($mybag as $bag) { ?>
+                        <div class="shop-item">
+                            <span class="shop-item-title"><?=$bag['nama']?></span>
+                            <img class="shop-item-image" src="<?=$bag['path']?>">
+                            <div class="shop-item-details">
+                                <span class="shop-item-price"><?=$bag['harga']?></span>
+                                <button class="btn btn-primary shop-item-button" type="button" value="<?=$bag['id']?>">ADD TO CART</button>
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <!-- <div class="shop-item">
+                        <span class="shop-item-title">NAME</span>
+                        <img class="shop-item-image" src="./assets/pic/BA004.png">
+                        <div class="shop-item-details">
+                            <span class="shop-item-price">Rp 10.000</span>
+                            <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                        </div>
+                    </div> -->
+                </div>
+            </section>
+            <section class="container content-section">
+                <h2 class="section-header">CART</h2>
+                <div class="cart-row">
+                    <span class="cart-item cart-header cart-column">ITEM</span>
+                    <span class="cart-price cart-header cart-column">PRICE</span>
+                    <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+                </div>
+                <div class="cart-items">
+                </div>
+                <div class="cart-total">
+                    <strong class="cart-total-title">Total</strong>
+                    <span class="cart-total-price">Rp.0</span>
+                </div>
+                <button class="btn btn-primary btn-purchase" type="button" name="checkout">PURCHASE</button>
+            </section>
         </div>
         <div class="footer">
             <div class="subscribe">
@@ -158,91 +199,102 @@ if (isset($_POST['checkout'])) {
     </div>
 </body>
 <script>
-    function hanyaAngka(event) {
-        var angka = (event.which) ? event.which : event.keyCode
-        if (angka != 46 && angka > 31 && (angka < 48 || angka > 57)) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+    // function hanyaAngka(event) {
+    //     var angka = (event.which) ? event.which : event.keyCode
+    //     if (angka != 46 && angka > 31 && (angka < 48 || angka > 57)) {
+    //         return false;
+    //     } else {
+    //         return true;
+    //     }
+    // }
 
-    function gantiJumlah(value, id) {
-        mybag[id]["jumlah"] = value;
-        var total = 0;
-        var idd = id;
-        for (let i = 0; i < mybag.length; i++) {
-            total += (Number(mybag[i]["harga"]) * mybag[i]["jumlah"]);
-        }
-        document.getElementById("harga").innerText = "Harga: Rp. " + total;
-        document.getElementById(id).setAttribute("name", "query2");
-        $.get("sendInfo.php", {
-            query2: mybag
-        }, function() {});
-    }
+    // function gantiJumlah(value, id) {
+    //     mybag[id]["jumlah"] = value;
+    //     var total = 0;
+    //     var idd = id;
+    //     for (let i = 0; i < mybag.length; i++) {
+    //         total += (Number(mybag[i]["harga"]) * mybag[i]["jumlah"]);
+    //     }
+    //     document.getElementById("harga").innerText = "Harga: Rp. " + total;
+    //     document.getElementById(id).setAttribute("name", "query2");
+    //     $.get("sendInfo.php", {
+    //         query2: mybag
+    //     }, function() {});
+    // }
 
-    function inputJumlah(value, max, id) {
-        if (Number(value) > Number(max)) {
-            document.getElementById(id).value = max;
-        }
-        gantiJumlah(value, id);
-    }
-    var mybag = <?= json_encode($mybag) ?>;
-    $(document).ready(function() {
-        var total = 0;
-        for (let i = 0; i < mybag.length; i++) {
-            total += (Number(mybag[i]["harga"]) * mybag[i]["jumlah"]);
-        }
-        document.getElementById("jumlah").innerText = "Jumlah Item: " + mybag.length;
-        document.getElementById("harga").innerText = "Harga: Rp. " + total;
-        for (let i = 0; i < mybag.length; i++) {
-            var id = mybag[i]["id"];
-            var harga = mybag[i]["harga"];
-            var nama = mybag[i]["nama"];
-            var max = mybag[i]["stok"];
-            var jumlah = mybag[i]["jumlah"];
-            $('.barang').append(`
-                <div class="barang2" id="ke${i}">
-                    <div class="isi" style="width:430px;">${nama}</div>
-                    <div class="isi" style="width:250px;">Rp. ${harga}</div>
-                    <input type="number" name="" id="${i}" value="${jumlah}" min="1" max="${max}" oninput="inputJumlah(value,max,id)" onchange="gantiJumlah(value,id)" class="isi" style="width:125px;height:20px;border:2px solid black;position:relative; bottom: 3px;">
-                    <div class="isi" style="margin-right:0;"><button id=remove${i} name="" style="width:115px;height:25px;border:2px solid black;position:relative;padding:0;bottom:3px;">Remove</button></div>
-                </div>
-            `);
-            document.getElementById(`remove${i}`).setAttribute("nomor", id);
-            $(`#remove${i}`).click(function() {
-                var j;
-                for (let ii = 0; ii < mybag.length; ii++) {
-                    if (mybag[ii]["id"] == document.getElementById(`remove${i}`).getAttribute("nomor")) {
-                        j = ii;
-                    }
-                }
-                mybag.splice(j, 1);
+    // function inputJumlah(value, max, id) {
+    //     if (Number(value) > Number(max)) {
+    //         document.getElementById(id).value = max;
+    //     }
+    //     gantiJumlah(value, id);
+    // }
 
-                var total = 0;
-                for (let i = 0; i < mybag.length; i++) {
-                    total += (Number(mybag[i]["harga"]) * mybag[i]["jumlah"]);
-                }
-                document.getElementById("harga").innerText = "Harga: Rp. " + total;
-                if (mybag.length > 0) {
-                    document.getElementById(`remove${i}`).setAttribute("name", "query2");
-                    $.get("sendInfo.php", {
-                        query2: mybag
-                    }, function() {});
-                    document.getElementById("brg").removeChild(document.getElementById(`ke${i}`));
-                } else {
-                    document.getElementById(`remove${i}`).setAttribute("name", "query3");
-                    $.get("sendInfo.php", {
-                        query3: ""
-                    }, function() {
-                        document.getElementById("brg").removeChild(document.getElementById(`ke${i}`));
-                        document.getElementById("btnn").click();
-                    });
+    // var mybag = <?= json_encode($mybag) ?>;
+    // $(document).ready(function() {
+    //     var total = 0;
+    //     for (let i = 0; i < mybag.length; i++) {
+    //         total += (Number(mybag[i]["harga"]) * mybag[i]["jumlah"]);
+    //     }
+    //     document.getElementById("jumlah").innerText = "Jumlah Item: " + mybag.length;
+    //     document.getElementById("harga").innerText = "Harga: Rp. " + total;
+    //     for (let i = 0; i < mybag.length; i++) {
+    //         var id = mybag[i]["id"];
+    //         var harga = mybag[i]["harga"];
+    //         var nama = mybag[i]["nama"];
+    //         var max = mybag[i]["stok"];
+    //         var jumlah = mybag[i]["jumlah"];
+    //         // $('.barang').append(`
+    //         //     <div class="barang2" id="ke${i}">
+    //         //         <div class="isi" style="width:430px;">${nama}</div>
+    //         //         <div class="isi" style="width:250px;">Rp. ${harga}</div>
+    //         //         <input type="number" name="" id="${i}" value="${jumlah}" min="1" max="${max}" oninput="inputJumlah(value,max,id)" onchange="gantiJumlah(value,id)" class="isi" style="width:125px;height:20px;border:2px solid black;position:relative; bottom: 3px;">
+    //         //         <div class="isi" style="margin-right:0;"><button id=remove${i} name="" style="width:115px;height:25px;border:2px solid black;position:relative;padding:0;bottom:3px;">Remove</button></div>
+    //         //     </div>
+    //         // `);
+    //         $('.shop-items').append(`
+    //             <div class="shop-item" id="ke${i}>
+    //                     <span class="shop-item-title">${nama}</span>
+    //                     <img class="shop-item-image" src="./assets/pic/BA004.png">
+    //                     <div class="shop-item-details">
+    //                         <span class="shop-item-price">Rp. ${harga}</span>
+    //                         <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+    //                     </div>
+    //                 </div>
+    //             `);
+    //         document.getElementById(`remove${i}`).setAttribute("nomor", id);
+    //         $(`#remove${i}`).click(function() {
+    //             var j;
+    //             for (let ii = 0; ii < mybag.length; ii++) {
+    //                 if (mybag[ii]["id"] == document.getElementById(`remove${i}`).getAttribute("nomor")) {
+    //                     j = ii;
+    //                 }
+    //             }
+    //             mybag.splice(j, 1);
 
-                }
-            });
-        }
-    });
+    //             var total = 0;
+    //             for (let i = 0; i < mybag.length; i++) {
+    //                 total += (Number(mybag[i]["harga"]) * mybag[i]["jumlah"]);
+    //             }
+    //             document.getElementById("harga").innerText = "Harga: Rp. " + total;
+    //             if (mybag.length > 0) {
+    //                 document.getElementById(`remove${i}`).setAttribute("name", "query2");
+    //                 $.get("sendInfo.php", {
+    //                     query2: mybag
+    //                 }, function() {});
+    //                 document.getElementById("brg").removeChild(document.getElementById(`ke${i}`));
+    //             } else {
+    //                 document.getElementById(`remove${i}`).setAttribute("name", "query3");
+    //                 $.get("sendInfo.php", {
+    //                     query3: ""
+    //                 }, function() {
+    //                     document.getElementById("brg").removeChild(document.getElementById(`ke${i}`));
+    //                     document.getElementById("btnn").click();
+    //                 });
+
+    //             }
+    //         });
+    //     }
+    // });
     var error = <?php echo json_encode($gagal) ?>;
     if (error == 1) {
         Swal.fire({
