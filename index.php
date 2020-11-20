@@ -1,12 +1,12 @@
 <?php
-    require_once("connection.php");
-    if(isset($_COOKIE['userLog'])){
-        $_SESSION['user'] = json_decode($_COOKIE['userLog'], true);
-        header("location: user.php");
-    }
-    if ($user_login != null) {
-        header("location: user.php");
-    }
+require_once("connection.php");
+if (isset($_COOKIE['userLog'])) {
+    $_SESSION['user'] = json_decode($_COOKIE['userLog'], true);
+    header("location: user.php");
+}
+if ($user_login != null) {
+    header("location: user.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,11 +16,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home-Index</title>
     <script src="./assets/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="./css/index.css">
 </head>
 
 <body>
-    <div class="container">
+    <div class="all-container">
         <div class="header">
             <div class="menu">
                 <a href="index.php">
@@ -33,7 +35,7 @@
                     </button>
                 </form>
             </div>
-            <div class="navbar">
+            <div class="navigasi">
                 <ul>
                     <div class="dropdown">
                         <li>Clothes</li>
@@ -85,16 +87,44 @@
         <div class="main">
             <div class="iklan">
                 <h1>TIMELESS, ELEGANT, EMPOWERING</h1>
-                <h3>"What you wear is how you present yourself to the world, especially today, when human contacts are so quick. Fashion is instant language." —Miuccia Prada</h3>
-                <div class="kotakKiri">
-                    <h4>LIMITED TIME</h4>
-                    <h2>SALE UP TO 70%</h2>
-                    <button type="submit" name="belanja">SHOP NOW</button>
-                </div>
-                <div class="kotakKanan">
-                    <h4>NEW COLLECTIONS</h4>
-                    <h2>WORKING FROM HOME</h2>
-                    <button type="submit" name="collection">OUR COLLECTION</button>
+                <h3>"What you wear is how you present yourself to the world, especially today, when human contacts are
+                    so quick. Fashion is instant language." —Miuccia Prada</h3> <br>
+                <div class="container" style="width: 100%;">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" style="width: 100%;">
+                            <div class="item active">
+                                <img src="./assets/banner/banner_7.jpg" style="height: 720px; width: 100%;">
+                            </div>
+                            <div class="item">
+                                <img src="./assets/banner/banner_5.jpg" style="height: 720px; width: 100%;">
+                            </div>
+                            <div class="item">
+                                <img src="./assets/banner/banner_6.jpg" style="height: 720px; width: 100%;">
+                            </div>
+                            <div class="item">
+                                <img src="./assets/banner/banner_8.jpg" style="height: 720px; width: 100%;">
+                            </div>
+                        </div>
+
+                        <!-- Left and right controls -->
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="content">
@@ -110,7 +140,7 @@
                         if (show == "woman") {
                             document.getElementById('gbrW').style.display = "block";
                             document.getElementById('gbrM').style.display = "none";
-                        } else if (show=="man") {
+                        } else if (show == "man") {
                             document.getElementById('gbrW').style.display = "none";
                             document.getElementById('gbrM').style.display = "block";
                         }
@@ -138,6 +168,11 @@
                         <img src="./assets/pic/BA031.png">
                     </div>
                 </div>
+                <p id="more">More
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="padding-top: 10px;">
+                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                    </svg>
+                </p>
             </div>
             <div class="popular">
                 <h2>Popular</h2> <br><br>
@@ -226,4 +261,5 @@
         </div>
     </div>
 </body>
+
 </html>

@@ -30,45 +30,40 @@ if (isset($_GET["error"])) {
             </div>
             <div class="navbar">
                 <ul>
-                    <div class="dropdown">
+                <div class="dropdown">
                         <li>Clothes</li>
                         <div class="dropdown-content">
-                            <a href="#">Women</a>
-                            <a href="#">Men</a>
+                            <a href="submenu.php?type=clothes-woman">Woman</a>
+                            <a href="submenu.php?type=clothes-men">Men</a>
                         </div>
                     </div>
                     <div class="dropdown">
                         <li>Trousers</li>
                         <div class="dropdown-content">
-                            <a href="#">Women</a>
-                            <a href="#">Men</a>
+                            <a href="submenu.php?type=trousers-woman">Woman</a>
+                            <a href="submenu.php?type=trousers-men">Men</a>
                         </div>
                     </div>
                     <div class="dropdown">
                         <li>Jacket</li>
                         <div class="dropdown-content">
-                            <a href="#">Women</a>
-                            <a href="#">Men</a>
+                            <a href="submenu.php?type=jacket-woman">Woman</a>
+                            <a href="submenu.php?type=jacket-men">Men</a>
                         </div>
                     </div>
                     <div class="dropdown">
                         <li>Bag</li>
                         <div class="dropdown-content">
-                            <a href="#">Women</a>
-                            <a href="#">Men</a>
+                            <a href="submenu.php?type=bag-woman">Woman</a>
+                            <a href="submenu.php?type=bag-men">Men</a>
                         </div>
                     </div>
                     <div class="dropdown">
                         <li>Shoes</li>
                         <div class="dropdown-content">
-                            <a href="#">Women</a>
-                            <a href="#">Men</a>
+                            <a href="submenu.php?type=shoes-woman">Woman</a>
+                            <a href="submenu.php?type=shoes-men">Men</a>
                         </div>
-                    </div>
-                    <div class="dropdown">
-                        <form method="POST">
-                            <button formaction="index.php" style="font-size:15px; margin-left: 20px;">home</button>
-                        </form>
                     </div>
                     <form action="" method="POST">
                         <div class="search-box">

@@ -1,24 +1,33 @@
 <?php
-    require_once("connection.php");
-    $mybag = [];
+require_once("connection.php");
+if ($user_login == null) {
+    header("location: index.php");
+}
+if (isset($_POST['logOut'])) {
+    unset($_SESSION['user']);
+    unset($user_login);
+    header("location: index.php");
+    $logged = false;
+}
+$mybag = [];
+if (isset($_COOKIE["mybag"])) {
+    $mybag = json_decode($_COOKIE["mybag"], true);
+}
+if (isset($_POST["hapus"])) {
+    setcookie("mybag", "", time() - 1);
+}
+$gagal = -1;
+if (isset($_POST['checkout'])) {
     if (isset($_COOKIE["mybag"])) {
-        $mybag = json_decode($_COOKIE["mybag"], true);
-    }
-    if (isset($_POST["hapus"])) {
-        setcookie("mybag", "", time() - 1);
-    }
-    $gagal = -1;
-    if(isset($_POST['checkout'])){
-        if(isset($_COOKIE["mybag"])){
-            if(count($mybag)>0){
-                header("location: checkout.php");
-            }else{
-                $gagal = 1;
-            }
-        }else{
+        if (count($mybag) > 0) {
+            header("location: checkout.php");
+        } else {
             $gagal = 1;
         }
+    } else {
+        $gagal = 1;
     }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +35,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>User-Bag</title>
     <script src="./assets/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="./css/myBag.css">
     <script src="./assets/sweetalert2.all.min.js"></script>
@@ -157,6 +166,7 @@
             return true;
         }
     }
+
     function gantiJumlah(value, id) {
         mybag[id]["jumlah"] = value;
         var total = 0;
@@ -244,4 +254,5 @@
         });
     }
 </script>
+
 </html>

@@ -1,217 +1,207 @@
 <?php
-    require_once("connection.php");
-    $tipe = "";
-    $barang=[];
-    if(isset($_GET["type"])){
-        if($_GET["type"]=="clothes-men"){$tipe = "JB001";}
-        else if($_GET["type"]=="clothes-woman"){$tipe = "JB002";}
-        else if($_GET["type"]=="trousers-men"){$tipe = "JB003";}
-        else if($_GET["type"]=="trousers-woman"){$tipe = "JB004";}
-        else if($_GET["type"]=="jacket-men"){$tipe = "JB005";}
-        else if($_GET["type"]=="bag-men"){$tipe = "JB006";}
-        else if($_GET["type"]=="shoes-men"){$tipe = "JB007";}
-        else if($_GET["type"]=="jacket-woman"){$tipe = "JB008";}
-        else if($_GET["type"]=="bag-woman"){$tipe = "JB009";}
-        else if($_GET["type"]=="shoes-woman"){$tipe = "JB010";}
-        
-        $result = mysqli_query($conn, "select * from barang where id_jenis='$tipe'");
-        while($row = mysqli_fetch_array($result)){
-            $brg = array(
-                'id' => $row["id_barang"],
-                'nama' => $row["nama_barang"],
-                'harga' => $row["harga"],
-                'stok' => $row["stok"],
-                'deskripsi' => $row["deskripsi"],
-                'id_jenis' => $row["id_jenis"],
-                'path' => $row["path"],
-            );
-            $barang[] = $brg;
-        }
+require_once("connection.php");
+$tipe = "";
+$barang = [];
+if (isset($_GET["type"])) {
+    if ($_GET["type"] == "clothes-men") {
+        $tipe = "JB001";
+    } else if ($_GET["type"] == "clothes-woman") {
+        $tipe = "JB002";
+    } else if ($_GET["type"] == "trousers-men") {
+        $tipe = "JB003";
+    } else if ($_GET["type"] == "trousers-woman") {
+        $tipe = "JB004";
+    } else if ($_GET["type"] == "jacket-men") {
+        $tipe = "JB005";
+    } else if ($_GET["type"] == "bag-men") {
+        $tipe = "JB006";
+    } else if ($_GET["type"] == "shoes-men") {
+        $tipe = "JB007";
+    } else if ($_GET["type"] == "jacket-woman") {
+        $tipe = "JB008";
+    } else if ($_GET["type"] == "bag-woman") {
+        $tipe = "JB009";
+    } else if ($_GET["type"] == "shoes-woman") {
+        $tipe = "JB010";
     }
-    if(isset($_POST["home"])){
-        if(isset($_SESSION["user"])){
-            header("location: user.php");
-        }else{
-            header("location: index.php");
-        }
+
+    $result = mysqli_query($conn, "select * from barang where id_jenis='$tipe'");
+    while ($row = mysqli_fetch_array($result)) {
+        $brg = array(
+            'id' => $row["id_barang"],
+            'nama' => $row["nama_barang"],
+            'harga' => $row["harga"],
+            'stok' => $row["stok"],
+            'deskripsi' => $row["deskripsi"],
+            'id_jenis' => $row["id_jenis"],
+            'path' => $row["path"],
+        );
+        $barang[] = $brg;
     }
+}
+if (isset($_POST["home"])) {
+    if (isset($_SESSION["user"])) {
+        header("location: user.php");
+    } else {
+        header("location: index.php");
+    }
+}
+
+if(isset($_SESSION['user'])) {
+    $user_login=$_SESSION['user'];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SubMenu</title>
     <script src="./assets/jquery-3.5.1.min.js"></script>
-    <style>
-        @font-face {
-            font-family: "goodTimes";
-            src: url('./assets/fonts/good_times_rg.ttf');
-        }
-        @font-face {
-            font-family: "teen";
-            src: url('./assets/fonts/teen.ttf');
-        }
-        body{
-            font-family: "teen";
-            background: white;
-            padding: 0;
-            margin: 0;
-        }
-        #logo{
-            font-family: "goodTimes";
-            text-align: center;
-            font-size: 30px;
-            color: whitesmoke;
-        }
-        .menu{
-            text-align: center;
-        }
-
-        .menu ul{
-            padding: 0px;
-        }
-        .menu li, #btn{
-            display: inline-block;
-            font-family: "teen";
-        }
-
-        .menu a, #btn{
-            color: lightsteelblue;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 0px 10px;
-        }
-
-        .menu a:hover, #btn:hover{
-            border-bottom: 2px solid white;
-            color: whitesmoke;
-        }
-        
-        .product{
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .column img{
-            width: 100%;
-            height: 85%;
-            margin-bottom: 10px;
-            vertical-align: middle;
-        }
-
-        .content {
-            position: relative;
-            display: inline-flex;
-            width: 30%;
-            height: 60%;
-            padding: 5px;
-            margin-bottom: 50px;
-        }
-
-        .harga {
-            position: absolute;
-            bottom: 50;
-            width: 95%;
-            padding: 5px 5px 5px 5px;
-            bottom: -25px;
-        }
-
-        .footer {
-            background-color: rgb(13, 13, 13);
-            text-align: center;
-            font-size: 12px;
-            padding-left: 20%;
-            padding-right: 20%;
-            height: 30%;
-            color: whitesmoke;
-        }
-
-        .footer ul{
-            list-style-type: none;
-            text-align: left;
-            font-size: 16px;
-            margin: 0;
-            margin-top: 250;
-            padding: 0;
-            padding-top: 5%;
-        }
-
-        .footer li a{
-            display: block;
-            width: 70px;
-            color: lightsteelblue;
-            text-decoration: none;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/submenu.css">
 </head>
+
 <body>
-    <div class="header" style="background-color: black;height: 80px;padding:20px 0px;">
-        <div id="logo">OutfitLabs</div>
-        <div class="menu">
-            <ul>
-                <li><a href="#ladies">LADIES</a></li>
-                <li><a href="#men">MEN</a></li>
-                <li><a href="#3">MENU 3</a></li>
-                <li><a href="#4">MENU 4</a></li>
-                <li><a href="#5">MENU 5</a></li>
-                <li>
-                    <form method="POST">                    
-                        <button name="home" id="btn" style="
-                        font-size:15px;
-                        background-color: Transparent;
-                        background-repeat:no-repeat;
-                        border: none;
-                        cursor:pointer;
-                        overflow: hidden;
-                        outline:none;">HOME</button>
+    <div class="container">
+        <div class="header">
+            <div class="menu">
+                <a href="index.php">
+                    <h1>Outfit Labs</h1>
+                </a>
+                <?php
+                if (isset($_SESSION['user'])) { ?>
+                    <form method="POST">
+                        <button type="submit" name="logOut" formaction="logout.php">
+                            <img src="./assets/icon/logout.png"><br>
+                            Log Out
+                        </button>
+                        <button type="submit" name="shopBag" formaction="mybag.php">
+                            <img src="./assets/icon/shopBag.png"> <br>
+                            Shop Bag
+                        </button>
+                        <button type="submit" name="signIn" formaction="profile.php">
+                            <img src="./assets/icon/signIn.png"> <br>
+                            <?= $user_login['nama'] ?>
+                        </button>
                     </form>
-                </li>
-            </ul>
+                <?php } else { ?>
+                    <button type="submit" name="signIn">
+                        <img src="./assets/icon/signIn.png"> <br>
+                        Sign in
+                    </button>
+                <?php } ?>
+            </div>
+            <div class="navbar">
+                <ul>
+                <div class="dropdown">
+                        <li>Clothes</li>
+                        <div class="dropdown-content">
+                            <a href="submenu.php?type=clothes-woman">Woman</a>
+                            <a href="submenu.php?type=clothes-men">Men</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <li>Trousers</li>
+                        <div class="dropdown-content">
+                            <a href="submenu.php?type=trousers-woman">Woman</a>
+                            <a href="submenu.php?type=trousers-men">Men</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <li>Jacket</li>
+                        <div class="dropdown-content">
+                            <a href="submenu.php?type=jacket-woman">Woman</a>
+                            <a href="submenu.php?type=jacket-men">Men</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <li>Bag</li>
+                        <div class="dropdown-content">
+                            <a href="submenu.php?type=bag-woman">Woman</a>
+                            <a href="submenu.php?type=bag-men">Men</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <li>Shoes</li>
+                        <div class="dropdown-content">
+                            <a href="submenu.php?type=shoes-woman">Woman</a>
+                            <a href="submenu.php?type=shoes-men">Men</a>
+                        </div>
+                    </div>
+                    <form action="" method="POST">
+                        <div class="search-box">
+                            <input type="text" name="searchText" class="search-txt" placeholder="Type to search" />
+                            <a class="search-btn" href="#">
+                                <button type="submit" name="search_button" formaction="pencarian.php"><img src="./assets/icon/search1.png"></img></button>
+                            </a>
+                        </div>
+                    </form>
+                </ul>
+            </div>
         </div>
+
+        <div class="product">
+            <div class="column"> </div>
+        </div>
+
+        <div class="footer">
+            <div class="subscribe">
+                <input type="text" name="email" placeholder="Enter your email"> <br>
+                <button type="submit" name="subscribe">SUBSCRIBE</button>
+            </div>
+            <div class="about">
+                <div class="logo">
+                    <h1>OUTFIT LABS</h1>
+                </div>
+                <div class="help">
+                    <a href="#">Help</a> <br>
+                    <a href="about.php">About</a> <br>
+                    <a href="#">Terms & Conditions</a> <br>
+                    <a href="HowTS.php">How To Shop</a> <br>
+                </div>
+                <div class="contact">
+                    <h4>Contact Us</h4>
+                    <p><img src="./assets/icon/telp.png"> +62 0000000000</p>
+                    <p><img src="./assets/icon/email.png"> example@gmail.com</p>
+                    <p><img src="./assets/icon/instagram.png">outfit.labs</p>
+                </div>
+            </div>
+        </div>
+
+        <form method="POST">
+            <button type="hidden" id="btnn" formaction="display.php" style="display:none;"></button>
+        </form>
     </div>
-    <div class="product">
-        <div class="column">
-        </div>
-    </div>
-    <div class="footer">
-        <div>
-            <ul>
-                <li style="color: white;">Shop</li>
-                <li><a href="">Men</a></li>
-                <li><a href="">Ladies</a></li>
-            </ul>
-            <br><br>
-        </div>
-        <div style="padding-bottom: 30px;">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam laborum quia voluptas minus sapiente odit illo odio at commodi ex quo mollitia sunt, ipsa ipsam ipsum tempore nam ad quisquam.Iste unde sunt consequatur voluptates mollitia laborum, at nemo totam, nam ipsam optio sit distinctio ratione assumenda repellendus corrupti sed eligendi pariatur ducimus? Ipsum, voluptate aspernatur adipisci quisquam tenetur perspiciatis!
-        </div>
-    </div>
-    <form method="POST">
-        <button type="hidden" id="btnn" formaction="display.php" style="display:none;"></button>
-    </form>
+
 </body>
-    <script>
-        var barang = <?= json_encode($barang)?>;
-        $(document).ready(function(){
-            for(let i = 0; i<barang.length; i++){
-                var id = barang[i]["id"];
-                var harga = barang[i]["harga"];
-                var nama = barang[i]["nama"];
-                var path = barang[i]["path"];
-                $('.column').append(`
+<script>
+    var barang = <?= json_encode($barang) ?>;
+    $(document).ready(function() {
+        for (let i = 0; i < barang.length; i++) {
+            var id = barang[i]["id"];
+            var harga = barang[i]["harga"];
+            var nama = barang[i]["nama"];
+            var path = barang[i]["path"];
+            $('.column').append(`
                     <div class="content" id=${i} name="">
                         <img src="${path}" alt="">
-                        <div class="harga">${harga} - ${nama}</div>
+                        <div class="middle"><img src="./assets/icon/search1.png"></div>
+                        <div class="nama">${nama}</div>
+                        <div class="harga">Rp. ${harga}</div>
                     </div>
                 `);
-                $(`#${i}`).click(function(){
-                    document.getElementById(`${i}`).setAttribute("name","query");
-                    $.get("sendInfo.php", { query : barang[i] }, function(a){
-                        document.getElementById("btnn").click(); 
-                    });
-                });   
-            }
-        });
-    </script>
+            $(`#${i}`).click(function() {
+                document.getElementById(`${i}`).setAttribute("name", "query");
+                $.get("sendInfo.php", {
+                    query: barang[i]
+                }, function(a) {
+                    document.getElementById("btnn").click();
+                });
+            });
+        }
+    });
+</script>
+
 </html>
