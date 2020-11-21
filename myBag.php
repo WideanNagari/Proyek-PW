@@ -19,7 +19,8 @@ if (isset($_POST["hapus"])) {
 }
 $gagal = -1;
 if (isset($_POST['checkout'])) {
-    if (isset($_COOKIE["mycart"])) {
+    if (isset($_SESSION["mycart"])) {
+        $mycart = json_encode($_SESSION['mycart']);
         if (count($mycart) > 0) {
             header("location: checkout.php");
         } else {
@@ -31,6 +32,7 @@ if (isset($_POST['checkout'])) {
 }
 
 $mycart = $_SESSION['mycart'] ?? [];
+//print_r($mycart);
 
 if (isset($_POST['addCart'])) {
     $id = $_POST['addCart'];
