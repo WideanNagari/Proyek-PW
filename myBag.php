@@ -12,15 +12,15 @@ if (isset($_POST['logOut'])) {
 $mybag = [];
 if (isset($_COOKIE["mybag"])) {
     $mybag = json_decode($_COOKIE["mybag"], true);
-    print_r($mybag);
+    //print_r($mybag);
 }
 if (isset($_POST["hapus"])) {
     setcookie("mybag", "", time() - 1);
 }
 $gagal = -1;
 if (isset($_POST['checkout'])) {
-    if (isset($_COOKIE["mybag"])) {
-        if (count($mybag) > 0) {
+    if (isset($_COOKIE["mycart"])) {
+        if (count($mycart) > 0) {
             header("location: checkout.php");
         } else {
             $gagal = 1;
@@ -29,6 +29,87 @@ if (isset($_POST['checkout'])) {
         $gagal = 1;
     }
 }
+
+$mycart = $_SESSION['mycart'] ?? [];
+
+if (isset($_POST['addCart'])) {
+    $id = $_POST['addCart'];
+    foreach ($mybag as $bag) {
+        if ($bag['id'] == $id) $barang = $bag;
+    }
+    if ($mycart != null) {
+        $found = false;
+        foreach ($mycart as $cart) {
+            if ($cart['id'] == $id) {
+                $cart['jumlah'] += 1;
+                echo ("<script>alert('Barang sudah ada di Cart')</script>");
+                $found = true;
+            }
+        }
+        if (!$found) {
+            $brg = array(
+                'id' => $barang["id"],
+                'nama' => $barang["nama"],
+                'harga' => $barang["harga"],
+                'stok' => $barang["stok"],
+                'deskripsi' => $barang["deskripsi"],
+                'nama_jenis' => $barang["nama_jenis"],
+                'path' => $barang["path"]
+            );
+            $brg['jumlah'] = 1;
+            array_push($mycart, $brg);
+            $_SESSION['mycart'] = $mycart;
+
+            // foreach ($mybag as $key => $bag) {
+            //     if ($bag['id'] == $id) {
+            //         unset($mybag[$key]);
+            //     }
+            // }
+            // $_COOKIE['mybag'] = $mybag;
+        }
+    } else {
+        $mycart = array();
+        $brg = array(
+            'id' => $barang["id"],
+            'nama' => $barang["nama"],
+            'harga' => $barang["harga"],
+            'stok' => $barang["stok"],
+            'deskripsi' => $barang["deskripsi"],
+            'nama_jenis' => $barang["nama_jenis"],
+            'path' => $barang["path"]
+        );
+        $brg['jumlah'] = 1;
+        //$mycart[] = $brg;
+        array_push($mycart, $brg);
+        $_SESSION['mycart'] = $mycart;
+
+        // foreach ($mybag as $key => $bag) {
+        //     if ($bag['id'] == $id) {
+        //         unset($mybag[$key]);
+        //     }
+        // }
+        // $_COOKIE['mybag'] = $mybag;
+    }
+}
+
+if (isset($_POST['removeCart'])) {
+    $mycart = $_SESSION['mycart'] ?? [];
+    $id = $_POST['removeCart'];
+    foreach ($mycart as $key => $cart) {
+        if ($cart['id'] == $id) {
+            //array_push($mybag, $cart);
+            //$_SESSION['mybag'] = $mybag;
+            unset($mycart[$key]);
+        }
+    }
+    $_SESSION['mycart'] = $mycart;
+    //print_r($_SESSION['mycart']);
+}
+
+if (isset($_POST['removeBag'])) {
+    $id = $_POST['removeBag'];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -133,45 +214,54 @@ if (isset($_POST['checkout'])) {
                     <button type="hidden" name="hapus" id="btnn" style="display:none;"></button>
                 </form>
             </div> -->
-            <section class="container content-section">
-                <h2 class="section-header">MY BAG</h2>
-                <div class="shop-items">
-                    <?php
-                    foreach ($mybag as $bag) { ?>
-                        <div class="shop-item">
-                            <span class="shop-item-title"><?=$bag['nama']?></span>
-                            <img class="shop-item-image" src="<?=$bag['path']?>">
-                            <div class="shop-item-details">
-                                <span class="shop-item-price"><?=$bag['harga']?></span>
-                                <button class="btn btn-primary shop-item-button" type="button" value="<?=$bag['id']?>">ADD TO CART</button>
+            <form method="post">
+                <section class="container content-section">
+                    <h2 class="section-header">MY BAG</h2>
+                    <div class="shop-items">
+                        <?php
+                        foreach ($mybag as $bag) { ?>
+                            <div class="shop-item">
+                                <span class="shop-item-title"><?= $bag['nama'] ?></span>
+                                <img class="shop-item-image" src="<?= $bag['path'] ?>">
+                                <div class="shop-item-details">
+                                    <span class="shop-item-price"><?= "Rp. " . $bag['harga'] ?></span>
+                                    <button class="btn btn-primary shop-item-button" type="submit" name="addCart" value="<?= $bag['id'] ?>">ADD TO CART</button>
+                                    <button class="btn btn-danger" type="button" name="removeBag" value="<?= $bag['id'] ?>">REMOVE</button>
+                                </div>
                             </div>
-                        </div>
-                    <?php } ?>
-                    <!-- <div class="shop-item">
-                        <span class="shop-item-title">NAME</span>
-                        <img class="shop-item-image" src="./assets/pic/BA004.png">
-                        <div class="shop-item-details">
-                            <span class="shop-item-price">Rp 10.000</span>
-                            <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
-                        </div>
-                    </div> -->
-                </div>
-            </section>
-            <section class="container content-section">
-                <h2 class="section-header">CART</h2>
-                <div class="cart-row">
-                    <span class="cart-item cart-header cart-column">ITEM</span>
-                    <span class="cart-price cart-header cart-column">PRICE</span>
-                    <span class="cart-quantity cart-header cart-column">QUANTITY</span>
-                </div>
-                <div class="cart-items">
-                </div>
-                <div class="cart-total">
-                    <strong class="cart-total-title">Total</strong>
-                    <span class="cart-total-price">Rp.0</span>
-                </div>
-                <button class="btn btn-primary btn-purchase" type="button" name="checkout">PURCHASE</button>
-            </section>
+                        <?php } ?>
+                    </div>
+                </section>
+                <section class="container content-section">
+                    <h2 class="section-header">CART</h2>
+                    <div class="cart-row">
+                        <span class="cart-item cart-header cart-column">ITEM</span>
+                        <span class="cart-price cart-header cart-column">PRICE</span>
+                        <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+                    </div>
+                    <div class="cart-items">
+                        <?php
+                        foreach ($mycart ?? [] as $cart) { ?>
+                            <div class="cart-row">
+                                <div class="cart-item cart-column">
+                                    <img class="cart-item-image" src="<?= $cart['path'] ?>" width="100" height="100">
+                                    <span class="cart-item-title"><?= $cart['nama'] ?></span>
+                                </div>
+                                <span class="cart-price cart-column"><?= "Rp. " . $cart['harga'] ?></span>
+                                <div class="cart-quantity cart-column">
+                                    <input class="cart-quantity-input" type="number" min="1" max='<?=$cart['stok']?>' value="<?= $cart['jumlah'] ?>">
+                                    <button class="btn btn-danger" type="submit" name="removeCart" value="<?= $cart['id'] ?>">REMOVE</button>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+                    <div class="cart-total">
+                        <strong class="cart-total-title">Total</strong>
+                        <span class="cart-total-price">Rp.0</span>
+                    </div>
+                    <button class="btn btn-primary btn-purchase" type="submit" name="checkout">PURCHASE</button>
+                </section>
+            </form>
         </div>
         <div class="footer">
             <div class="subscribe">
@@ -300,7 +390,7 @@ if (isset($_POST['checkout'])) {
         Swal.fire({
             icon: 'error',
             title: 'Gagal CheckOut',
-            text: 'MyBag Kosong! Silahkan Masukkan Barang ke MyBag Anda!',
+            text: 'MyCart Kosong! Silahkan Masukkan Barang ke MyCart Anda!',
             showConfirmButton: false,
             timer: 2000
         });
