@@ -1,11 +1,11 @@
 <?php
-    require_once("connection.php");
-    $logged = false;
-    if ($user_login != null) {
-        $logged = true;
-    } else {
-        header("location: index.php");
-    }
+require_once("connection.php");
+$logged = false;
+if ($user_login != null) {
+    $logged = true;
+} else {
+    header("location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +38,7 @@
                     </button>
                     <button type="submit" name="signIn" formaction="profile.php">
                         <img src="./assets/icon/signIn.png"> <br>
-                        <?=$user_login['nama']?>
+                        <?= $user_login['nama'] ?>
                     </button>
                 </form>
             </div>
@@ -163,6 +163,13 @@
                         <img src="./assets/pic/BA033.png" style="float: left;">
                         <img src="./assets/pic/BA012.png">
                     </div>
+                    <a href="submenu.php?type=clothes-woman">
+                        <button id="more">More
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="padding-top: 10px;">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                            </svg>
+                        </button>
+                    </a>
                 </div>
                 <div class="content-gbr" id="gbrM" style="display: none;">
                     <div class="contKiri">
@@ -174,12 +181,15 @@
                         <img src="./assets/pic/BA034.png" style="float: left;">
                         <img src="./assets/pic/BA031.png">
                     </div>
+                    <a href="submenu.php?type=clothes-men">
+                        <button id="more">More
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="padding-top: 10px;">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                            </svg>
+                        </button>
+                    </a>
                 </div>
-                <p id="more">More
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="padding-top: 10px;">
-                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-                    </svg>
-                </p>
+
             </div>
             <div class="popular">
                 <h2>Popular</h2> <br><br>
@@ -268,4 +278,5 @@
         </div>
     </div>
 </body>
+
 </html>

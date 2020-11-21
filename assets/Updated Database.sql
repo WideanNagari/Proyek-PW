@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2020 at 09:36 AM
+-- Generation Time: Nov 21, 2020 at 10:39 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -20,7 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `outfitlabs`
 --
-DROP DATABASE IF EXISTS `outfitlabs`;
 CREATE DATABASE IF NOT EXISTS `outfitlabs` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `outfitlabs`;
 
@@ -225,6 +224,18 @@ INSERT INTO `kurir` (`id_kurir`, `nama_kurir`, `tambahan_harga`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `mybag`
+--
+
+CREATE TABLE `mybag` (
+  `id` int(11) NOT NULL,
+  `id_user` varchar(10) NOT NULL,
+  `id_barang` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pengiriman`
 --
 
@@ -355,6 +366,12 @@ ALTER TABLE `kurir`
   ADD PRIMARY KEY (`id_kurir`);
 
 --
+-- Indexes for table `mybag`
+--
+ALTER TABLE `mybag`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `pengiriman`
 --
 ALTER TABLE `pengiriman`
@@ -371,6 +388,16 @@ ALTER TABLE `provinsi`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id_transaksi`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `mybag`
+--
+ALTER TABLE `mybag`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
