@@ -1,0 +1,145 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+@font-face {
+    font-family: "goodTimes";
+    src: url('../assets/fonts/good_times_rg.ttf');
+}
+
+@font-face {
+    font-family: "teen";
+    src: url('../assets/fonts/teen.ttf');
+}
+
+.header {
+    width: 100%;
+    height: 60px;
+    background: rgb(50, 50, 50);
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: "teen";
+}
+
+#logo {
+    font-size: 30px;
+    font-family: "goodTimes";
+    float: left;
+}
+
+#btnBack {
+    font-family: "goodTimes";
+    color: gray;
+    border: 0px;
+    font-size: 25px;
+    background: rgb(50, 50, 50);
+    margin-top: 5px;
+    margin-left: 730px;
+    height: 50px;
+    width: 10%;
+}
+
+#btn:hover {
+    color: rgb(50, 50, 50);
+    background: white;
+    border: 2px solid black;
+}
+
+#btnBack:hover {
+    color: white;
+}
+
+#container {
+    margin-left: 5%;
+    width: 90%;
+    height: 190px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-top:20px;
+    font-family: "teen";
+}
+
+#container img {
+    width: 95px;
+    height: 110px;
+    float: left;
+    padding: 20px 0 0 20px;
+}
+
+#container #detail {
+    padding: 20px 10px 0 20px;
+    float: left;
+}
+
+#container #jumlah {
+    margin-top: 10px;
+    float: left;
+    margin-right: 20px;
+}
+
+#container #harga {
+    margin-top: 10px;
+    float: left;
+}
+
+#container #label-waktu {
+    position: relative;
+    float: right;
+    top: 20px;
+    left: -250px;
+    text-align: right;
+}
+
+#container #label1 {
+    padding-bottom: 20px;
+}
+
+#container #waktu {
+    position: relative;
+    float: right;
+    text-align: left;
+    left: 130px;
+}
+
+#container #waktu1 {
+    margin: 20px 0px 0 20px;
+}
+
+#container #waktu2 {
+    margin: 20px 0px 0 20px;
+}
+
+#container #status-cont {
+    display: block;
+    float: right;
+    position: relative;
+    top: 100px;
+    right: -350px;
+}
+
+#container button {
+    position: relative;
+    font-family: "teen";
+    top: 135px;
+    right: -350px;
+    padding: 10px;
+    background-color: Transparent lightgray;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#container button:hover {
+    background-color: lightgrey;
+}
+#container input{
+    position: relative;
+    width:30px;
+    height:30px;
+    font-size: 1.5em;
+    text-align: center;
+    left:350px;
+    top:140px;
+}

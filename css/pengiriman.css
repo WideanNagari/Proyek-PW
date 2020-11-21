@@ -98,3 +98,49 @@ input[type=password]{
     color: black;
     text-decoration: none;
 }
+#barang {
+    margin-left:5%;
+    width: 90%;
+    height: 150px;
+    border: 2px solid black;
+    border-radius: 5px;   
+}
+#barang img{
+    width:95px;
+    height:110px;
+    float:left;
+    padding:20px 0 0 20px;
+}
+#barang #detail{
+    padding:20px 10px 0 20px;
+    float:left;
+}
+#barang #label-waktu{
+    position:relative;
+    float:right;
+    top:20px;
+    left:-250px;
+    text-align:right;
+}
+#barang #label1{
+    padding-bottom:20px;
+}
+#barang #waktu{
+    position:relative;
+    float:right;
+    text-align:left; 
+    left:130px;  
+}
+#barang #waktu1{
+    margin:20px 0px 0 20px;
+}
+#barang #waktu2{
+    margin:20px 0px 0 20px;
+}
+#barang #status-cont{
+    display:block;
+    float:right;
+    position:relative;
+    top:120px;
+    right:-355px;
+}

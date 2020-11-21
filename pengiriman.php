@@ -41,6 +41,7 @@
             font-size: 20px;
             margin-bottom: 15px;
         }
+        
     </style>
 </head>
 <body>
@@ -53,6 +54,25 @@
     <h1 style="font-family: 'teen'; color: rgb(38, 38, 38); margin-top:40px;text-align: center;">Pengiriman Barang</h1><br>
     <div class="divUtama">
         <div id='tb' style="margin-bottom: 20px;">Jumlah barang yang sedang diantar: 0</div>
+        <div id="barang">
+            <img src="./assets/pic/BA001.png" alt="">
+            <div id="detail">
+                <div id="nama">Adidas Athletics Graphic Tee</div>
+                <div id="jumlah"> X 1</div>
+            </div>
+            <div id="label-waktu">
+                <div id="label1">Waktu Pengiriman</div>
+                <div id="label2">Waktu Sampai</div>
+            </div>
+            <div id="waktu">
+                <div id="waktu1">21 November 2020 at 17:50</div>
+                <div id="waktu2">21 November 2020 at 20:30</div>
+            </div>
+            <div id="status-cont">
+                Status :
+                <span id="status">Progress</span>
+            </div>
+        </div>
     </div>
 </body>
 <script>

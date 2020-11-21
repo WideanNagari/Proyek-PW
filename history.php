@@ -15,7 +15,8 @@
             'total' => $row["total_harga"],
             'waktu1' => $row["waktu_kirim"],
             'waktu2' => $row["waktu_sampai"],
-            'status' => $row["status"]
+            'status' => $row["status"],
+            'id_trans'=>$row["id_transaksi"]
         );
         $data[] = $dt;
     }
@@ -59,11 +60,36 @@
         document.getElementById('tb').innerText = "Total Riwayat Pembelian: "+data.length;
         for(let i=0; i<data.length; i++){
             $('.divUtama').append(`
-                <div class="barang">${i+1}. ${data[i]['nama']} (${data[i]['jumlah']}) - Rp. ${data[i]['total']} - Status:  ${data[i]['status']}</div>
-                <div class="barang2">Waktu Pengiriman: ${data[i]['waktu1']} - ${data[i]['waktu2']}</div>
+            <div id="container">
+            <img src="./assets/pic/BA001.png" alt="">
+            <div id="detail">
+                <div id="nama">${data[i]['nama']}</div>
+                <div id="jumlah"> (X ${data[i]['jumlah']} )</div>
+                <div id="harga">Rp. ${data[i]['total']}</div>
+            </div>
+            
+            <div id="label-waktu">
+                <div id="label1">Waktu Pengiriman</div>
+                <div id="label2">Waktu Sampai</div>
+            </div>
+            <div id="waktu">
+                <div id="waktu1">${data[i]['waktu1']}</div>
+                <div id="waktu2">${data[i]['waktu2']}</div>
+            </div>
+            
+            <div id="status-cont">
+                Status :
+                <span id="status">${data[i]['status']}</span>
+            </div>           
+            <form action='rateBarang.php?id_trans=${data[i]['id_trans']}' method='post'>
+                <button type='submit' >Rate This Product</button>
+            </form>
+            
+        </div>
             `);
         }
     });
+    
     // var error = <?php //echo json_encode($error)?>;
     // if(error!=-1){
     //     if(error==1){
