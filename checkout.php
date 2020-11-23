@@ -1,7 +1,5 @@
 <?php
 require_once("connection.php");
-
-<<<<<<< HEAD
     $idprov = $user_login["provinsi"];
     $mybag = [];
     if(isset($_COOKIE["mybag"])){
@@ -17,7 +15,6 @@ require_once("connection.php");
             $waktu = 0;
             while($row = mysqli_fetch_array($kirim)){
                 $waktu = $row["waktu_pengiriman"];
-=======
 $idprov = $user_login["provinsi"];
 $mybag = [];
 if (isset($_COOKIE["mybag"])) {
@@ -46,7 +43,6 @@ if (isset($_POST["checkout2"])) {
                 $idTransaksi = $idTransaksi . "0" . $jumlah;
             } else {
                 $idTransaksi = $idTransaksi . $jumlah;
->>>>>>> 595aa3770720817b7c9e30f60b00be1926b7355a
             }
             $idKirim = "KI";
             $result = mysqli_query($conn, "select * from pengiriman");
