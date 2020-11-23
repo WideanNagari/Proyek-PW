@@ -47,8 +47,8 @@ if (isset($_POST["home"])) {
     }
 }
 
-if(isset($_SESSION['user'])) {
-    $user_login=$_SESSION['user'];
+if (isset($_SESSION['user'])) {
+    $user_login = $_SESSION['user'];
 }
 
 ?>
@@ -70,9 +70,9 @@ if(isset($_SESSION['user'])) {
                 <a href="index.php">
                     <h1>Outfit Labs</h1>
                 </a>
-                <?php
-                if (isset($_SESSION['user'])) { ?>
-                    <form method="POST">
+                <form method="POST">
+                    <?php
+                    if (isset($_SESSION['user'])) { ?>
                         <button type="submit" name="logOut" formaction="logout.php">
                             <img src="./assets/icon/logout.png"><br>
                             Log Out
@@ -85,17 +85,17 @@ if(isset($_SESSION['user'])) {
                             <img src="./assets/icon/signIn.png"> <br>
                             <?= $user_login['nama'] ?>
                         </button>
-                    </form>
-                <?php } else { ?>
-                    <button type="submit" name="signIn" formaction="login.php">
-                        <img src="./assets/icon/signIn.png"> <br>
-                        Sign in
-                    </button>
-                <?php } ?>
+                    <?php } else { ?>
+                        <button type="submit" name="signIn" formaction="login.php">
+                            <img src="./assets/icon/signIn.png"> <br>
+                            Sign in
+                        </button>
+                    <?php } ?>
+                </form>
             </div>
             <div class="navbar">
                 <ul>
-                <div class="dropdown">
+                    <div class="dropdown">
                         <li>Clothes</li>
                         <div class="dropdown-content">
                             <a href="submenu.php?type=clothes-woman">Woman</a>
