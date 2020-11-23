@@ -1,67 +1,264 @@
-* {
-    padding: 0;
-    margin: 0;
-}
-
 @font-face {
-    font-family: "goodTimes";
+    font-family: 'goodTimes';
     src: url('../assets/fonts/good_times_rg.ttf');
 }
 
 @font-face {
-    font-family: "teen";
+    font-family: 'teen';
     src: url('../assets/fonts/teen.ttf');
 }
 
-.header {
-    width: 100%;
-    height: 60px;
-    background: rgb(50, 50, 50);
-    color: white;
-    font-size: 20px;
-    font-weight: 600;
-    font-family: "teen";
+* {
+    box-sizing: border-box;
+    padding : 0;
+    margin : 0;
+    font-family: 'teen';
 }
 
-#logo {
-    font-size: 30px;
-    font-family: "goodTimes";
+body{
+    background: linear-gradient(120deg, lightskyblue,lightcyan,lightskyblue);
+}
+
+.header {
+    height: 180px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.header .menu {
+    padding-top: 20px;
+    height: 80px;
+}
+
+.header .menu h1 {
+    margin-left: 38%;
+    color: black;
+    float: left;
+    font-family: 'goodTimes';
+}
+
+.header .menu button {
+    float: right;
+    margin-right: 50px;
+}
+
+button {
+    padding: 10px;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+.header img{
+    height: 20px;
+    width: 20px;
+}
+
+.navbar {
+    height: 50px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    margin-left: 20px;
+    /* background: #000; */
+    /* color: white; */
+    color: black;
+}
+
+.navbar ul li {
+    display: inline-block;
+    padding: 10px;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+a:visited{
+    color: white;
+}
+
+nav ul li:hover {
+    border-bottom: 1px solid gray;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}    
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.search-box {
+    margin-left: 380px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 40px;
+    border-radius: 40px;
+    /* background: white; */
+
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+.search-box:hover > .search-txt {
+    width: 240px;
+    padding: 0 6px;
+}
+
+.search-box:hover > .search-btn {
+    background: white;
+}
+
+.search-btn {
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    cursor: pointer;
+    /* background: white; */
+
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+.search-txt {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: black;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+}
+
+.search-box button img{
+    height: 20px;
+    width: 20px;
+}
+
+.footer {
+    border-top: 1px solid rgb(182, 182, 250);
+}
+
+.footer .subscribe {
+    text-align: center;
+    height: 200px;
+    padding-top: 80px;
+    float: none;
+}
+
+.subscribe input {
+    width: 400px;
+    height: 50px;
+}
+
+.subscribe button {
+    margin-top: 10px;
+    color: white;
+    background: #000;
+    width: 200px;
+    height: 50px;
+    border: none;
+}
+
+.about  {
+    margin: 50px;
+    height: 150px;
+}
+
+.about .logo{
+    width: 200px;
+    height: 150px;
+    float: left;
+    padding: 20px;
+    border-right: 1px solid rgb(182, 182, 250);
+}
+
+.about .logo h1{
+    font-family: 'goodTimes';
+}
+
+.help {
+    margin-left: 50px;
+    padding-top: 20px;
+    width: 200px;
+    height: 150px;
     float: left;
 }
 
-#btnBack {
-    font-family: "goodTimes";
-    color: gray;
-    border: 0px;
-    font-size: 25px;
-    background: rgb(50, 50, 50);
-    margin-top: 5px;
-    margin-left: 730px;
-    height: 50px;
-    width: 10%;
+.help a{
+    color: black;
 }
 
-#btn:hover {
-    color: rgb(50, 50, 50);
-    background: white;
-    border: 2px solid black;
+.contact {
+    float: left;
+    margin-left: 50px;
+    padding-top: 20px;
 }
 
-#btnBack:hover {
-    color: white;
+.contact img {
+    width: 20px;
+    height: 20px;
+    margin: 2px;
+    margin-right: 10px;
 }
+
+/* main */
 
 #container {
     margin-left: 5%;
     width: 90%;
-    height: 190px;
+    height: 200px;
     border: 2px solid black;
     border-radius: 5px;
     margin-top:20px;
-    font-family: "teen";
+    margin-bottom: 40px;
 }
 
-#container img {
+/* #container img {
     width: 95px;
     height: 110px;
     float: left;
@@ -94,52 +291,53 @@
 
 #container #label1 {
     padding-bottom: 20px;
+} */
+
+.divkiri {
+    float: left;
+    width: 550px;
+    height: 100%;
+    /* border: 1px solid black; */
+    padding: 20px;
+    display: inline-flex;
 }
 
-#container #waktu {
-    position: relative;
-    float: right;
-    text-align: left;
-    left: 130px;
+.divkiri img {
+    height: 90%;
+    width: 150px;
+    margin-right: 20px;
 }
 
-#container #waktu1 {
-    margin: 20px 0px 0 20px;
+.divtengah {
+    float: left;
+    width: 400px;
+    height: 100%;
+    /* border: 1px solid black; */
+    padding: 40px;
+    padding-top: 20px;
 }
 
-#container #waktu2 {
-    margin: 20px 0px 0 20px;
+#status-cont {
+    text-decoration: underline;
+    font-weight: bolder;
 }
 
-#container #status-cont {
-    display: block;
-    float: right;
-    position: relative;
-    top: 100px;
-    right: -350px;
+.divkanan {
+    float: left;
+    width: 210px;
+    height: 100%;
+    /* border: 1px solid black; */
+    padding: 40px;
 }
 
-#container button {
-    position: relative;
-    font-family: "teen";
-    top: 135px;
-    right: -350px;
-    padding: 10px;
-    background-color: Transparent lightgray;
-    background-repeat: no-repeat;
-    cursor: pointer;
-    overflow: hidden;
+.divkanan input {
+    width: 50px;
+    margin-bottom: 20px;
+    margin-left: 28px;
 }
 
 #container button:hover {
     background-color: lightgrey;
+    border-bottom: 1px solid black;
 }
-#container input{
-    position: relative;
-    width:30px;
-    height:30px;
-    font-size: 1.5em;
-    text-align: center;
-    left:350px;
-    top:140px;
-}
+

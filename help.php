@@ -1,44 +1,6 @@
 <?php
 require_once("connection.php");
-$tipe = "";
-$barang = [];
-if (isset($_GET["type"])) {
-    if ($_GET["type"] == "clothes-men") {
-        $tipe = "JB001";
-    } else if ($_GET["type"] == "clothes-woman") {
-        $tipe = "JB002";
-    } else if ($_GET["type"] == "trousers-men") {
-        $tipe = "JB003";
-    } else if ($_GET["type"] == "trousers-woman") {
-        $tipe = "JB004";
-    } else if ($_GET["type"] == "jacket-men") {
-        $tipe = "JB005";
-    } else if ($_GET["type"] == "bag-men") {
-        $tipe = "JB006";
-    } else if ($_GET["type"] == "shoes-men") {
-        $tipe = "JB007";
-    } else if ($_GET["type"] == "jacket-woman") {
-        $tipe = "JB008";
-    } else if ($_GET["type"] == "bag-woman") {
-        $tipe = "JB009";
-    } else if ($_GET["type"] == "shoes-woman") {
-        $tipe = "JB010";
-    }
 
-    $result = mysqli_query($conn, "select * from barang where id_jenis='$tipe'");
-    while ($row = mysqli_fetch_array($result)) {
-        $brg = array(
-            'id' => $row["id_barang"],
-            'nama' => $row["nama_barang"],
-            'harga' => $row["harga"],
-            'stok' => $row["stok"],
-            'deskripsi' => $row["deskripsi"],
-            'id_jenis' => $row["id_jenis"],
-            'path' => $row["path"],
-        );
-        $barang[] = $brg;
-    }
-}
 if (isset($_POST["home"])) {
     if (isset($_SESSION["user"])) {
         header("location: user.php");
@@ -47,20 +9,20 @@ if (isset($_POST["home"])) {
     }
 }
 
-if(isset($_SESSION['user'])) {
-    $user_login=$_SESSION['user'];
+if (isset($_SESSION['user'])) {
+    $user_login = $_SESSION['user'];
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SubMenu</title>
-    <script src="./assets/jquery-3.5.1.min.js"></script>
-    <link rel="stylesheet" href="./css/submenu.css">
+    <title>How To Shop</title>
+    <link rel="stylesheet" href="css/howts.css">
 </head>
 
 <body>
@@ -95,7 +57,7 @@ if(isset($_SESSION['user'])) {
             </div>
             <div class="navbar">
                 <ul>
-                <div class="dropdown">
+                    <div class="dropdown">
                         <li>Clothes</li>
                         <div class="dropdown-content">
                             <a href="submenu.php?type=clothes-woman">Woman</a>
@@ -141,11 +103,21 @@ if(isset($_SESSION['user'])) {
                 </ul>
             </div>
         </div>
+        <div class="main">
+            <div class="kiri">
+                <a href="help.php"><button>Help</button></a>
+                <a href="about.php"><button>About</button></a>
+                <a href="terms.php"><button>Terms & Conditions</button></a>
+                <a href="HowTS.php"><button>How To Shop</button></a>
+            </div>
+            <div class="kanan">
 
-        <div class="product">
-            <div class="column"> </div>
+            </div>
         </div>
-
+        <div class="tamb">
+            <p id="last">Selamat Berbelanja!</p>
+            <p id="copy">Copyright © 2020 OutfitLabs Inc. All rights reserved</p>
+        </div>
         <div class="footer">
             <div class="subscribe">
                 <input type="text" name="email" placeholder="Enter your email"> <br>
@@ -169,39 +141,7 @@ if(isset($_SESSION['user'])) {
                 </div>
             </div>
         </div>
-
-        <form method="POST">
-            <button type="hidden" id="btnn" formaction="display.php" style="display:none;"></button>
-        </form>
     </div>
-
 </body>
-<script>
-    var barang = <?= json_encode($barang) ?>;
-    $(document).ready(function() {
-        for (let i = 0; i < barang.length; i++) {
-            var id = barang[i]["id"];
-            var harga = barang[i]["harga"];
-            var nama = barang[i]["nama"];
-            var path = barang[i]["path"];
-            $('.column').append(`
-                    <div class="content" id=${i} name="">
-                        <img src="${path}" alt="">
-                        <div class="middle"><img src="./assets/icon/search1.png"></div>
-                        <div class="nama">${nama}</div>
-                        <div class="harga">Rp. ${harga}</div>
-                    </div>
-                `);
-            $(`#${i}`).click(function() {
-                document.getElementById(`${i}`).setAttribute("name", "query");
-                $.get("sendInfo.php", {
-                    query: barang[i]
-                }, function(a) {
-                    document.getElementById("btnn").click();
-                });
-            });
-        }
-    });
-</script>
 
 </html>

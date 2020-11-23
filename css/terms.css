@@ -1,26 +1,22 @@
 @font-face {
     font-family: 'goodTimes';
-    src: url('../assets/fonts/good_times_rg.ttf');
+    src: url(../assets/fonts/good_times_rg.ttf);
 }
 
 @font-face {
     font-family: 'teen';
-    src: url('../assets/fonts/teen.ttf');
+    src: url(../assets/fonts/teen.ttf);
 }
 
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+    padding : 0;
+    margin : 0;
     font-family: 'teen';
-}
-
-body {
-    background: linear-gradient(120deg, lightskyblue, lightcyan, lightskyblue);
 }
 
 .header {
     height: 180px;
+    background: white;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -44,17 +40,17 @@ body {
     margin-right: 50px;
 }
 
-button {
+.header button {
     padding: 10px;
     background-color: Transparent;
-    background-repeat: no-repeat;
+    background-repeat:no-repeat;
     border: none;
-    cursor: pointer;
+    cursor:pointer;
     overflow: hidden;
-    outline: none;
+    outline:none;
 }
 
-.header img {
+.header img{
     height: 20px;
     width: 20px;
 }
@@ -65,8 +61,7 @@ button {
     position: sticky;
     top: 0;
     margin-left: 20px;
-    /* background: #000; */
-    /* color: white; */
+    /* border: 1px solid black; */
     color: black;
 }
 
@@ -75,10 +70,6 @@ button {
     padding: 10px;
     margin-right: 50px;
     margin-left: 50px;
-}
-
-a:visited {
-    color: white;
 }
 
 nav ul li:hover {
@@ -95,7 +86,7 @@ nav ul li:hover {
     position: absolute;
     background-color: white;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
 
@@ -108,7 +99,7 @@ nav ul li:hover {
 
 .dropdown-content a:hover {
     background-color: #ddd;
-}
+}    
 
 .dropdown:hover .dropdown-content {
     display: block;
@@ -125,19 +116,19 @@ nav ul li:hover {
     /* background: white; */
 
     background-color: Transparent;
-    background-repeat: no-repeat;
+    background-repeat:no-repeat;
     border: none;
-    cursor: pointer;
+    cursor:pointer;
     overflow: hidden;
-    outline: none;
+    outline:none;
 }
 
-.search-box:hover>.search-txt {
+.search-box:hover > .search-txt {
     width: 240px;
     padding: 0 6px;
 }
 
-.search-box:hover>.search-btn {
+.search-box:hover > .search-btn {
     background: white;
 }
 
@@ -154,11 +145,11 @@ nav ul li:hover {
     /* background: white; */
 
     background-color: Transparent;
-    background-repeat: no-repeat;
+    background-repeat:no-repeat;
     border: none;
-    cursor: pointer;
+    cursor:pointer;
     overflow: hidden;
-    outline: none;
+    outline:none;
 }
 
 .search-txt {
@@ -174,7 +165,7 @@ nav ul li:hover {
     width: 0px;
 }
 
-.search-box button img {
+.search-box button img{
     height: 20px;
     width: 20px;
 }
@@ -204,12 +195,12 @@ nav ul li:hover {
     border: none;
 }
 
-.about {
+.about  {
     margin: 50px;
     height: 150px;
 }
 
-.about .logo {
+.about .logo{
     width: 200px;
     height: 150px;
     float: left;
@@ -217,7 +208,7 @@ nav ul li:hover {
     border-right: 1px solid rgb(182, 182, 250);
 }
 
-.about .logo h1 {
+.about .logo h1{
     font-family: 'goodTimes';
 }
 
@@ -229,7 +220,7 @@ nav ul li:hover {
     float: left;
 }
 
-.help a {
+.help a{
     color: black;
 }
 
@@ -246,71 +237,48 @@ nav ul li:hover {
     margin-right: 10px;
 }
 
-/* main */
-
-.checkout {
-    width: 85%;
-    height: 600px;
-    margin: auto;
-    margin-top: 30px;
-    border: 3px solid gray;
-    border-radius: 20px;
-    font-family: "teen";
-    font-size: 20px;
-    position: relative;
-    background: white;
-    margin-bottom: 40px;
-}
-
-.barang {
-    width: 93%;
-    height: 500px;
-    margin: auto;
-    margin-top: 20px;
-    overflow: auto;
+.tamb {
+    text-align: center;
+    margin-bottom: 50px;
 }
 
 #last {
-    position: absolute;
-    bottom: 10px;
-    border-top: 3px solid black;
+    font-weight: bolder;
+    font-size: 20px;
 }
 
-.last2 {
-    display: inline-block;
-    position: absolute;
+.main {
+    margin: 30px;
+    text-align: center;
+    display: inline-flex;
 }
 
-#tombol {
-    font-size: 23px;
-    width: 180px;
+.kiri {
+    margin-left: 50px;
+    /* float: left; */
+    width: 400px;
+    height: 400px;
+    /* border-right: 1px solid black; */
+}
+
+.kiri button {
+    margin-bottom: 30px;
+    width: 200px;
     height: 50px;
-    right: 45px;
-    bottom: 12px;
-    border-radius: 5px;
+    border: none;
+    background: white;
+    margin-right: 50px;
 }
 
-#harga {
-    left: 45px;
-    bottom: 15px;
-    font-size: 30px;
+.kiri button:hover{
+    border-bottom:1px solid black;
+    background-color: lightblue;
 }
 
-#tombol:hover {
-    background: lightblue;
-    border-bottom: 1px solid black;
-}
-
-.barang::-webkit-scrollbar {
-    width: 5px;
-}
-  
-.barang::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px rgb(79, 87, 107); 
-    border-radius: 10px;
-}
-   
-.barang::-webkit-scrollbar-thumb {
-    background: rgb(21, 31, 58); 
-    border-radius: 10px;
+.kanan {
+    font-family: 'goodTimes';
+    padding: 30px;
+    text-align: justify;
+    margin-left: 500px;
+    margin-left: 50px;
 }
