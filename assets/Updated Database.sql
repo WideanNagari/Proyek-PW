@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2020 at 05:16 PM
+-- Generation Time: Nov 24, 2020 at 03:41 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -88,7 +88,7 @@ INSERT INTO `barang` (`id_barang`, `id_jenis`, `nama_barang`, `harga`, `stok`, `
 ('BA040', 'JB009', 'Tortoiseshell Baguette Bag', '359000', '4', '', 0, 5, './assets/pic/BA040.png'),
 ('BA041', 'JB007', 'Black White Campo Sneakers', '2650000', '5', '', 0, 5, './assets/pic/BA041.png'),
 ('BA042', 'JB010', 'Fuchsia Hoya Heels Shoes', '6923000', '6', '', 0, 5, './assets/pic/BA042.png'),
-('BA043', 'JB010', 'Gold Oversized Pearl Heeled Slip On', '2116000', '2', '', 0, 5, './assets/pic/BA043.png'),
+('BA043', 'JB010', 'Gold Oversized Pearl Heeled Slip On', '2116000', '1', '', 0, 5, './assets/pic/BA043.png'),
 ('BA044', 'JB007', 'Mens Blue White Canvas Sneakers', '3750000', '1', '', 0, 5, './assets/pic/BA044.png'),
 ('BA045', 'JB007', 'Mens Orange Repeat Low Triplet Plain Light', '1990000', '5', '', 0, 5, './assets/pic/BA045.png'),
 ('BA046', 'JB010', 'Multicolor Raffia Printed Canvas Shoes', '4790000', '6', '', 0, 5, './assets/pic/BA046.png'),
@@ -116,7 +116,7 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`id_customer`, `nama_customer`, `password`, `email`, `alamat`, `id_provinsi`, `saldo`, `akses`) VALUES
-('CU002', 'widean', '$2y$10$sQsx62XrmFx9IT/dCDseiOMyBWnirU1xlqBO9BJIo.oSwomTp5nYq', 'widean@gmail.com', 'aaaas', 'ID016', '984746830', '1'),
+('CU002', 'widean', '$2y$10$sQsx62XrmFx9IT/dCDseiOMyBWnirU1xlqBO9BJIo.oSwomTp5nYq', 'widean@gmail.com', 'aaaas', 'ID016', '975771220', '1'),
 ('CU003', 'wideann', '$2y$10$ehuhlg6OG.CPMEfSpq9vheacEfSti7HdD1hEzMPkEL6uS00/Crkkq', 'widean@gmail.coms', '', 'ID012', '4674000', '1'),
 ('CU004', 'user1', '$2y$10$sKFPvKjsgGPqQNy5v0mau.8wU5Axl137PTAQdoF/iQ6avVELVB.Mu', 'user1@gmail.com', 'entah', 'ID027', '0', '0');
 
@@ -232,8 +232,18 @@ INSERT INTO `kurir` (`id_kurir`, `nama_kurir`, `tambahan_harga`) VALUES
 CREATE TABLE `mybag` (
   `id` int(11) NOT NULL,
   `id_user` varchar(10) NOT NULL,
-  `id_barang` varchar(10) NOT NULL
+  `id_barang` varchar(10) NOT NULL,
+  `jumlah` int(10) NOT NULL DEFAULT 0,
+  `status` int(10) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `mybag`
+--
+
+INSERT INTO `mybag` (`id`, `id_user`, `id_barang`, `jumlah`, `status`) VALUES
+(2, 'CU002', 'BA029', 1, 1),
+(4, 'CU002', 'BA030', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -264,7 +274,8 @@ INSERT INTO `pengiriman` (`id_kirim`, `id_transaksi`, `waktu_kirim`, `waktu_samp
 ('KI007', 'TR006', '21 November 2020 at 22:18', '21 November 2020 at 22:22', '1605972155', 'finished'),
 ('KI008', 'TR007', '21 November 2020 at 22:24', '21 November 2020 at 22:28', '1605972505', 'finished'),
 ('KI009', 'TR008', '21 November 2020 at 22:29', '21 November 2020 at 22:33', '1605972794', 'finished'),
-('KI010', 'TR009', '21 November 2020 at 22:29', '21 November 2020 at 22:33', '1605972794', 'finished');
+('KI010', 'TR009', '21 November 2020 at 22:29', '21 November 2020 at 22:33', '1605972794', 'finished'),
+('KI011', 'TR010', '22 November 2020 at 22:04', '22 November 2020 at 22:08', '1606057739', 'finished');
 
 -- --------------------------------------------------------
 
@@ -341,7 +352,7 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id_transaksi`, `id_customer`, `nama_barang`, `jumlah`, `harga`, `diskon`, `ongkos_kirim`, `total_harga`, `rating`) VALUES
-('TR001', 'CU002', 'Gold Oversized Pearl Heeled Sl', '1', '2116000', '0', '26000', '2142000', '-'),
+('TR001', 'CU002', 'Gold Oversized Pearl Heeled Sl', '1', '2116000', '0', '26000', '2142000', ''),
 ('TR002', 'CU002', 'Mens Blue White Canvas Sneaker', '1', '3750000', '0', '29000', '3779000', '-'),
 ('TR003', 'CU002', 'Black White Campo Sneakers', '1', '2650000', '0', '26000', '2676000', '-'),
 ('TR004', 'CU002', 'Mens Orange Repeat Low Triplet', '1', '1990000', '0', '26000', '2016000', '3'),
@@ -349,7 +360,8 @@ INSERT INTO `transaksi` (`id_transaksi`, `id_customer`, `nama_barang`, `jumlah`,
 ('TR006', 'CU002', 'Mens Blue White Canvas Sneaker', '1', '3750000', '0', '26000', '3776000', '-'),
 ('TR007', 'CU002', 'Nylon Baguette Bag', '1', '479000', '0', '26000', '505000', '-'),
 ('TR008', 'CU002', 'Technical Fabric Backpack', '1', '999000', '0', '26000', '1025000', '-'),
-('TR009', 'CU002', 'Beige Mina Quarter Check Pants', '1', '6850000', '0', '26000', '6876000', '-');
+('TR009', 'CU002', 'Beige Mina Quarter Check Pants', '1', '6850000', '0', '26000', '6876000', '-'),
+('TR010', 'CU002', 'Gold Oversized Pearl Heeled Sl', '1', '2116000', '0', '26000', '2142000', '-');
 
 --
 -- Indexes for dumped tables
@@ -423,7 +435,7 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `mybag`
 --
 ALTER TABLE `mybag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -7,36 +7,54 @@ if (isset($_COOKIE["barang"])) {
 }
 $mybag = [];
 $sukses = -1;
-if (isset($_POST["tambahkan"])) {
-    if (isset($_SESSION["user"])) {
-        $sukses = 0;
-        //sudah ada 1 atau belum 0
-        if (isset($_COOKIE["mybag"])) {
-            $mybag = json_decode($_COOKIE["mybag"], true);
-            foreach ($mybag as $key => $val) {
-                if ($val["id"] == $barang["id"]) {
-                    $sukses = 1;
-                }
-            }
-        }
-        if ($sukses == 0) {
-            $brg = array(
-                'id' => $barang["id"],
-                'nama' => $barang["nama"],
-                'harga' => $barang["harga"],
-                'stok' => $barang["stok"],
-                'deskripsi' => $barang["deskripsi"],
-                'nama_jenis' => $barang["nama_jenis"],
-                'path' => $barang["path"]
-            );
-            $brg['jumlah'] = 1;
-            $mybag[] = $brg;
-            setcookie("mybag", json_encode($mybag), time() + 60 * 10);
+// if (isset($_POST["tambahkan"])) {
+//     if (isset($_SESSION["user"])) {
+//         $sukses = 0;
+//         //sudah ada 1 atau belum 0
+//         if (isset($_COOKIE["mybag"])) {
+//             $mybag = json_decode($_COOKIE["mybag"], true);
+//             foreach ($mybag as $key => $val) {
+//                 if ($val["id"] == $barang["id"]) {
+//                     $sukses = 1;
+//                 }
+//             }
+//         }
+//         if ($sukses == 0) {
+//             $brg = array(
+//                 'id' => $barang["id"],
+//                 'nama' => $barang["nama"],
+//                 'harga' => $barang["harga"],
+//                 'stok' => $barang["stok"],
+//                 'deskripsi' => $barang["deskripsi"],
+//                 'nama_jenis' => $barang["nama_jenis"],
+//                 'path' => $barang["path"]
+//             );
+//             $brg['jumlah'] = 1;
+//             $mybag[] = $brg;
+//             setcookie("mybag", json_encode($mybag), time() + 60 * 10);
+//         }
+//     } else {
+//         $sukses = 2;
+//     }
+// }
+
+if(isset($_POST['tambahkan'])) {
+    if(isset($_SESSION['user'])) {
+        $id_barang = $barang["id"];
+        $id_user = $_SESSION["user"]["id"];
+        //echo ("<script>alert('$id_user')</script>");
+        $cari = $conn->query("SELECT `id_barang` FROM `mybag` where `id_barang` = '$id_barang' and `id_user`='$id_user'")->fetch_assoc();
+        if($cari!=null) {
+            $sukses = 1;
+        } else {
+            $result = mysqli_query($conn, "INSERT INTO `mybag` VALUES(null,'$id_user','$id_barang','0','1')");
+            $sukses = 0;
         }
     } else {
         $sukses = 2;
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

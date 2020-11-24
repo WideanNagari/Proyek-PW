@@ -9,18 +9,25 @@ if (isset($_POST['logOut'])) {
     header("location: index.php");
     $logged = false;
 }
-$mybag = [];
-if (isset($_COOKIE["mybag"])) {
-    $mybag = json_decode($_COOKIE["mybag"], true);
-    //print_r($mybag);
-}
-if (isset($_POST["hapus"])) {
-    setcookie("mybag", "", time() - 1);
-}
+
+$id_user = $_SESSION['user']['id'];
+$mybag = $conn->query("SELECT * FROM `mybag` WHERE `id_user` = '$id_user' and `status`='1'")->fetch_all(MYSQLI_ASSOC);
+
+// $mybag = [];
+// if (isset($_COOKIE["mybag"])) {
+//     $mybag = json_decode($_COOKIE["mybag"], true);
+//     //print_r($mybag);
+// }
+// if (isset($_POST["hapus"])) {
+//     setcookie("mybag", "", time() - 1);
+// }
+
+$mycart = $conn->query("SELECT * FROM `mybag` WHERE `id_user` = '$id_user' and `status`='2'")->fetch_all(MYSQLI_ASSOC);
+$total = 0;
+
 $gagal = -1;
 if (isset($_POST['checkout'])) {
-    if (isset($_SESSION["mycart"])) {
-        $mycart = json_encode($_SESSION['mycart']);
+    if ($mycart != null) {
         if (count($mycart) > 0) {
             header("location: checkout.php");
         } else {
@@ -31,85 +38,24 @@ if (isset($_POST['checkout'])) {
     }
 }
 
-$mycart = $_SESSION['mycart'] ?? [];
-//print_r($mycart);
-
 if (isset($_POST['addCart'])) {
     $id = $_POST['addCart'];
-    foreach ($mybag as $bag) {
-        if ($bag['id'] == $id) $barang = $bag;
-    }
-    if ($mycart != null) {
-        $found = false;
-        foreach ($mycart as $cart) {
-            if ($cart['id'] == $id) {
-                $cart['jumlah'] += 1;
-                echo ("<script>alert('Barang sudah ada di Cart')</script>");
-                $found = true;
-            }
-        }
-        if (!$found) {
-            $brg = array(
-                'id' => $barang["id"],
-                'nama' => $barang["nama"],
-                'harga' => $barang["harga"],
-                'stok' => $barang["stok"],
-                'deskripsi' => $barang["deskripsi"],
-                'nama_jenis' => $barang["nama_jenis"],
-                'path' => $barang["path"]
-            );
-            $brg['jumlah'] = 1;
-            array_push($mycart, $brg);
-            $_SESSION['mycart'] = $mycart;
-
-            // foreach ($mybag as $key => $bag) {
-            //     if ($bag['id'] == $id) {
-            //         unset($mybag[$key]);
-            //     }
-            // }
-            // $_COOKIE['mybag'] = $mybag;
-        }
-    } else {
-        $mycart = array();
-        $brg = array(
-            'id' => $barang["id"],
-            'nama' => $barang["nama"],
-            'harga' => $barang["harga"],
-            'stok' => $barang["stok"],
-            'deskripsi' => $barang["deskripsi"],
-            'nama_jenis' => $barang["nama_jenis"],
-            'path' => $barang["path"]
-        );
-        $brg['jumlah'] = 1;
-        //$mycart[] = $brg;
-        array_push($mycart, $brg);
-        $_SESSION['mycart'] = $mycart;
-
-        // foreach ($mybag as $key => $bag) {
-        //     if ($bag['id'] == $id) {
-        //         unset($mybag[$key]);
-        //     }
-        // }
-        // $_COOKIE['mybag'] = $mybag;
-    }
+    $conn->query("UPDATE `mybag` SET `status`='2' WHERE `id` = '$id' and `status`='1'");
 }
 
 if (isset($_POST['removeCart'])) {
-    $mycart = $_SESSION['mycart'] ?? [];
     $id = $_POST['removeCart'];
-    foreach ($mycart as $key => $cart) {
-        if ($cart['id'] == $id) {
-            //array_push($mybag, $cart);
-            //$_SESSION['mybag'] = $mybag;
-            unset($mycart[$key]);
-        }
-    }
-    $_SESSION['mycart'] = $mycart;
-    //print_r($_SESSION['mycart']);
+    $conn->query("UPDATE `mybag` SET `status`='1' WHERE `id` = '$id' and `status`='2'");
+    
+    $cari = $conn->query("SELECT * FROM `mybag` where `id` = '$id'")->fetch_assoc();
+    $cari = $cari['id_barang'];
+    $cari1 = $conn->query("SELECT * FROM `barang` where `id_barang` = '$cari'")->fetch_assoc();
+    $total -= $cari1['harga'] * intval($cari['jumlah']);
 }
 
 if (isset($_POST['removeBag'])) {
     $id = $_POST['removeBag'];
+    $conn->query("DELETE FROM `mybag` WHERE `id` = '$id'");
 }
 
 ?>
@@ -220,15 +166,18 @@ if (isset($_POST['removeBag'])) {
                 <section class="container content-section">
                     <h2 class="section-header">MY BAG</h2>
                     <div class="shop-items">
-                        <?php
-                        foreach ($mybag as $bag) { ?>
+                        <?php $mybag = $conn->query("SELECT * FROM `mybag` WHERE `id_user` = '$id_user' and `status`='1'")->fetch_all(MYSQLI_ASSOC);
+                        foreach ($mybag as $bag) {
+                            $id_barang = $bag['id_barang'];
+                            $b = $conn->query("SELECT * FROM `barang` WHERE `id_barang` = '$id_barang'")->fetch_assoc();
+                        ?>
                             <div class="shop-item">
-                                <span class="shop-item-title"><?= $bag['nama'] ?></span>
-                                <img class="shop-item-image" src="<?= $bag['path'] ?>">
+                                <span class="shop-item-title"><?= $b['nama_barang'] ?></span>
+                                <img class="shop-item-image" src="<?= $b['path'] ?>">
                                 <div class="shop-item-details">
-                                    <span class="shop-item-price"><?= "Rp. " . $bag['harga'] ?></span>
+                                    <span class="shop-item-price"><?= "Rp. " . $b['harga'] ?></span>
                                     <button class="btn btn-primary shop-item-button" type="submit" name="addCart" value="<?= $bag['id'] ?>">ADD TO CART</button>
-                                    <button class="btn btn-danger" type="button" name="removeBag" value="<?= $bag['id'] ?>">REMOVE</button>
+                                    <button class="btn btn-danger" type="submit" name="removeBag" value="<?= $bag['id'] ?>">REMOVE</button>
                                 </div>
                             </div>
                         <?php } ?>
@@ -242,16 +191,21 @@ if (isset($_POST['removeBag'])) {
                         <span class="cart-quantity cart-header cart-column">QUANTITY</span>
                     </div>
                     <div class="cart-items">
-                        <?php
-                        foreach ($mycart ?? [] as $cart) { ?>
+                        <?php $mycart = $conn->query("SELECT * FROM `mybag` WHERE `id_user` = '$id_user' and `status`='2'")->fetch_all(MYSQLI_ASSOC); 
+                        foreach ($mycart as $cart) {
+                            $id_barang = $cart['id_barang'];
+                            $c = $conn->query("SELECT * FROM `barang` WHERE `id_barang` = '$id_barang'")->fetch_assoc();
+                            $total += $c['harga'] * $cart['jumlah'];
+                            $id = $cart['id'];
+                        ?>
                             <div class="cart-row">
                                 <div class="cart-item cart-column">
-                                    <img class="cart-item-image" src="<?= $cart['path'] ?>" width="100" height="100">
-                                    <span class="cart-item-title"><?= $cart['nama'] ?></span>
+                                    <img class="cart-item-image" src="<?= $c['path'] ?>" width="100" height="100">
+                                    <span class="cart-item-title"><?= $c['nama_barang'] ?></span>
                                 </div>
-                                <span class="cart-price cart-column"><?= "Rp. " . $cart['harga'] ?></span>
+                                <span class="cart-price cart-column"><?= "Rp. " . $c['harga'] ?></span>
                                 <div class="cart-quantity cart-column">
-                                    <input class="cart-quantity-input" type="number" min="1" max='<?=$cart['stok']?>' value="<?= $cart['jumlah'] ?>">
+                                    <input class="cart-quantity-input" type="number" min="1" max='<?= $c['stok'] ?>' value="<?=$cart['jumlah']?>" oninput="inputJumlah(value,max,id)" onchange="gantiJumlah(value,id)">
                                     <button class="btn btn-danger" type="submit" name="removeCart" value="<?= $cart['id'] ?>">REMOVE</button>
                                 </div>
                             </div>
@@ -259,7 +213,7 @@ if (isset($_POST['removeBag'])) {
                     </div>
                     <div class="cart-total">
                         <strong class="cart-total-title">Total</strong>
-                        <span class="cart-total-price">Rp.0</span>
+                        <span class="cart-total-price">Rp. <?= $total ?></span>
                     </div>
                     <button class="btn btn-primary btn-purchase" type="submit" name="checkout">PURCHASE</button>
                 </section>
@@ -291,35 +245,35 @@ if (isset($_POST['removeBag'])) {
     </div>
 </body>
 <script>
-    // function hanyaAngka(event) {
-    //     var angka = (event.which) ? event.which : event.keyCode
-    //     if (angka != 46 && angka > 31 && (angka < 48 || angka > 57)) {
-    //         return false;
-    //     } else {
-    //         return true;
-    //     }
-    // }
+    function hanyaAngka(event) {
+        var angka = (event.which) ? event.which : event.keyCode
+        if (angka != 46 && angka > 31 && (angka < 48 || angka > 57)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
-    // function gantiJumlah(value, id) {
-    //     mybag[id]["jumlah"] = value;
-    //     var total = 0;
-    //     var idd = id;
-    //     for (let i = 0; i < mybag.length; i++) {
-    //         total += (Number(mybag[i]["harga"]) * mybag[i]["jumlah"]);
-    //     }
-    //     document.getElementById("harga").innerText = "Harga: Rp. " + total;
-    //     document.getElementById(id).setAttribute("name", "query2");
-    //     $.get("sendInfo.php", {
-    //         query2: mybag
-    //     }, function() {});
-    // }
+    function gantiJumlah(value, id) {
+        mybag[id]["jumlah"] = value;
+        var total = 0;
+        var idd = id;
+        for (let i = 0; i < mybag.length; i++) {
+            total += (Number(mybag[i]["harga"]) * mybag[i]["jumlah"]);
+        }
+        document.getElementById("harga").innerText = "Harga: Rp. " + total;
+        document.getElementById(id).setAttribute("name", "query2");
+        $.get("sendInfo.php", {
+            query2: mybag
+        }, function() {});
+    }
 
-    // function inputJumlah(value, max, id) {
-    //     if (Number(value) > Number(max)) {
-    //         document.getElementById(id).value = max;
-    //     }
-    //     gantiJumlah(value, id);
-    // }
+    function inputJumlah(value, max, id) {
+        if (Number(value) > Number(max)) {
+            document.getElementById(id).value = max;
+        }
+        gantiJumlah(value, id);
+    }
 
     // var mybag = <?= json_encode($mybag) ?>;
     // $(document).ready(function() {

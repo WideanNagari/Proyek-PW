@@ -2,13 +2,67 @@
 require_once("connection.php");
 
 $idprov = $user_login["provinsi"];
-$mybag = [];
-if (isset($_COOKIE["mybag"])) {
-    $mybag = json_decode($_COOKIE["mybag"], true);
-} else {
-    header("location: index.php");
-}
+$id_user = $_SESSION['user']['id'];
+$mybag = $conn->query("SELECT * FROM `mybag` WHERE `id_user` = '$id_user' and `status`='2'")->fetch_all(MYSQLI_ASSOC);
+
 $error = -1;
+
+// if (isset($_POST["checkout2"])) {
+//     if ($user_login["saldo"] >= $_POST['checkout2']) {
+//         $mybag = json_decode($_COOKIE["mybag"], true);
+//         $kirim = mysqli_query($conn, "SELECT * FROM provinsi p, harga_pengiriman h WHERE p.id_provinsi = '$idprov' AND p.id_harga=h.id_harga");
+//         $waktu = 0;
+//         while ($row = mysqli_fetch_array($kirim)) {
+//             $waktu = $row["waktu_pengiriman"];
+//         }
+//         foreach ($mybag as $key => $barang) {
+//             mysqli_query($conn, "UPDATE barang SET stok = stok-$barang[jumlah] WHERE id_barang='$barang[id]'");
+//             $idTransaksi = "TR";
+//             $result = mysqli_query($conn, "select * from transaksi");
+//             $jumlah = mysqli_num_rows($result);
+//             $jumlah += 1;
+//             if ($jumlah < 10) {
+//                 $idTransaksi = $idTransaksi . "00" . $jumlah;
+//             } else if ($jumlah < 100) {
+//                 $idTransaksi = $idTransaksi . "0" . $jumlah;
+//             } else {
+//                 $idTransaksi = $idTransaksi . $jumlah;
+//             }
+//             $idKirim = "KI";
+//             $result = mysqli_query($conn, "select * from pengiriman");
+//             $jumlah = mysqli_num_rows($result);
+//             $jumlah += 1;
+//             if ($jumlah < 10) {
+//                 $idKirim = $idKirim . "00" . $jumlah;
+//             } else if ($jumlah < 100) {
+//                 $idKirim = $idKirim . "0" . $jumlah;
+//             } else {
+//                 $idKirim = $idKirim . $jumlah;
+//             }
+//             $timeStamp = date('d F Y ');
+//             $timeStamp = $timeStamp . "at" . date(' H:i', time());
+
+//             $timeStamp2 = date('d F Y ');
+//             $timeStamp2 = $timeStamp2 . "at" . date(' H:i', time() + $waktu);
+
+//             $diskon = 0;
+//             //sementara diskon 0 dulu
+//             $totalHarga = (($barang['harga'] * $barang['jumlah']) - $diskon) + $_POST['ongkir'];
+//             $times = time() + $waktu;
+//             mysqli_query($conn, "insert into transaksi values('$idTransaksi','$user_login[id]','$barang[nama]','$barang[jumlah]', '$barang[harga]','$diskon','$_POST[ongkir]','$totalHarga', '-')");
+//             mysqli_query($conn, "insert into pengiriman values('$idKirim','$idTransaksi','$timeStamp','$timeStamp2', '$times','onGoing')");
+//         }
+//         setcookie("mybag", "", time() - 1);
+//         $user_login["saldo"] -= $_POST['checkout2'];
+//         $_SESSION["user"] = $user_login;
+//         setcookie("userLog", json_encode($user_login), time() + 60 * 60);
+//         mysqli_query($conn, "UPDATE customer SET saldo = $user_login[saldo] WHERE id_customer='$user_login[id]'");
+//         header("location: pengiriman.php?success=1");
+//     } else {
+//         $error = 1;
+//     }
+// }
+
 if (isset($_POST["checkout2"])) {
     if ($user_login["saldo"] >= $_POST['checkout2']) {
         $mybag = json_decode($_COOKIE["mybag"], true);
@@ -60,10 +114,17 @@ if (isset($_POST["checkout2"])) {
         setcookie("userLog", json_encode($user_login), time() + 60 * 60);
         mysqli_query($conn, "UPDATE customer SET saldo = $user_login[saldo] WHERE id_customer='$user_login[id]'");
         header("location: pengiriman.php?success=1");
+
+        foreach($mybag as $cart) {
+            $id= $cart['id'];
+            $conn->query("DELETE FROM `mybag` WHERE `id` = '$id'");
+        }
     } else {
         $error = 1;
     }
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
