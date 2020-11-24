@@ -15,14 +15,15 @@
     font-family: 'teen';
 }
 
-.cb{
-    clear: both;
+
+body{
+    background: linear-gradient(120deg, lightskyblue,lightcyan,lightskyblue);
 }
 
 .header {
     /* width: 2000px; */
     height: 650px;
-    background-image: url('../assets/banner/banner_1.jpg');
+    background-image: url('../assets/banner/banner_10.jpg');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -37,6 +38,7 @@
 .header .menu h1 {
     margin-left: 38%;
     color: black;
+    /* color: white; */
     float: left;
     font-family: 'goodTimes';
 }
@@ -70,8 +72,8 @@ button {
     top: 0;
     margin-left: 20px;
     color: black;
-    background: lightpink;
-    opacity: 0.6;
+    /* background: lightpink; */
+    /* opacity: 0.6; */
 }
 
 .navigasi ul li {
@@ -294,16 +296,23 @@ ul li:hover {
 .piece img{
     height: 300px;
     width: 300px; 
-    margin-right: 20px;
+    /* margin-right: 20px; */
+}
+
+.piece .img1 {
+    height: 300px;
+    width: 300px; 
+    /* margin-right: 20px;  */
+    margin-bottom: 10px;
 }
 
 .piece{
     display: inline-block;
     margin-right: 20px;
     margin-bottom: 30px;
-    background: white;
-    width: 300px;
-    height: 300px;
+    /* background: white; */
+    width: 320px;
+    height: 350px;
     box-sizing: border-box;
 }
 
@@ -317,6 +326,21 @@ ul li:hover {
     text-align: right;
     padding-left: 10px;
     color: rgb(31, 31, 130);
+    font-weight: bolder;
+}
+
+.piece img:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.piece:hover h4{
+    font-weight: bolder;
+}
+
+.piece:hover p{
+    text-decoration: underline;
     font-weight: bolder;
 }
 

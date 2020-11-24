@@ -2,6 +2,10 @@
 require_once("connection.php");
 if (isset($_COOKIE["barang"])) {
     $barang = json_decode($_COOKIE["barang"], true);
+    //print_r($barang);
+    $id = $barang['id'];
+    $view = $barang['view'] + 1;
+    $conn->query("UPDATE `barang` SET `view`='$view' WHERE `id_barang` = '$id'");
 } else {
     header("location: index.php");
 }
@@ -38,13 +42,13 @@ $sukses = -1;
 //     }
 // }
 
-if(isset($_POST['tambahkan'])) {
-    if(isset($_SESSION['user'])) {
+if (isset($_POST['tambahkan'])) {
+    if (isset($_SESSION['user'])) {
         $id_barang = $barang["id"];
         $id_user = $_SESSION["user"]["id"];
         //echo ("<script>alert('$id_user')</script>");
         $cari = $conn->query("SELECT `id_barang` FROM `mybag` where `id_barang` = '$id_barang' and `id_user`='$id_user'")->fetch_assoc();
-        if($cari!=null) {
+        if ($cari != null) {
             $sukses = 1;
         } else {
             $result = mysqli_query($conn, "INSERT INTO `mybag` VALUES(null,'$id_user','$id_barang','0','1')");
@@ -54,6 +58,8 @@ if(isset($_POST['tambahkan'])) {
         $sukses = 2;
     }
 }
+
+$popular = $conn->query("SELECT * FROM `barang` ORDER by `view` DESC LIMIT 8")->fetch_all(MYSQLI_ASSOC);
 
 ?>
 <!DOCTYPE html>
@@ -169,7 +175,19 @@ if(isset($_POST['tambahkan'])) {
             <div class="popular">
                 <h2>Popular</h2> <br><br>
                 <div class="scroll">
-                    <div class="piece">
+                    <?php
+                    foreach ($popular as $p) { ?>
+                        <div class="piece" onclick="getPiece($p)">
+                            <div class="img1">
+                                <img src="<?= $p['path'] ?>">
+                            </div>
+                            <div class="middle">
+                                <h4><?= $p['nama_barang'] ?></h4>
+                                <p><?= "Rp. " . $p['harga'] ?></p>
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <!-- <div class="piece">
                         <img src="./assets/pic/B054.jpg">
                         <div class="middle">
                             <h4>Black Leather</h4>
@@ -224,7 +242,7 @@ if(isset($_POST['tambahkan'])) {
                             <h4>Blue Work Blazer</h4>
                             <p>Rp,450,000</p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -251,10 +269,22 @@ if(isset($_POST['tambahkan'])) {
                 </div>
             </div>
         </div>
+
+        <form method="POST">
+            <button type="hidden" id="btnn" formaction="display.php" style="display:none;"></button>
+        </form>
     </div>
 
 </body>
 <script>
+    function getPiece(barang) {
+        $.get("sendInfo.php", {
+            query: barang
+        }, function(a) {
+            document.getElementById("btnn").click();
+        });
+    }
+
     var barang = <?= json_encode($barang) ?>;
     $(document).ready(function() {
         var judul = barang["path"];

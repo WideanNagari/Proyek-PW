@@ -15,9 +15,9 @@
     font-family: 'teen';
 }
 
-.cb{
-    clear: both;
-}
+/* body{
+    background: linear-gradient(120deg, lightskyblue,lightcyan,lightskyblue);
+} */
 
 .header {
     height: 200px;
