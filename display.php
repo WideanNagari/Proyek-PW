@@ -2,7 +2,7 @@
 require_once("connection.php");
 if (isset($_COOKIE["barang"])) {
     $barang = json_decode($_COOKIE["barang"], true);
-    //print_r($barang);
+    // print_r($barang);
     $id = $barang['id'];
     $view = $barang['view'] + 1;
     $conn->query("UPDATE `barang` SET `view`='$view' WHERE `id_barang` = '$id'");
@@ -174,19 +174,7 @@ $popular = $conn->query("SELECT * FROM `barang` ORDER by `view` DESC LIMIT 8")->
             </div>
             <div class="popular">
                 <h2>Popular</h2> <br><br>
-                <div class="scroll">
-                    <?php
-                    foreach ($popular as $p) { ?>
-                        <div class="piece" onclick="getPiece($p)">
-                            <div class="img1">
-                                <img src="<?= $p['path'] ?>">
-                            </div>
-                            <div class="middle">
-                                <h4><?= $p['nama_barang'] ?></h4>
-                                <p><?= "Rp. " . $p['harga'] ?></p>
-                            </div>
-                        </div>
-                    <?php } ?>
+                <div class="scroll" id="scrolls">
                     <!-- <div class="piece">
                         <img src="./assets/pic/B054.jpg">
                         <div class="middle">
@@ -277,14 +265,6 @@ $popular = $conn->query("SELECT * FROM `barang` ORDER by `view` DESC LIMIT 8")->
 
 </body>
 <script>
-    function getPiece(barang) {
-        $.get("sendInfo.php", {
-            query: barang
-        }, function(a) {
-            document.getElementById("btnn").click();
-        });
-    }
-
     var barang = <?= json_encode($barang) ?>;
     $(document).ready(function() {
         var judul = barang["path"];
@@ -319,6 +299,30 @@ $popular = $conn->query("SELECT * FROM `barang` ORDER by `view` DESC LIMIT 8")->
                 text: 'Mohon login terlebih dahulu!',
                 showConfirmButton: false,
                 timer: 1500
+            });
+        }
+
+        var pop = <?php echo json_encode($popular) ?>;
+        for(let i = 0; i<pop.length; i++){
+            pop[i]['id'] = pop[i]['id_barang'];
+            pop[i]['nama'] = pop[i]['nama_barang'];
+            $('#scrolls').append(`
+                <div class="piece" id="${i}" onclick="getPiece(${pop[i]})">
+                    <div class="img1">
+                        <img src="${pop[i]['path']}">
+                    </div>
+                    <div class="middle">
+                        <h4>${pop[i]['nama_barang']}</h4>
+                        <p>Rp. ${pop[i]['harga']}</p>
+                    </div>
+                </div>
+            `);
+
+            $(`#${i}`).click(function() {
+                document.getElementById(`${i}`).setAttribute("name", "query");
+                $.get("sendInfo.php", { query: pop[i] }, function(x) {
+                    document.getElementById("btnn").click();
+                });
             });
         }
     });

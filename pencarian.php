@@ -176,7 +176,6 @@ if (isset($_POST["kembali"])) {
                             query: hasil2[i]
                         }, function() {
                             document.getElementById("btnn").click();
-
                         });
                     });
                 }

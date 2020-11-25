@@ -7,6 +7,7 @@ if (isset($_COOKIE['userLog'])) {
 if ($user_login != null) {
     header("location: user.php");
 }
+$popular = $conn->query("SELECT * FROM `barang` ORDER by `view` DESC LIMIT 8")->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -186,19 +187,7 @@ if ($user_login != null) {
             </div>
             <div class="popular">
                 <h2>Popular</h2> <br><br>
-                <div class="scroll">
-                    <?php $popular = $conn->query("SELECT * FROM `barang` ORDER by `view` DESC LIMIT 8")->fetch_all(MYSQLI_ASSOC);
-                    foreach ($popular as $p) { ?>
-                        <div class="piece">
-                            <div class="img1">
-                                <img src="<?= $p['path'] ?>">
-                            </div>
-                            <div class="middle">
-                                <h4><?= $p['nama_barang'] ?></h4>
-                                <p><?= "Rp. " . $p['harga'] ?></p>
-                            </div>
-                        </div>
-                    <?php } ?>
+                <div class="scroll" id="scrolls">
                 </div>
             </div>
         </div>
@@ -226,6 +215,35 @@ if ($user_login != null) {
             </div>
         </div>
     </div>
+    <form method="POST">
+        <button type="hidden" id="btnn" formaction="display.php" style="display:none;"></button>
+    </form>
 </body>
+<script>
+    $(document).ready(function() {
+        var pop = <?php echo json_encode($popular) ?>;
+        for(let i = 0; i<pop.length; i++){
+            pop[i]['id'] = pop[i]['id_barang'];
+            pop[i]['nama'] = pop[i]['nama_barang'];
+            $('#scrolls').append(`
+                <div class="piece" id="${i}" onclick="getPiece(${pop[i]})">
+                    <div class="img1">
+                        <img src="${pop[i]['path']}">
+                    </div>
+                    <div class="middle">
+                        <h4>${pop[i]['nama_barang']}</h4>
+                        <p>Rp. ${pop[i]['harga']}</p>
+                    </div>
+                </div>
+            `);
 
+            $(`#${i}`).click(function() {
+                document.getElementById(`${i}`).setAttribute("name", "query");
+                $.get("sendInfo.php", { query: pop[i] }, function(x) {
+                    document.getElementById("btnn").click();
+                });
+            });
+        }
+    });
+</script>
 </html>
