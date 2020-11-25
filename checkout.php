@@ -26,6 +26,15 @@
             }
         }
     }
+    
+// require_once("connection.php");
+
+// $idprov = $user_login["provinsi"];
+// $id_user = $_SESSION['user']['id'];
+// $mybag = $conn->query("SELECT * FROM `mybag` WHERE `id_user` = '$id_user' and `status`='2'")->fetch_all(MYSQLI_ASSOC);
+
+// $error = -1;
+
 if (isset($_POST["checkout2"])) {
     if ($user_login["saldo"] >= $_POST['checkout2']) {
         $mybag = json_decode($_COOKIE["mybag"], true);
@@ -77,10 +86,17 @@ if (isset($_POST["checkout2"])) {
         setcookie("userLog", json_encode($user_login), time() + 60 * 60);
         mysqli_query($conn, "UPDATE customer SET saldo = $user_login[saldo] WHERE id_customer='$user_login[id]'");
         header("location: pengiriman.php?success=1");
+
+        foreach($mybag as $cart) {
+            $id= $cart['id'];
+            $conn->query("DELETE FROM `mybag` WHERE `id` = '$id'");
+        }
     } else {
         $error = 1;
     }
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

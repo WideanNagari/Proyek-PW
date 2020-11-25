@@ -344,16 +344,23 @@ nav ul li:hover {
 .piece img{
     height: 300px;
     width: 300px; 
-    margin-right: 20px;
+    /* margin-right: 20px; */
+}
+
+.piece .img1 {
+    height: 300px;
+    width: 300px; 
+    /* margin-right: 20px;  */
+    margin-bottom: 10px;
 }
 
 .piece{
     display: inline-block;
     margin-right: 20px;
     margin-bottom: 30px;
-    background: white;
-    width: 300px;
-    height: 300px;
+    /* background: white; */
+    width: 320px;
+    height: 350px;
     box-sizing: border-box;
 }
 
@@ -367,5 +374,20 @@ nav ul li:hover {
     text-align: right;
     padding-left: 10px;
     color: rgb(31, 31, 130);
+    font-weight: bolder;
+}
+
+.piece img:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.piece:hover h4{
+    font-weight: bolder;
+}
+
+.piece:hover p{
+    text-decoration: underline;
     font-weight: bolder;
 }

@@ -35,6 +35,7 @@ if (isset($_GET["type"])) {
             'deskripsi' => $row["deskripsi"],
             'id_jenis' => $row["id_jenis"],
             'path' => $row["path"],
+            'view' => $row["view"]
         );
         $barang[] = $brg;
     }

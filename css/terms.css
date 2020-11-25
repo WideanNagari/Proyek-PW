@@ -14,6 +14,10 @@
     font-family: 'teen';
 }
 
+body{
+    background: linear-gradient(120deg, lightskyblue,lightcyan,lightskyblue);
+}
+
 .header {
     height: 180px;
     background: white;
