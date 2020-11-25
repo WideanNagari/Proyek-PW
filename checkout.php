@@ -1,11 +1,11 @@
 <?php
-require_once("connection.php");
+    require_once("connection.php");
     $idprov = $user_login["provinsi"];
     $mybag = [];
     if(isset($_COOKIE["mybag"])){
         $mybag = json_decode($_COOKIE["mybag"],true);
     }else{
-        // header("location: index.php");
+        header("location: index.php");
     }
     $error = -1;
     if(isset($_POST["checkout2"])){
@@ -15,14 +15,17 @@ require_once("connection.php");
             $waktu = 0;
             while($row = mysqli_fetch_array($kirim)){
                 $waktu = $row["waktu_pengiriman"];
-$idprov = $user_login["provinsi"];
-$mybag = [];
-if (isset($_COOKIE["mybag"])) {
-    $mybag = json_decode($_COOKIE["mybag"], true);
-} else {
-    header("location: index.php");
-}
-$error = -1;
+                $idprov = $user_login["provinsi"];
+                $mybag = [];
+                if (isset($_COOKIE["mybag"])) {
+                    $mybag = json_decode($_COOKIE["mybag"], true);
+                } else {
+                    header("location: index.php");
+                }
+                $error = -1;
+            }
+        }
+    }
 if (isset($_POST["checkout2"])) {
     if ($user_login["saldo"] >= $_POST['checkout2']) {
         $mybag = json_decode($_COOKIE["mybag"], true);
@@ -346,5 +349,4 @@ if (isset($_POST["checkout2"])) {
         pilihanEvent();
     });
 </script>
-
 </html>
