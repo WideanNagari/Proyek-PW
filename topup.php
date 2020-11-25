@@ -2,6 +2,9 @@
 require_once("connection.php");
 $sukses = false;
 if (isset($_POST["topup"])) {
+    if($_POST['nominal']!="") {
+        
+    }
     $user_login;
     $user_login["saldo"] += $_POST["nominal"];
     $saldo = $user_login["saldo"];
@@ -42,7 +45,7 @@ if (isset($_POST["topup"])) {
                     </button>
                     <button type="submit" name="signIn" id="login" formaction="profile.php">
                         <img src="./assets/icon/signIn.png"> <br>
-                        <?=$user_login['nama']?>
+                        <?= $user_login['nama'] ?>
                     </button>
                 </form>
             </div>
@@ -102,9 +105,40 @@ if (isset($_POST["topup"])) {
         <div class="main">
             <form method="post">
                 <h1>Top Up</h1><br>
-                <input type="text" name="nominal" placeholder="Nominal Top Up"  onkeypress="return hanyaAngka(event)" required><br><br>
-                <button type="submit" name="topup" id="btn" formaction="#">Top Up!</button><br><br>
-                <h3 id="saldo"><?="Saldo " . $user_login['nama'] . ": Rp. " . $user_login['saldo']?></h3>
+                <input type="text" name="nominal" placeholder="Nominal Top Up" id="nominal" onkeypress="return hanyaAngka(event)" required><br><br>
+                <h4>Payment Methods</h4>
+                <input type="radio" name="payment" id="card" onclick="showhide('card')"> <img src="./assets/icon/card.png"> Debit or Credit Card <br>
+                <input type="radio" name="payment" id="ppal" onclick="showhide('ppal')"> <img src="./assets/icon/paypal.png" id="pay">
+                <br<br>
+                    <script>
+                        function showhide(value) {
+                            if (value == "card") {
+                                document.getElementById('pay1').style.display = "block";
+                                document.getElementById('pay2').style.display = "none";
+                            } else if (value=="ppal") {
+                                document.getElementById('pay1').style.display = "none";
+                                document.getElementById('pay2').style.display = "block";
+                            }
+                        }
+                    </script>
+                    <div class="pay1" id="pay1" style="display: none;">
+                        <input type="text" name="fname" placeholder="First Name"> <input type="text" name="lname" placeholder="Last Name"> <br>
+                        <p>First Name</p>
+                        <p>Last Name</p>
+                        <input type="password" name="cardnumber" placeholder="•••• •••• •••• ••••"> <input type="text" name="securitycode" placeholder="CVC"> <br>
+                        <p>Credit Card Number</p>
+                        <p>Security Code</p> <br>
+                        <input type="date" name="cardexp"> <br>
+                        <p>Card Expiration</p>
+                    </div>
+                    <div class="pay2" id="pay2" style="display: none;">
+                        <p>Please click one of the PayPal options to complete payment and submit the form.</p>
+                        <button id="contain1" type="submit" name="paypal">
+                            <img src="./assets/icon/paypal.png">
+                        </button>
+                    </div>
+                    <button type="submit" name="topup" id="btn" formaction="#">Top Up!</button><br><br>
+                    <h3 id="saldo"><?= "Saldo " . $user_login['nama'] . ": Rp. " . $user_login['saldo'] ?></h3>
             </form>
         </div>
         <div class="footer">

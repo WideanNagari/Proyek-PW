@@ -22,9 +22,9 @@
     font-family: 'teen';
 }
 
-body{
+/* body{
     background: linear-gradient(120deg, lightskyblue,lightcyan,lightskyblue);
-}
+} */
 
 .header {
     height: 200px;
@@ -183,8 +183,9 @@ nav ul li:hover {
 
 .main {
     margin: auto;
-    height: 400px;
+    /* height: 400px; */
     width: 400px;
+    margin-bottom: 50px;
 }
 
 .main h1{
@@ -192,7 +193,7 @@ nav ul li:hover {
     margin-bottom: 20px;
 }
 
-.main input{
+.main #nominal{
     border: none;
     border-bottom: 1px solid black;
     width: 400px;
@@ -210,6 +211,57 @@ nav ul li:hover {
 
 .main h3{
     text-align: center;
+}
+
+.main img {
+    margin-left: 20px;
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+}
+
+.main #pay {
+    width: 100px;
+    height: 20px;
+}
+
+.pay1 {
+    height: 150px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.pay1 input {
+    border: none;
+    border-bottom: 1px solid black;
+    margin-bottom: 5px;
+    width: 180px;
+}
+
+.pay1 p {
+    width: 200px;
+    float: left;
+    margin-bottom: 5px;
+    color: gray;
+}
+
+.pay2 {
+    background: lightgray;
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+#contain1 {
+    background: yellow;
+    height: 50px;
+    width: 380px;
+    margin-left: 5px;
+}
+
+.pay2 img {
+    width: 120px;
+    height: 30px;
 }
 
 .footer {
