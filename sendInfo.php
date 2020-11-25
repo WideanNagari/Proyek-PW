@@ -12,8 +12,17 @@
         $barang["nama_jenis"] = $jenis;
         setcookie("barang",json_encode($barang),time()+60*10);
     }else if(isset($_REQUEST["query2"])){
-        $mybag = $_REQUEST["query2"];
-        setcookie("mybag",json_encode($mybag),time()+60*10);
+        mysqli_query($conn,"UPDATE `mybag` SET jumlah = $_REQUEST[jml] WHERE `id` = '$_REQUEST[query2]'");
+        $barang = mysqli_query($conn, "SELECT * FROM mybag m, barang b WHERE `id_user` = '$_REQUEST[id]' and m.id_barang = b.id_barang");
+        $arrb = [];
+        while($row = mysqli_fetch_array($barang)){
+            $ar = array(
+                'jumlah' => $row["jumlah"],
+                'harga' => $row["harga"]
+            );
+            $arrb[] = $ar;
+        }
+        echo json_encode($arrb);
     }else if(isset($_REQUEST["query3"])){
         setcookie("mybag","",time()-1);
     }else{

@@ -51,7 +51,7 @@ if (isset($_POST['tambahkan'])) {
         if ($cari != null) {
             $sukses = 1;
         } else {
-            $result = mysqli_query($conn, "INSERT INTO `mybag` VALUES(null,'$id_user','$id_barang','0','1')");
+            $result = mysqli_query($conn, "INSERT INTO `mybag` VALUES(null,'$id_user','$id_barang','1','1')");
             $sukses = 0;
         }
     } else {

@@ -3,6 +3,7 @@ require_once("connection.php");
 if ($user_login == null) {
     header("location: index.php");
 }
+
 if (isset($_POST['logOut'])) {
     unset($_SESSION['user']);
     unset($user_login);
@@ -13,16 +14,8 @@ if (isset($_POST['logOut'])) {
 $id_user = $_SESSION['user']['id'];
 $mybag = $conn->query("SELECT * FROM `mybag` WHERE `id_user` = '$id_user' and `status`='1'")->fetch_all(MYSQLI_ASSOC);
 
-// $mybag = [];
-// if (isset($_COOKIE["mybag"])) {
-//     $mybag = json_decode($_COOKIE["mybag"], true);
-//     //print_r($mybag);
-// }
-// if (isset($_POST["hapus"])) {
-//     setcookie("mybag", "", time() - 1);
-// }
+$mycart = $conn->query("SELECT * FROM mybag m, barang b WHERE `id_user` = '$id_user' and `status`='2' and m.id_barang = b.id_barang")->fetch_all(MYSQLI_ASSOC);
 
-$mycart = $conn->query("SELECT * FROM `mybag` WHERE `id_user` = '$id_user' and `status`='2'")->fetch_all(MYSQLI_ASSOC);
 $total = 0;
 
 $gagal = -1;
@@ -191,12 +184,13 @@ if (isset($_POST['removeBag'])) {
                         <span class="cart-quantity cart-header cart-column">QUANTITY</span>
                     </div>
                     <div class="cart-items">
-                        <?php $mycart = $conn->query("SELECT * FROM `mybag` WHERE `id_user` = '$id_user' and `status`='2'")->fetch_all(MYSQLI_ASSOC); 
+                        <?php $mycart = $conn->query("SELECT * FROM mybag m, barang b WHERE `id_user` = '$id_user' and `status`='2' and m.id_barang = b.id_barang")->fetch_all(MYSQLI_ASSOC); 
                         foreach ($mycart as $cart) {
                             $id_barang = $cart['id_barang'];
                             $c = $conn->query("SELECT * FROM `barang` WHERE `id_barang` = '$id_barang'")->fetch_assoc();
                             $total += $c['harga'] * $cart['jumlah'];
                             $id = $cart['id'];
+                            $id2 = $cart['id']."a";
                         ?>
                             <div class="cart-row">
                                 <div class="cart-item cart-column">
@@ -205,7 +199,7 @@ if (isset($_POST['removeBag'])) {
                                 </div>
                                 <span class="cart-price cart-column"><?= "Rp. " . $c['harga'] ?></span>
                                 <div class="cart-quantity cart-column">
-                                    <input class="cart-quantity-input" type="number" min="1" max='<?= $c['stok'] ?>' value="<?=$cart['jumlah']?>" oninput="inputJumlah(value,max,id)" onchange="gantiJumlah(value,id)">
+                                    <input class="cart-quantity-input" id = "<?php echo $id2; ?>" type="number" min="1" max='<?= $c['stok'] ?>' value="<?=$cart['jumlah']?>" oninput="inputJumlah(value,max,id,<?=$cart['id']?>)" onchange="gantiJumlah(value,id,<?=$cart['id']?>)">
                                     <button class="btn btn-danger" type="submit" name="removeCart" value="<?= $cart['id'] ?>">REMOVE</button>
                                 </div>
                             </div>
@@ -213,7 +207,7 @@ if (isset($_POST['removeBag'])) {
                     </div>
                     <div class="cart-total">
                         <strong class="cart-total-title">Total</strong>
-                        <span class="cart-total-price">Rp. <?= $total ?></span>
+                        <span class="cart-total-price" id="harga">Rp. <?= $total ?></span>
                     </div>
                     <button class="btn btn-primary btn-purchase" type="submit" name="checkout">PURCHASE</button>
                 </section>
@@ -254,25 +248,23 @@ if (isset($_POST['removeBag'])) {
         }
     }
 
-    function gantiJumlah(value, id) {
-        mybag[id]["jumlah"] = value;
-        var total = 0;
-        var idd = id;
-        for (let i = 0; i < mybag.length; i++) {
-            total += (Number(mybag[i]["harga"]) * mybag[i]["jumlah"]);
-        }
-        document.getElementById("harga").innerText = "Harga: Rp. " + total;
+    function gantiJumlah(value, id, idMB) {
         document.getElementById(id).setAttribute("name", "query2");
-        $.get("sendInfo.php", {
-            query2: mybag
-        }, function() {});
+        $.getJSON("sendInfo.php", { query2 : idMB, jml : value, id : <?= json_encode($user_login["id"]) ?>}, function(hasil) {
+            var cart = hasil;
+            var total = 0;
+            for (let i = 0; i < cart.length; i++) {
+                total += (Number(cart[i]["harga"]) * cart[i]["jumlah"]);
+            }
+            document.getElementById("harga").innerText = "Rp. " + total;
+        });
     }
 
-    function inputJumlah(value, max, id) {
+    function inputJumlah(value, max, id, idMB) {
         if (Number(value) > Number(max)) {
             document.getElementById(id).value = max;
         }
-        gantiJumlah(value, id);
+        gantiJumlah(value, id, idMB);
     }
 
     // var mybag = <?= json_encode($mybag) ?>;

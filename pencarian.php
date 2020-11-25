@@ -37,18 +37,26 @@ if (isset($_POST["kembali"])) {
                 <h1>Outfit Labs</h1>
             </a>
             <form method="POST">
-                <button type="submit" name="logOut" formaction="logout.php">
-                    <img src="./assets/icon/logout.png"> <br>
-                    Log Out
-                </button>
-                <button type="submit" name="shopBag" formaction="mybag.php">
-                    <img src="./assets/icon/shopBag.png"> <br>
-                    Shop Bag
-                </button>
-                <button type="submit" name="signIn" id="login" formaction="profile.php">
-                    <img src="./assets/icon/signIn.png"> <br>
-                    <?= $user_login['nama'] ?>
-                </button>
+                    <?php
+                    if (isset($_SESSION['user'])) { ?>
+                        <button type="submit" name="logOut" formaction="logout.php">
+                            <img src="./assets/icon/logout.png"><br>
+                            Log Out
+                        </button>
+                        <button type="submit" name="shopBag" formaction="mybag.php">
+                            <img src="./assets/icon/shopBag.png"> <br>
+                            Shop Bag
+                        </button>
+                        <button type="submit" name="signIn" formaction="profile.php">
+                            <img src="./assets/icon/signIn.png"> <br>
+                            <?= $user_login['nama'] ?>
+                        </button>
+                    <?php } else { ?>
+                        <button type="submit" name="signIn" formaction="login.php">
+                            <img src="./assets/icon/signIn.png"> <br>
+                            Sign in
+                        </button>
+                    <?php } ?>
             </form>
         </div>
         <div class="navbar">
