@@ -4,7 +4,7 @@ $error = -1;
 if (isset($_GET["success"])) {
     $error = 0;
 }
-$result = mysqli_query($conn, "SELECT * FROM pengiriman p JOIN transaksi t ON t.id_transaksi = p.id_transaksi AND p.status = 'onGoing' JOIN customer c ON c.id_customer='$user_login[id]' AND c.id_customer = t.id_customer");
+$result = mysqli_query($conn, "SELECT * FROM pengiriman p JOIN transaksi t ON t.id_transaksi = p.id_transaksi AND p.status = 'onGoing' JOIN customer c ON c.id_customer='$user_login[id]' AND c.id_customer = t.id_customer JOIN barang b ON b.id_barang = t.id_barang");
 $data = [];
 while ($row = mysqli_fetch_array($result)) {
     if (time() >= $row['time']) {
@@ -16,7 +16,8 @@ while ($row = mysqli_fetch_array($result)) {
             'total' => $row["total_harga"],
             'waktu1' => $row["waktu_kirim"],
             'waktu2' => $row["waktu_sampai"],
-            'status' => $row["status"]
+            'status' => $row["status"],
+            'path' => $row["path"]
         );
         $data[] = $dt;
     }
@@ -157,7 +158,7 @@ while ($row = mysqli_fetch_array($result)) {
         for (let i = 0; i < data.length; i++) {
             $('.divUtama').append(`
             <div class="barang">
-            <img src="./assets/pic/BA001.png" alt="">
+            <img src="${data[i]['path']}" alt="">
             <div id="detail" class="detail">
                 <div class="nama" id="nama">${data[i]['nama']}</div>
                 <div class="jumlah" id="jumlah"> (X ${data[i]['jumlah']} )</div>

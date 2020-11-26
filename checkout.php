@@ -5,7 +5,8 @@
     $mybag = [];
     while($row = mysqli_fetch_array($result)){
         $brg = array(
-            'id' => $row["id"],
+            'id' => $row["id_barang"],
+            'id2' => $row["id"],
             'nama' => $row["nama_barang"],
             'harga' => $row["harga"],
             'jumlah' => $row["jumlah"],
@@ -16,7 +17,7 @@
     
     if (isset($_POST["checkout2"])) {
         if ($user_login["saldo"] >= $_POST['checkout2']) {
-            // $mybag = json_decode($_COOKIE["mybag"], true);
+            $harga2 = explode(",",$_POST["checkout2"]);
             $kirim = mysqli_query($conn, "SELECT * FROM provinsi p, harga_pengiriman h WHERE p.id_provinsi = '$idprov' AND p.id_harga=h.id_harga");
             $waktu = 0;
             while ($row = mysqli_fetch_array($kirim)) {
@@ -52,21 +53,21 @@
                 $timeStamp2 = date('d F Y ');
                 $timeStamp2 = $timeStamp2 . "at" . date(' H:i', time() + $waktu);
 
-                $diskon = 0;
+                $diskon = $harga2[1];
                 //sementara diskon 0 dulu
                 $totalHarga = (($barang['harga'] * $barang['jumlah']) - $diskon) + $_POST['ongkir'];
                 $times = time() + $waktu;
-                mysqli_query($conn, "insert into transaksi values('$idTransaksi','$user_login[id]','$barang[nama]','$barang[jumlah]', '$barang[harga]','$diskon','$_POST[ongkir]','$totalHarga', '-')");
+                mysqli_query($conn, "insert into transaksi values('$idTransaksi','$user_login[id]','$barang[id]','$barang[jumlah]', '$barang[harga]','$diskon','$_POST[ongkir]','$totalHarga', '-')");
                 mysqli_query($conn, "insert into pengiriman values('$idKirim','$idTransaksi','$timeStamp','$timeStamp2', '$times','onGoing')");
             }
-            $user_login["saldo"] -= $_POST['checkout2'];
+            $user_login["saldo"] -= $harga2[0];
             $_SESSION["user"] = $user_login;
             setcookie("userLog", json_encode($user_login), time() + 60 * 60);
             mysqli_query($conn, "UPDATE customer SET saldo = $user_login[saldo] WHERE id_customer='$user_login[id]'");
             header("location: pengiriman.php?success=1");
 
             foreach($mybag as $cart) {
-                $id= $cart['id'];
+                $id= $cart['id2'];
                 $conn->query("DELETE FROM `mybag` WHERE `id` = '$id'");
             }
         } else {
@@ -141,7 +142,8 @@
                 document.getElementById("TotDiskon").innerText = "Subtotal Diskon: Rp. " + dis;
                 totHarga = Number(totHarga) - Number(dis) + totHarga1;
 
-                document.getElementById("tombol").setAttribute('value', totHarga);
+                var arr = [totHarga, dis];
+                document.getElementById("tombol").setAttribute('value', arr);
                 document.getElementById("harga").innerText = "Total Harga: Rp. " + totHarga;
             }
         }

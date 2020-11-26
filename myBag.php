@@ -17,6 +17,11 @@ $mybag = $conn->query("SELECT * FROM `mybag` WHERE `id_user` = '$id_user' and `s
 $mycart = $conn->query("SELECT * FROM mybag m, barang b WHERE `id_user` = '$id_user' and `status`='2' and m.id_barang = b.id_barang")->fetch_all(MYSQLI_ASSOC);
 
 $total = 0;
+foreach ($mycart as $cart) {
+    $id_barang = $cart['id_barang'];
+    $c = $conn->query("SELECT * FROM `barang` WHERE `id_barang` = '$id_barang'")->fetch_assoc();
+    $total += $c['harga'] * $cart['jumlah'];
+}
 
 $gagal = -1;
 if (isset($_POST['checkout'])) {
@@ -40,10 +45,10 @@ if (isset($_POST['removeCart'])) {
     $id = $_POST['removeCart'];
     $conn->query("UPDATE `mybag` SET `status`='1' WHERE `id` = '$id' and `status`='2'");
     
-    $cari = $conn->query("SELECT * FROM `mybag` where `id` = '$id'")->fetch_assoc();
-    $cari = $cari['id_barang'];
+    $cari2 = $conn->query("SELECT * FROM `mybag` where `id` = '$id'")->fetch_assoc();
+    $cari = $cari2['id_barang'];
     $cari1 = $conn->query("SELECT * FROM `barang` where `id_barang` = '$cari'")->fetch_assoc();
-    $total -= $cari1['harga'] * intval($cari['jumlah']);
+    $total -= $cari1['harga'] * $cari2['jumlah'];
 }
 
 if (isset($_POST['removeBag'])) {
@@ -184,13 +189,14 @@ if (isset($_POST['removeBag'])) {
                         <span class="cart-quantity cart-header cart-column">QUANTITY</span>
                     </div>
                     <div class="cart-items">
-                        <?php $mycart = $conn->query("SELECT * FROM mybag m, barang b WHERE `id_user` = '$id_user' and `status`='2' and m.id_barang = b.id_barang")->fetch_all(MYSQLI_ASSOC); 
+                        <?php $mycart = $conn->query("SELECT * FROM mybag m, barang b WHERE `id_user` = '$id_user' and `status`='2' and m.id_barang = b.id_barang")->fetch_all(MYSQLI_ASSOC);
+                        $total = 0;
                         foreach ($mycart as $cart) {
                             $id_barang = $cart['id_barang'];
                             $c = $conn->query("SELECT * FROM `barang` WHERE `id_barang` = '$id_barang'")->fetch_assoc();
-                            $total += $c['harga'] * $cart['jumlah'];
                             $id = $cart['id'];
                             $id2 = $cart['id']."a";
+                            $total += $c['harga'] * $cart['jumlah'];
                         ?>
                             <div class="cart-row">
                                 <div class="cart-item cart-column">

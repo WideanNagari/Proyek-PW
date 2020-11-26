@@ -1,7 +1,7 @@
 <?php
 require_once("connection.php");
 $id = $_GET['id_trans'];
-$result = mysqli_query($conn, "SELECT * FROM pengiriman p JOIN transaksi t ON t.id_transaksi = '$id'AND p.status = 'finished' JOIN customer c ON c.id_customer='$user_login[id]' AND c.id_customer = t.id_customer");
+$result = mysqli_query($conn, "SELECT * FROM pengiriman p JOIN transaksi t ON p.id_transaksi = t.id_transaksi AND t.id_transaksi = '$id'AND p.status = 'finished' JOIN customer c ON c.id_customer='$user_login[id]' AND c.id_customer = t.id_customer JOIN barang b ON b.id_barang = t.id_barang");
 $data = [];
 $sukses = -1;
 while ($row = mysqli_fetch_array($result)) {
@@ -12,11 +12,11 @@ while ($row = mysqli_fetch_array($result)) {
         'waktu1' => $row["waktu_kirim"],
         'waktu2' => $row["waktu_sampai"],
         'status' => $row["status"],
-        'rating' => $row["rating"]
+        'rating' => $row["rating"],
+        'path' => $row["path"]
     );
     $data[] = $dt;
 }
-
 if (isset($_POST['btnrate'])) {
     $rating = $_POST['inputrating'];
     mysqli_query($conn, "update transaksi set rating= '$rating' where id_transaksi='$id'");
@@ -150,7 +150,7 @@ if (isset($_POST['btnrate'])) {
         var data = <?= json_encode($data) ?>;
         $('#container').html(`
                 <div class="divkiri">
-                    <img src="./assets/pic/BA001.png" alt="">
+                    <img src="${data[0]['path']}" alt="">
                     <div id="detail">
                         <div id="nama">${data[0]['nama']}</div>
                         <div id="jumlah"> (X ${data[0]['jumlah']} )</div>

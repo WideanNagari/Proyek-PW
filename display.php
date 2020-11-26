@@ -51,8 +51,12 @@ if (isset($_POST['tambahkan'])) {
         if ($cari != null) {
             $sukses = 1;
         } else {
-            $result = mysqli_query($conn, "INSERT INTO `mybag` VALUES(null,'$id_user','$id_barang','1','1')");
-            $sukses = 0;
+            if($barang['stok']<=0){
+                $sukses = 3;
+            }else{
+                $result = mysqli_query($conn, "INSERT INTO `mybag` VALUES(null,'$id_user','$id_barang','1','1')");
+                $sukses = 0;
+            }
         }
     } else {
         $sukses = 2;
@@ -297,6 +301,14 @@ $popular = $conn->query("SELECT * FROM `barang` ORDER by `view` DESC LIMIT 8")->
                 icon: 'error',
                 title: 'Gagal!',
                 text: 'Mohon login terlebih dahulu!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }else if (sukses == 3) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: 'Stok barang kosong!',
                 showConfirmButton: false,
                 timer: 1500
             });

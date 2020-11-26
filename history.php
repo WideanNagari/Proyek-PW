@@ -6,7 +6,7 @@ while ($row = mysqli_fetch_array($result)) {
         mysqli_query($conn, "UPDATE pengiriman set status = 'finished' where id_kirim='$row[id_kirim]'");
     }
 }
-$result = mysqli_query($conn, "SELECT * FROM pengiriman p JOIN transaksi t ON t.id_transaksi = p.id_transaksi AND p.status = 'finished' JOIN customer c ON c.id_customer='$user_login[id]' AND c.id_customer = t.id_customer");
+$result = mysqli_query($conn, "SELECT * FROM pengiriman p JOIN transaksi t ON t.id_transaksi = p.id_transaksi AND p.status = 'finished' JOIN customer c ON c.id_customer='$user_login[id]' AND c.id_customer = t.id_customer JOIN barang b ON b.id_barang = t.id_barang");
 $data = [];
 while ($row = mysqli_fetch_array($result)) {
     $dt = array(
@@ -16,7 +16,8 @@ while ($row = mysqli_fetch_array($result)) {
         'waktu1' => $row["waktu_kirim"],
         'waktu2' => $row["waktu_sampai"],
         'status' => $row["status"],
-        'id_trans' => $row["id_transaksi"]
+        'id_trans' => $row["id_transaksi"],
+        'path' => $row["path"]
     );
     $data[] = $dt;
 }
@@ -154,65 +155,34 @@ while ($row = mysqli_fetch_array($result)) {
         document.getElementById('tb').innerText = "Total Riwayat Pembelian: " + data.length;
         for (let i = 0; i < data.length; i++) {
             $('.divUtama').append(`
-            <div class="container">
-            <img src="./assets/pic/BA001.png" alt="">
-            <div id="detail" class="detail">
-                <div class="nama" id="nama">${data[i]['nama']}</div>
-                <div class="jumlah" id="jumlah"> (X ${data[i]['jumlah']} )</div>
-                <div class="harga" id="harga">Rp. ${data[i]['total']}</div>
-            </div>
-            
-            <div id="label-waktu" class="label-waktu">
-                <div class="label1" id="label1">Waktu Pengiriman</div>
-                <div class="label2" id="label2">Waktu Sampai</div>
-            </div>
-            <div class="waktu" id="waktu">
-                <div class="waktu1" id="waktu1">${data[i]['waktu1']}</div>
-                <div class="waktu2" id="waktu2">${data[i]['waktu2']}</div>
-            </div>
-            
-            <div class="status-cont" id="status-cont">
-                Status :
-                <span class="status" id="status">${data[i]['status']}</span>
-            </div>           
-            <form action='rateBarang.php?id_trans=${data[i]['id_trans']}' method='post'>
-                <button type='submit' class="rate">Rate This Product</button>
-            </form>
-            
-        </div>
+                <div class="container">
+                    <img src="${data[i]['path']}" alt="">
+                    <div id="detail" class="detail">
+                        <div class="nama" id="nama">${data[i]['nama']}</div>
+                        <div class="jumlah" id="jumlah"> (X ${data[i]['jumlah']} )</div>
+                        <div class="harga" id="harga">Rp. ${data[i]['total']}</div>
+                    </div>
+                    
+                    <div id="label-waktu" class="label-waktu">
+                        <div class="label1" id="label1">Waktu Pengiriman</div>
+                        <div class="label2" id="label2">Waktu Sampai</div>
+                    </div>
+                    <div class="waktu" id="waktu">
+                        <div class="waktu1" id="waktu1">${data[i]['waktu1']}</div>
+                        <div class="waktu2" id="waktu2">${data[i]['waktu2']}</div>
+                    </div>
+                    
+                    <div class="status-cont" id="status-cont">
+                        Status :
+                        <span class="status" id="status">${data[i]['status']}</span>
+                    </div>           
+                    <form action='rateBarang.php?id_trans=${data[i]['id_trans']}' method='post'>
+                        <button type='submit' class="rate">Rate This Product</button>
+                    </form>
+                </div>
             `);
         }
     });
-
-    // var error = <?php //echo json_encode($error)
-                    ?>;
-    // if(error!=-1){
-    //     if(error==1){
-    //         Swal.fire({
-    //             icon: 'error',
-    //             title: 'Gagal Login',
-    //             text: 'Username tidak ditemukan!',
-    //             showConfirmButton: false,
-    //             timer: 1500
-    //         });
-    //     }else if(error==2){
-    //         Swal.fire({
-    //             icon: 'error',
-    //             title: 'Gagal Login',
-    //             text: 'Password Salah!',
-    //             showConfirmButton: false,
-    //             timer: 1500
-    //         });
-    //     }else{
-    //         Swal.fire({
-    //             icon: 'success',
-    //             title: 'Selamat!',
-    //             text: 'Anda berhasil melakukan registrasi!',
-    //             showConfirmButton: false,
-    //             timer: 1500
-    //         });
-    //     }
-    // }
 </script>
 
 </html>
