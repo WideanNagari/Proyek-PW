@@ -1,11 +1,13 @@
-*{
+* {
     padding: 0;
     margin: 0;
 }
+
 @font-face {
     font-family: "goodTimes";
     src: url('../assets/fonts/good_times_rg.ttf');
 }
+
 @font-face {
     font-family: "teen";
     src: url('../assets/fonts/teen.ttf');
@@ -17,8 +19,8 @@
 
 * {
     box-sizing: border-box;
-    padding : 0;
-    margin : 0;
+    padding: 0;
+    margin: 0;
     font-family: 'teen';
 }
 
@@ -51,14 +53,14 @@
 button {
     padding: 10px;
     background-color: Transparent;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     border: none;
-    cursor:pointer;
+    cursor: pointer;
     overflow: hidden;
-    outline:none;
+    outline: none;
 }
 
-.header img{
+.header img {
     height: 20px;
     width: 20px;
 }
@@ -80,7 +82,8 @@ button {
     margin-right: 50px;
     margin-left: 50px;
 }
-a:visited{
+
+a:visited {
     color: white;
 }
 
@@ -98,7 +101,7 @@ nav ul li:hover {
     position: absolute;
     background-color: white;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
@@ -111,7 +114,7 @@ nav ul li:hover {
 
 .dropdown-content a:hover {
     background-color: #ddd;
-}    
+}
 
 .dropdown:hover .dropdown-content {
     display: block;
@@ -128,19 +131,19 @@ nav ul li:hover {
     /* background: white; */
 
     background-color: Transparent;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     border: none;
-    cursor:pointer;
+    cursor: pointer;
     overflow: hidden;
-    outline:none;
+    outline: none;
 }
 
-.search-box:hover > .search-txt {
+.search-box:hover>.search-txt {
     width: 240px;
     padding: 0 6px;
 }
 
-.search-box:hover > .search-btn {
+.search-box:hover>.search-btn {
     background: white;
 }
 
@@ -156,11 +159,11 @@ nav ul li:hover {
     cursor: pointer;
     /* background: white; */
     background-color: Transparent;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     border: none;
-    cursor:pointer;
+    cursor: pointer;
     overflow: hidden;
-    outline:none;
+    outline: none;
 }
 
 .search-txt {
@@ -176,7 +179,7 @@ nav ul li:hover {
     width: 0px;
 }
 
-.search-box button img{
+.search-box button img {
     height: 20px;
     width: 20px;
 }
@@ -188,12 +191,12 @@ nav ul li:hover {
     margin-bottom: 50px;
 }
 
-.main h1{
+.main h1 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.main #nominal{
+.main #nominal {
     border: none;
     border-bottom: 1px solid black;
     width: 400px;
@@ -209,7 +212,7 @@ nav ul li:hover {
     padding: none;
 }
 
-.main h3{
+.main h3 {
     text-align: center;
 }
 
@@ -289,12 +292,12 @@ nav ul li:hover {
     border: none;
 }
 
-.about  {
+.about {
     margin: 50px;
     height: 150px;
 }
 
-.about .logo{
+.about .logo {
     width: 200px;
     height: 150px;
     float: left;
@@ -302,7 +305,7 @@ nav ul li:hover {
     border-right: 1px solid rgb(182, 182, 250);
 }
 
-.about .logo h1{
+.about .logo h1 {
     font-family: 'goodTimes';
 }
 
@@ -314,7 +317,7 @@ nav ul li:hover {
     float: left;
 }
 
-.help a{
+.help a {
     color: black;
 }
 
@@ -329,4 +332,139 @@ nav ul li:hover {
     height: 20px;
     margin: 2px;
     margin-right: 10px;
+}
+
+/* modal-box/ pop up */
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+    -webkit-animation-name: fadeIn;
+    /* Fade in the background */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content {
+    position: fixed;
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    top: 40%;
+    left: 40%;
+    width: 25%;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 5px 16px;
+    color: black;
+    background: linear-gradient(120deg, lightskyblue,lightcyan,lightskyblue);
+}
+
+.modal-body {
+    padding: 2px 16px;
+}
+
+.modal-footer {
+    color: black;
+    background: linear-gradient(120deg, lightskyblue,lightcyan,lightskyblue);
+}
+
+.modal input{
+    border: none;
+    border-bottom: 1px solid black;
+    width: 200px;
+    height: 50px;
+    margin-left: 20%;
+}
+
+.modal button{
+    width: 200px;
+    /* margin-left: 10%; */
+    margin-bottom: 20px;
+    color: black;
+    background: white;
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+    from {
+        bottom: -300px;
+        opacity: 0
+    }
+
+    to {
+        bottom: 0;
+        opacity: 1
+    }
+}
+
+@keyframes slideIn {
+    from {
+        bottom: -300px;
+        opacity: 0
+    }
+
+    to {
+        bottom: 0;
+        opacity: 1
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
 }

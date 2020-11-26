@@ -2,9 +2,6 @@
 require_once("connection.php");
 $sukses = false;
 if (isset($_POST["topup"])) {
-    if($_POST['nominal']!="") {
-        
-    }
     $user_login;
     $user_login["saldo"] += $_POST["nominal"];
     $saldo = $user_login["saldo"];
@@ -107,15 +104,15 @@ if (isset($_POST["topup"])) {
                 <h1>Top Up</h1><br>
                 <input type="text" name="nominal" placeholder="Nominal Top Up" id="nominal" onkeypress="return hanyaAngka(event)" required><br><br>
                 <h4>Payment Methods</h4>
-                <input type="radio" name="payment" id="card" onclick="showhide('card')"> <img src="./assets/icon/card.png"> Debit or Credit Card <br>
-                <input type="radio" name="payment" id="ppal" onclick="showhide('ppal')"> <img src="./assets/icon/paypal.png" id="pay">
+                <input type="radio" name="payment" id="card" onclick="showhide('card')" required> <img src="./assets/icon/card.png"> Debit or Credit Card <br>
+                <input type="radio" name="payment" id="ppal" onclick="showhide('ppal')" required> <img src="./assets/icon/paypal.png" id="pay">
                 <br<br>
                     <script>
                         function showhide(value) {
                             if (value == "card") {
                                 document.getElementById('pay1').style.display = "block";
                                 document.getElementById('pay2').style.display = "none";
-                            } else if (value=="ppal") {
+                            } else if (value == "ppal") {
                                 document.getElementById('pay1').style.display = "none";
                                 document.getElementById('pay2').style.display = "block";
                             }
@@ -137,6 +134,48 @@ if (isset($_POST["topup"])) {
                             <img src="./assets/icon/paypal.png">
                         </button>
                     </div>
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <span class="close">&times;</span>
+                                <h2>Input Your Password</h2>
+                            </div>
+                            <div class="modal-body">
+                                <p><input type="password" name="pass" placeholder="Input Password" required></p>
+                            </div>
+                            <div class="modal-footer">
+                                <h3><button name="pass" id="pass" type="button">Submit Password</button></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        // Get the modal
+                        var modal = document.getElementById("myModal");
+                        // Get the button that opens the modal
+                        var btn = document.getElementById("contain1");
+                        var btn1 = document.getElementById("pass");
+                        // Get the <span> element that closes the modal
+                        var span = document.getElementsByClassName("close")[0];
+                        // When the user clicks the button, open the modal 
+                        btn.onclick = function() {
+                            modal.style.display = "block";
+                        }
+                        // When the user clicks on <span> (x), close the modal
+                        span.onclick = function() {
+                            modal.style.display = "none";
+                        }
+                        btn1.onclick = function() {
+                            modal.style.display = "none";
+                        }
+                        // When the user clicks anywhere outside of the modal, close it
+                        window.onclick = function(event) {
+                            if (event.target == modal) {
+                                modal.style.display = "none";
+                            }
+                        }
+                    </script>
                     <button type="submit" name="topup" id="btn" formaction="#">Top Up!</button><br><br>
                     <h3 id="saldo"><?= "Saldo " . $user_login['nama'] . ": Rp. " . $user_login['saldo'] ?></h3>
             </form>

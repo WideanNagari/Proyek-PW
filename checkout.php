@@ -16,7 +16,7 @@
     
     if (isset($_POST["checkout2"])) {
         if ($user_login["saldo"] >= $_POST['checkout2']) {
-            $mybag = json_decode($_COOKIE["mybag"], true);
+            // $mybag = json_decode($_COOKIE["mybag"], true);
             $kirim = mysqli_query($conn, "SELECT * FROM provinsi p, harga_pengiriman h WHERE p.id_provinsi = '$idprov' AND p.id_harga=h.id_harga");
             $waktu = 0;
             while ($row = mysqli_fetch_array($kirim)) {
