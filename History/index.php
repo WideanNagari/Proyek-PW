@@ -9,7 +9,7 @@
 <html lang="en">
     <!-- begin : : head -->
     <head>
-        <link href="index.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
     </head>
     <!-- end : : head -->
     <!-- begin : : body -->
@@ -17,7 +17,9 @@
         <!-- begin : : header-->
         <div class="header">
             <div class="logo">
-                <img src="assets/logo.png" alt="logo">
+                <a href="index.php" style="color: black; text-decoration: none;">
+                    Outfit Labs
+                </a>
             </div>
             <div class="navbar">
                 <ul>
