@@ -99,7 +99,7 @@
         <form method="POST">
             <button type="submit" class="menu" name="addP" formaction="tambah.php">Tambah Produk</button>
             <button type="submit" class="menu" formaction="listBarang.php">Edit Produk</button>
-            <button type="submit" class="menu" formaction="">Lihat History Penjualan</button>
+            <button type="submit" class="menu" formaction="historyAdmin.php">Lihat History Penjualan</button>
             <button type="submit" class="menu" name="addE" formaction="addevent.php">Tambah Event</button>
             <button type="submit" class="menu" formaction="listEvent.php">Edit Event</button>
             <button type="submit" class="menu" formaction="listUser.php">Lihat User</button><br>
