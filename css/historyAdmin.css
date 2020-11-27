@@ -1,0 +1,129 @@
+@font-face {
+    font-family: 'goodTimes';
+    src: url('../assets/fonts/good_times_rg.ttf');
+}
+
+@font-face {
+    font-family: 'teen';
+    src: url('../assets/fonts/teen.ttf');
+}
+
+body {
+    background-color: rgb(253, 253, 253);
+    margin: 0;
+}
+
+.header{
+    width: 100%;
+    height: 60px;
+    background: rgb(50, 50, 50);
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: "goodTimes";           
+}
+#logo{
+    font-size: 30px;
+    font-family: "goodTimes";
+    float: left;
+}
+#btnBack{
+    font-family:"goodTimes";
+    border: 0px;
+    font-size: 25px;
+    background: rgb(50, 50, 50);
+    float:left;
+    margin-left:50%;
+    margin-top:15px;
+    color:white;
+}
+#btnBack:hover{
+    color:lightskyblue;
+    cursor:pointer;
+}
+
+.address {
+    font-family: "teen";
+    display: inline-block;
+    font-size: 30pt;
+    font-weight: bold;
+    margin: 20px 110px 30px;
+}
+.main {
+    display: grid;
+    grid-template-columns: 85% 15%;
+    width: 86%;
+    margin: auto;
+}
+
+.greet p{
+    display: inline;
+    font-family: "teen";
+    font-size: 25px;
+    color: rgb(51, 51, 51);
+}
+
+.menu h1{
+    margin: 0;
+    font-family: "teen";
+    color: rgb(51, 51, 51);
+    font-size: 16pt;
+}
+
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu li{
+    margin: 5px 0px;
+}
+
+.pilihan{
+    width:42%;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 17px;
+    font-family: "teen";
+}
+
+#btn-submit{
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: "teen";
+}
+
+.table{
+    font-family: "teen";
+    color: rgb(51, 51, 51);
+}
+
+.table input{
+    background-color: rgb(51, 51, 51);
+    color: rgb(253, 253, 253);
+    border: none;
+}
+
+table {
+    width: 90%;
+}
+
+th{
+    padding: 5px;
+    background-color: rgb(51, 51, 51);;
+    color: rgb(253, 253, 253);
+}
+
+td{
+    padding: 5px;
+    text-align: center;
+    background-color: lightgrey;
+    color: rgb(51, 51, 51);
+}
+
+.users{
+    font-family: "teen";
+    font-size: 18px;
+}

@@ -50,6 +50,7 @@
         }
         button:hover{
             cursor:pointer;
+            background-color:white;
         }
         #btnBack{
             font-family:"goodTimes";
@@ -81,6 +82,18 @@
             width: 150px;
             text-align: center;
         }
+        th{
+            padding: 5px;
+            background-color: rgb(51, 51, 51);;
+            color: rgb(253, 253, 253);
+        }
+
+        td{
+            padding: 5px;
+            text-align: center;
+            background-color: lightgrey;
+            color: rgb(51, 51, 51);
+        }
     </style>
 </head>
 <body>
@@ -94,8 +107,7 @@
 <div class="outline">
     <h1 style="margin-bottom: 20px;">List User</h1>
     <form action="" method="POST">
-        <table border=1>
-        <thead>
+        <table>
             <th>ID_Customer</th>
             <th>Nama_Customer</th>
             <th>Email</th>
@@ -142,17 +154,29 @@
                         <td><?= $val['provinsi'] ?></td>
                         <td><?= $val['saldo'] ?></td>
                         <td><?= $aksess ?></td>
-                        <td id=${id2} name=""><Button>Ubah</Button></td>
+                        <td id=${id2} name="">
+                        <Button>Ubah</Button></td>
                     </tr>
                     `);
                     
-                    $(`#${id2}`).click(function(){
+                    $(`#${id2}`).click(function(e){
                         var user = <?= json_encode($val)?>;
+                        e.preventDefault();
                         document.getElementById(`${id2}`).setAttribute("name","query");
                         $.get("gantiAkses.php", { query : user }, function(hasil){
-                            document.getElementById(`${idTr}`).removeChild(document.getElementById(`${idTr}`).lastChild);
+                            while(document.getElementById(`${idTr}`).lastChild){
+                                document.getElementById(`${idTr}`).removeChild(document.getElementById(`${idTr}`).lastChild);
+                            }
                             $(`#${idTr}`).append(`
+                                <td>${user['id']}</td>
+                                <td>${user['nama']}</td>
+                                <td>${user['email']}</td>
+                                <td>${user['alamat']}</td>
+                                <td>${user['provinsi']}</td>
+                                <td>${user['saldo']}</td>
                                 <td>${hasil}</td>
+                                <td id=${id2} name="">
+                                <Button>Ubah</Button></td>
                             `);
                         }); 
                     });

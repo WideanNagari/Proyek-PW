@@ -17,9 +17,14 @@ while ($row = mysqli_fetch_array($result)) {
         'waktu2' => $row["waktu_sampai"],
         'status' => $row["status"],
         'id_trans' => $row["id_transaksi"],
-        'path' => $row["path"]
+        'path' => $row["path"],
+        'rate' => $row["rating"]
     );
     $data[] = $dt;
+}
+$sukses = 0;
+if(isset($_GET["success"])){
+    $sukses = $_GET["success"];
 }
 ?>
 
@@ -150,10 +155,26 @@ while ($row = mysqli_fetch_array($result)) {
 
 </body>
 <script>
+    var sukses = <?php echo json_encode($sukses) ?>;
+    if (sukses == 1) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Selamat!',
+            text: 'Anda berhasil memberi rating!',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
     $(document).ready(function() {
         var data = <?= json_encode($data) ?>;
         document.getElementById('tb').innerText = "Total Riwayat Pembelian: " + data.length;
         for (let i = 0; i < data.length; i++) {
+            var rate = "";
+            if(data[i]['rate']=='-'){
+                rate = `<form action='rateBarang.php?id_trans=${data[i]['id_trans']}' method='post'>
+                        <button type='submit' class="rate">Rate This Product</button>
+                    </form>`;
+            }
             $('.divUtama').append(`
                 <div class="container">
                     <img src="${data[i]['path']}" alt="">
@@ -176,9 +197,7 @@ while ($row = mysqli_fetch_array($result)) {
                         Status :
                         <span class="status" id="status">${data[i]['status']}</span>
                     </div>           
-                    <form action='rateBarang.php?id_trans=${data[i]['id_trans']}' method='post'>
-                        <button type='submit' class="rate">Rate This Product</button>
-                    </form>
+                    ${rate}
                 </div>
             `);
         }

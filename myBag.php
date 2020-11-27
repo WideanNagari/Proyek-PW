@@ -186,7 +186,7 @@ if (isset($_POST['removeBag'])) {
                                 </div>
                                 <span class="cart-price cart-column"><?= "Rp. " . $c['harga'] ?></span>
                                 <div class="cart-quantity cart-column">
-                                    <input class="cart-quantity-input" id = "<?php echo $id2; ?>" type="number" min="1" max='<?= $c['stok'] ?>' value="<?=$cart['jumlah']?>" oninput="inputJumlah(value,max,id,<?=$cart['id']?>)" onchange="gantiJumlah(value,id,<?=$cart['id']?>)">
+                                    <input class="cart-quantity-input" id = "<?php echo $id2; ?>" type="number" min="1" max='<?= $c['stok'] ?>' value="<?=$cart['jumlah']?>" oninput="inputJumlah(value,max,min,id,<?=$cart['id']?>)" onchange="gantiJumlah(value,id,<?=$cart['id']?>)">
                                     <button class="btn btn-danger" type="submit" name="removeCart" value="<?= $cart['id'] ?>">REMOVE</button>
                                 </div>
                             </div>
@@ -247,11 +247,15 @@ if (isset($_POST['removeBag'])) {
         });
     }
 
-    function inputJumlah(value, max, id, idMB) {
-        if (Number(value) > Number(max)) {
+    function inputJumlah(value, max, min, id, idMB) {
+        if(value == ""){
+            document.getElementById(id).value = min;
+        }else if (Number(value) > Number(max)) {
             document.getElementById(id).value = max;
+        }else if(Number(value) < Number(min)){
+            document.getElementById(id).value = min;
         }
-        gantiJumlah(value, id, idMB);
+        gantiJumlah(document.getElementById(id).value, id, idMB);
     }
 
     // var mybag = <?= json_encode($mybag) ?>;
