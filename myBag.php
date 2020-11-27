@@ -67,7 +67,6 @@ if (isset($_POST['removeBag'])) {
     <script src="./assets/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="./css/myBag.css">
     <script src="./assets/sweetalert2.all.min.js"></script>
-    <!-- <script src="./js/myBag.js" async></script> -->
 </head>
 
 <body>
@@ -142,24 +141,6 @@ if (isset($_POST['removeBag'])) {
             </div>
         </div>
         <div class="main">
-            <!-- <div class="checkout">
-                <div class="barang" id="brg">
-                    <div>
-                        <div class="titlee" style="width:430px;">Item</div>
-                        <div class="titlee" style="width:250px;">Price</div>
-                        <div class="titlee">Quantity</div>
-                        <div class="titlee" style="margin-right:0;">Remove</div>
-                    </div>
-                </div>
-                <div class="last2" id="jumlah">Jumlah Item: 10</div>
-                <div class="last2" id="harga">Harga: Rp. 10000000</div>
-                <form method="POST">
-                    <button class="last2" id="tombol" name="checkout" style="font-family: 'teen';">Checkout</button>
-                </form>
-                <form method="POST">
-                    <button type="hidden" name="hapus" id="btnn" style="display:none;"></button>
-                </form>
-            </div> -->
             <form method="post">
                 <section class="container content-section">
                     <h2 class="section-header">MY BAG</h2>

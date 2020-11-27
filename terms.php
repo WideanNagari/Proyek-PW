@@ -21,8 +21,8 @@ if (isset($_SESSION['user'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How To Shop</title>
-    <link rel="stylesheet" href="css/howts.css">
+    <title>Terms & Conditions</title>
+    <link rel="stylesheet" href="css/terms.css">
 </head>
 
 <body>
@@ -111,7 +111,11 @@ if (isset($_SESSION['user'])) {
                 <a href="HowTS.php"><button>How To Shop</button></a>
             </div>
             <div class="kanan">
-
+                <h2>Terms & Conditions</h2>
+                <p>Latest version: 27/11/2020</p> <br> <br>
+                <p>Selamat Datang di Outfit Labs. Kami menghargai privasi Anda dan kami ingin menjaga informasi pribadi Anda. Kami tidak akan mengungkapkan informasi pribadi ke pihak ketiga kecuali mungkin menjadi bagian dari pemberian pelayanan kepada anda, misalnya mengatur barang yang akan dikirim kepada Anda, melakukan kredit dan pemeriksaan keamanan lainnya.</p> <br>
+                <h5>Akun Anda</h5>
+                <p>Ketika Anda mendaftar untuk Layanan, Anda mungkin diminta untuk memberikan password untuk account Anda. Kami sangat menyarankan agar Anda menyimpan password rahasia setiap saat.Kami tidak bertanggung jawab atas kerugian atau kerusakan yang timbul dari hilangnya password.</p>
             </div>
         </div>
         <div class="tamb">

@@ -14,9 +14,9 @@
     font-family: 'teen';
 }
 
-body{
+/* body{
     background: linear-gradient(120deg, lightskyblue,lightcyan,lightskyblue);
-}
+} */
 
 .header {
     height: 180px;
@@ -285,4 +285,8 @@ nav ul li:hover {
     text-align: justify;
     margin-left: 500px;
     margin-left: 50px;
+}
+
+.kanan h2{
+    text-decoration: underline;
 }

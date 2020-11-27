@@ -15,13 +15,14 @@
     font-family: 'teen';
 }
 
-body{
+/* body{
     background: linear-gradient(120deg, lightskyblue,lightcyan,lightskyblue);
-}
+} */
 
 .header {
     height: 180px;
-    background: white;
+    /* background: white; */
+    background: linear-gradient(120deg, lightskyblue,lightcyan,lightskyblue);
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
