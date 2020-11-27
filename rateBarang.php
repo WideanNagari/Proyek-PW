@@ -7,6 +7,7 @@ $sukses = -1;
 while ($row = mysqli_fetch_array($result)) {
     $dt = array(
         'nama' => $row["nama_barang"],
+        'id' => $row["id_barang"],
         'jumlah' => $row["jumlah"],
         'total' => $row["total_harga"],
         'waktu1' => $row["waktu_kirim"],
@@ -20,7 +21,20 @@ while ($row = mysqli_fetch_array($result)) {
 if (isset($_POST['btnrate'])) {
     $rating = $_POST['inputrating'];
     mysqli_query($conn, "update transaksi set rating= '$rating' where id_transaksi='$id'");
-    $sukses = 1;
+
+    $rate = 0;
+    $jumlah = 0;
+    $idd = $data[0]['id'];
+    $results = mysqli_query($conn, "SELECT * FROM  transaksi t JOIN barang b ON b.id_barang = t.id_barang AND b.id_barang = '$idd'");
+    while ($rows = mysqli_fetch_array($results)) {
+        if($rows["rating"]!="-"){
+            $jumlah+=1;
+            $rate += $rows["rating"];
+        }
+    }
+    $rate = $rate/$jumlah;
+    mysqli_query($conn, "update barang set rate = '$rate' where id_barang='$idd'");
+    header("location: history.php?success=1");
 }
 
 ?>
@@ -136,15 +150,14 @@ if (isset($_POST['btnrate'])) {
 
 </html>
 <script>
-    var sukses = <?php echo json_encode($sukses) ?>;
-    if (sukses == 1) {
-        Swal.fire({
-            icon: 'success',
-            title: 'Selamat!',
-            text: 'Anda berhasil memberi rating!',
-            showConfirmButton: false,
-            timer: 1500
-        });
+    function inputJumlah(value, max, min) {
+        if(value == ""){
+            document.getElementById("ratee").value = min;
+        }else if (Number(value) > Number(max)) {
+            document.getElementById("ratee").value = max;
+        }else if(Number(value) < Number(min)){
+            document.getElementById("ratee").value = min;
+        }
     }
     $(document).ready(function() {
         var data = <?= json_encode($data) ?>;
@@ -172,11 +185,11 @@ if (isset($_POST['btnrate'])) {
                 </div>
                 <div class="divkanan"> 
                     <form action="" method="post">
-                        <input type="number" name="inputrating" max="5" min="1" value="${data[0]['rating']}">
+                        <input type="number" id="ratee" name="inputrating" max="5" min="1" value="1" onInput="inputJumlah(value, max, min)">
                         <button type="submit" name="btnrate">Submit Rating</button>
                     </form>
                 </div>
-                `);
+        `);
 
     });
 </script>

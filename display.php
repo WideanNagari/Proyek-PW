@@ -167,7 +167,8 @@ $popular = $conn->query("SELECT * FROM `barang` ORDER by `view` DESC LIMIT 8")->
                     <p style="font-size: 20px;margin-bottom: 15px;" id="harga">harga</p>
                     <p style="margin-bottom: 15px;" id="jenis">Jenis: -</p>
                     <p style="margin-bottom: 15px;" id="stok">Stok: 1</p>
-                    <div style="height:250px;">
+                    <p style="margin-bottom: 15px;" id="rating">Rating: 1</p>
+                    <div style="height:230px;">
                         Deskripsi:
                         <p style="height:160px; border: 2px solid gray;font-size:20px;padding:10px;border-radius: 5px;" id="deskripsi">awawawa</p>
                     </div>
@@ -179,62 +180,6 @@ $popular = $conn->query("SELECT * FROM `barang` ORDER by `view` DESC LIMIT 8")->
             <div class="popular">
                 <h2>Popular</h2> <br><br>
                 <div class="scroll" id="scrolls">
-                    <!-- <div class="piece">
-                        <img src="./assets/pic/B054.jpg">
-                        <div class="middle">
-                            <h4>Black Leather</h4>
-                            <p>Rp,600,000</p>
-                        </div>
-                    </div>
-                    <div class="piece">
-                        <img src="./assets/pic/B055.jpg">
-                        <div class="middle">
-                            <h4>Floral Crop Tee</h4>
-                            <p>Rp,400,000</p>
-                        </div>
-                    </div>
-                    <div class="piece">
-                        <img src="./assets/pic/B048.jpg">
-                        <div class="middle">
-                            <h4>Kirsty Knitted Two Piece</h4>
-                            <p>Rp,500,000</p>
-                        </div>
-                    </div>
-                    <div class="piece">
-                        <img src="./assets/pic/B049.jpg">
-                        <div class="middle">
-                            <h4>Maya Bottoms</h4>
-                            <p>Rp,550,000</p>
-                        </div>
-                    </div>
-                    <div class="piece">
-                        <img src="./assets/pic/B050.jpg">
-                        <div class="middle">
-                            <h4>Winter Turtleneck Pullover Dress</h4>
-                            <p>Rp,450,000</p>
-                        </div>
-                    </div>
-                    <div class="piece">
-                        <img src="./assets/pic/B051.jpg">
-                        <div class="middle">
-                            <h4>Winter Warmer Sweater</h4>
-                            <p>Rp,650,000</p>
-                        </div>
-                    </div>
-                    <div class="piece">
-                        <img src="./assets/pic/B052.jpg">
-                        <div class="middle">
-                            <h4>OH YES Hooded Sweater</h4>
-                            <p>Rp,350,000</p>
-                        </div>
-                    </div>
-                    <div class="piece">
-                        <img src="./assets/pic/B053.jpg">
-                        <div class="middle">
-                            <h4>Blue Work Blazer</h4>
-                            <p>Rp,450,000</p>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -277,6 +222,7 @@ $popular = $conn->query("SELECT * FROM `barang` ORDER by `view` DESC LIMIT 8")->
         document.getElementById("harga").innerText = "Rp. " + barang["harga"];
         document.getElementById("jenis").innerText = "Jenis: " + barang["nama_jenis"];
         document.getElementById("stok").innerText = "Stok: " + barang["stok"];
+        document.getElementById("rating").innerText = "Rating: "+barang["rating"];
         document.getElementById("deskripsi").innerText = barang["deskripsi"];
 
         var sukses = <?php echo json_encode($sukses) ?>;

@@ -18,7 +18,8 @@
                 'deskripsi' => $row["deskripsi"],
                 'id_jenis' => $row["id_jenis"],
                 'path' => $row["path"],
-                'view' => $row["view"]
+                'view' => $row["view"],
+                'rating' => $row["rate"]
             );
             $barang[] = $brg;
         }
