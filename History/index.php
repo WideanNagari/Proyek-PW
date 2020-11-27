@@ -15,7 +15,7 @@
     <!-- begin : : body -->
     <body>
         <!-- begin : : header-->
-        <div class="header">
+        <div class="header" style="background: whitesmoke;">
             <div class="logo">
                 <a href="index.php" style="color: black; text-decoration: none;">
                     Outfit Labs
@@ -55,7 +55,7 @@
         <div class="main">
             <div class="greet">
                 <p>Welcome to your order history, </p>
-                <p style="color:orange;">Name</p><br>
+                <p style="color: rgb(51, 51, 51); font-size: 20px;">Admin</p><br>
                 <p style="font-size: 10pt;"><i>Below you can see all the order you have done.</i></p><br><br>
                 <div class="table">
                     <form action="" method="POST">
@@ -72,7 +72,7 @@
                                 }
                             ?>
                         </select>
-                        <input type="submit" name="submit" value="Choose">
+                        <input type="submit" name="submit" value="Choose" style="background: rgb(51, 51, 51);">
                     </form>
                     <?php
                     if (isset($_POST['submit'])) {
@@ -85,9 +85,9 @@
                             $result = $database->query($sql);
                             echo "<table style=\"width:50%\">";
                             echo "<tr>";
-                            echo "<th>Name</th>";
-                            echo "<th>Item</th>";
-                            echo "<th>Total</th>";
+                            echo "<th style=\"background: rgb(51, 51, 51)\">Name</th>";
+                            echo "<th style=\"background: rgb(51, 51, 51)\">Item</th>";
+                            echo "<th style=\"background: rgb(51, 51, 51)\">Total</th>";
                             echo "</tr>";
                             if($result->num_rows > 0){
                                 while($row = $result->fetch_assoc()){
@@ -107,9 +107,9 @@
                             $result = $database->query($sql);
                             echo "<table style=\"width:50%\">";
                             echo "<tr>";
-                            echo "<th>Name</th>";
-                            echo "<th>Item</th>";
-                            echo "<th>Total</th>";
+                            echo "<th style=\"background: rgb(51, 51, 51)\">Name</th>";
+                            echo "<th style=\"background: rgb(51, 51, 51)\">Item</th>";
+                            echo "<th style=\"background: rgb(51, 51, 51)\">Total</th>";
                             echo "</tr>";
                             if($result ->num_rows > 0){
                                 while($row = $result->fetch_assoc()){
