@@ -197,10 +197,12 @@ nav ul li:hover {
     text-align: left;
     margin-left: 15px;
     width: 45%;
+    font-size: 20px;
     display: inline-block;
 }
 .judul p, .isi p{
-    padding-bottom: 20px;
+    height: 50px;
+    /* padding-bottom: 20px; */
 }
 .menu2{
     width: 39.5%;
