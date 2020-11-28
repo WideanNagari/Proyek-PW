@@ -210,9 +210,9 @@ if (isset($_POST['removeBag'])) {
                     <h1>OUTFIT LABS</h1>
                 </div>
                 <div class="help">
-                    <a href="#">Help</a> <br>
+                    <a href="help.php">Help</a> <br>
                     <a href="about.php">About</a> <br>
-                    <a href="#">Terms & Conditions</a> <br>
+                    <a href="terms.php">Terms & Conditions</a> <br>
                     <a href="HowTS.php">How To Shop</a> <br>
                 </div>
                 <div class="contact">
