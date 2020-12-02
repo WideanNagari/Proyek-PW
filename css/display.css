@@ -341,20 +341,14 @@ nav ul li:hover {
     border-radius: 10px;
 }
 
-.piece img{
+.piece img {
     height: 300px;
-    width: 300px; 
+    width: 300px;
     /* margin-right: 20px; */
 }
 
-.piece .img1 {
-    height: 300px;
-    width: 300px; 
-    /* margin-right: 20px;  */
-    margin-bottom: 10px;
-}
-
-.piece{
+.piece {
+    /* border: 1px solid black; */
     display: inline-block;
     margin-right: 20px;
     margin-bottom: 30px;
@@ -362,6 +356,37 @@ nav ul li:hover {
     width: 320px;
     height: 350px;
     box-sizing: border-box;
+}
+
+.piece h4 {
+    padding-left: 10px;
+    color: black;
+    font-weight: bolder;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+.piece p {
+    text-align: right;
+    padding-left: 10px;
+    color: rgb(31, 31, 130);
+    font-weight: bolder;
+    padding-right: 20px;
+}
+
+.img-hover-zoom {
+    margin-bottom: 10px;
+    height: 300px;
+    width: 300px;
+    overflow: hidden;
+}
+
+.img-hover-zoom img {
+    transition: transform .5s ease;
+}
+
+.img-hover-zoom:hover img {
+    transform: scale(1.5);
 }
 
 .piece h4{

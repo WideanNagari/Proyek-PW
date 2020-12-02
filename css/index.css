@@ -10,8 +10,8 @@
 
 * {
     box-sizing: border-box;
-    padding : 0;
-    margin : 0;
+    padding: 0;
+    margin: 0;
     font-family: 'teen';
 }
 
@@ -51,14 +51,14 @@
 button {
     padding: 10px;
     background-color: Transparent;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     border: none;
-    cursor:pointer;
+    cursor: pointer;
     overflow: hidden;
-    outline:none;
+    outline: none;
 }
 
-.header img{
+.header img {
     height: 20px;
     width: 20px;
 }
@@ -84,7 +84,7 @@ button {
     font-weight: bolder;
 }
 
-a:visited{
+a:visited {
     color: white;
 }
 
@@ -103,7 +103,7 @@ ul li:hover {
     background-color: white;
     font-weight: bolder;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
@@ -116,7 +116,7 @@ ul li:hover {
 
 .dropdown-content a:hover {
     background-color: #ddd;
-}    
+}
 
 .dropdown:hover .dropdown-content {
     display: block;
@@ -133,19 +133,19 @@ ul li:hover {
     /* background: white; */
 
     background-color: Transparent;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     border: none;
-    cursor:pointer;
+    cursor: pointer;
     overflow: hidden;
-    outline:none;
+    outline: none;
 }
 
-.search-box:hover > .search-txt {
+.search-box:hover>.search-txt {
     width: 240px;
     padding: 0 6px;
 }
 
-.search-box:hover > .search-btn {
+.search-box:hover>.search-btn {
     background: white;
 }
 
@@ -162,11 +162,11 @@ ul li:hover {
     /* background: white; */
 
     background-color: Transparent;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     border: none;
-    cursor:pointer;
+    cursor: pointer;
     overflow: hidden;
-    outline:none;
+    outline: none;
 }
 
 .search-txt {
@@ -182,7 +182,7 @@ ul li:hover {
     width: 0px;
 }
 
-.search-box button img{
+.search-box button img {
     height: 20px;
     width: 20px;
 }
@@ -210,13 +210,13 @@ ul li:hover {
     margin-left: 460px;
 }
 
-.content select{
+.content select {
     margin-left: 5px;
     border: none;
     width: 100px;
 }
 
-.content-gbr{
+.content-gbr {
     margin: 20px;
     margin-top: 50px;
 }
@@ -225,17 +225,17 @@ ul li:hover {
     float: left;
 }
 
-.contKanan{
+.contKanan {
     padding-left: 700px;
     padding-top: 50px;
 }
 
-.contKanan h1{
+.contKanan h1 {
     margin-top: 50px;
     margin-bottom: 50px;
 }
 
-.contKanan img{
+.contKanan img {
     width: 280px;
     height: 400px;
     margin-right: 20px;
@@ -248,8 +248,8 @@ ul li:hover {
     transform: scale(1.1);
 }
 
-#more{
-    font-weight: bolder; 
+#more {
+    font-weight: bolder;
     font-size: 40px;
     margin-top: 40px;
     color: black;
@@ -257,7 +257,7 @@ ul li:hover {
     margin-right: 30px;
 }
 
-#more:hover{
+#more:hover {
     text-decoration: underline;
     cursor: pointer;
 }
@@ -268,7 +268,7 @@ ul li:hover {
     margin-right: 40px;
 }
 
-.popular h2{
+.popular h2 {
     border-bottom: 1px solid rgb(182, 182, 250);
     margin-bottom: 20px;
 }
@@ -276,37 +276,31 @@ ul li:hover {
 .scroll {
     overflow: auto;
     white-space: nowrap;
-    height: 380px;
+    height: 420px;
 }
 
 .scroll::-webkit-scrollbar {
     width: 5px;
 }
-  
+
 .scroll::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px rgb(79, 87, 107); 
-    border-radius: 10px;
-}
-   
-.scroll::-webkit-scrollbar-thumb {
-    background: rgb(21, 31, 58); 
+    box-shadow: inset 0 0 5px rgb(79, 87, 107);
     border-radius: 10px;
 }
 
-.piece img{
+.scroll::-webkit-scrollbar-thumb {
+    background: rgb(21, 31, 58);
+    border-radius: 10px;
+}
+
+.piece img {
     height: 300px;
-    width: 300px; 
+    width: 300px;
     /* margin-right: 20px; */
 }
 
-.piece .img1 {
-    height: 300px;
-    width: 300px; 
-    /* margin-right: 20px;  */
-    margin-bottom: 10px;
-}
-
-.piece{
+.piece {
+    /* border: 1px solid black; */
     display: inline-block;
     margin-right: 20px;
     margin-bottom: 30px;
@@ -316,17 +310,40 @@ ul li:hover {
     box-sizing: border-box;
 }
 
-.piece h4{
+.piece h4 {
     padding-left: 10px;
     color: black;
     font-weight: bolder;
+    width: -moz-fit-content;
+    width: fit-content;
 }
 
-.piece p{
+.piece p {
     text-align: right;
     padding-left: 10px;
     color: rgb(31, 31, 130);
     font-weight: bolder;
+    padding-right: 20px;
+}
+
+.img-hover-zoom {
+    margin-bottom: 10px;
+    height: 300px;
+    width: 300px;
+    /* border: 1px solid black; */
+    /* [1.1] Set it as per your need */
+    overflow: hidden;
+    /* [1.2] Hide the overflowing of child elements */
+}
+
+/* [2] Transition property for smooth transformation of images */
+.img-hover-zoom img {
+    transition: transform .5s ease;
+}
+
+/* [3] Finally, transforming the image when container gets hovered */
+.img-hover-zoom:hover img {
+    transform: scale(1.5);
 }
 
 .piece img:hover {
@@ -335,11 +352,11 @@ ul li:hover {
     transform: scale(1.1);
 }
 
-.piece:hover h4{
+.piece:hover h4 {
     font-weight: bolder;
 }
 
-.piece:hover p{
+.piece:hover p {
     text-decoration: underline;
     font-weight: bolder;
 }
@@ -367,12 +384,12 @@ ul li:hover {
     width: 200px;
 }
 
-.about  {
+.about {
     margin: 50px;
     height: 150px;
 }
 
-.about .logo{
+.about .logo {
     width: 200px;
     height: 150px;
     float: left;
@@ -380,7 +397,7 @@ ul li:hover {
     border-right: 1px solid rgb(182, 182, 250);
 }
 
-.about .logo h1{
+.about .logo h1 {
     font-family: 'goodTimes';
 }
 
@@ -392,7 +409,7 @@ ul li:hover {
     float: left;
 }
 
-.help a{
+.help a {
     color: black;
 }
 

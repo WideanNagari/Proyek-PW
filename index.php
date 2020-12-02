@@ -222,12 +222,12 @@ $popular = $conn->query("SELECT * FROM `barang` ORDER by `view` DESC LIMIT 8")->
 <script>
     $(document).ready(function() {
         var pop = <?php echo json_encode($popular) ?>;
-        for(let i = 0; i<pop.length; i++){
+        for (let i = 0; i < pop.length; i++) {
             pop[i]['id'] = pop[i]['id_barang'];
             pop[i]['nama'] = pop[i]['nama_barang'];
             $('#scrolls').append(`
                 <div class="piece" id="${i}" onclick="getPiece(${pop[i]})">
-                    <div class="img1">
+                    <div class="img1 img-hover-zoom">
                         <img src="${pop[i]['path']}">
                     </div>
                     <div class="middle">
@@ -239,11 +239,14 @@ $popular = $conn->query("SELECT * FROM `barang` ORDER by `view` DESC LIMIT 8")->
 
             $(`#${i}`).click(function() {
                 document.getElementById(`${i}`).setAttribute("name", "query");
-                $.get("sendInfo.php", { query: pop[i] }, function(x) {
+                $.get("sendInfo.php", {
+                    query: pop[i]
+                }, function(x) {
                     document.getElementById("btnn").click();
                 });
             });
         }
     });
 </script>
+
 </html>

@@ -234,7 +234,7 @@ $popular = $conn->query("SELECT * FROM `barang` ORDER by `view` DESC LIMIT 8")->
             pop[i]['nama'] = pop[i]['nama_barang'];
             $('#scrolls').append(`
                 <div class="piece" id="${i}" onclick="getPiece(${pop[i]})">
-                    <div class="img1">
+                    <div class="img1 img-hover-zoom">
                         <img src="${pop[i]['path']}">
                     </div>
                     <div class="middle">

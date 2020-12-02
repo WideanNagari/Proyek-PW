@@ -1,6 +1,11 @@
 <?php
 require_once("connection.php");
 $sukses = false;
+
+if ($user_login == null) {
+    header("location: index.php");
+}
+
 if (isset($_POST["topup"])) {
     $user_login;
     $user_login["saldo"] += $_POST["nominal"];
@@ -83,11 +88,6 @@ if (isset($_POST["topup"])) {
                             <a href="submenu.php?type=shoes-men">Men</a>
                         </div>
                     </div>
-                    <div class="dropdown">
-                        <form method="POST">
-                            <button formaction="profile.php" style="font-size:15px; margin-left: 20px;">Back</button>
-                        </form>
-                    </div>
                     <form action="" method="POST">
                         <div class="search-box">
                             <input type="text" name="searchText" class="search-txt" placeholder="Type to search" />
@@ -112,20 +112,36 @@ if (isset($_POST["topup"])) {
                             if (value == "card") {
                                 document.getElementById('pay1').style.display = "block";
                                 document.getElementById('pay2').style.display = "none";
+
+                                document.getElementById("fname").required = true;
+                                document.getElementById("lname").required = true;
+                                document.getElementById("cardnumber").required = true;
+                                document.getElementById("securitycode").required = true;
+                                document.getElementById("cardexp").required = true;
+
+                                document.getElementById("passPaypal").required = false;
                             } else if (value == "ppal") {
                                 document.getElementById('pay1').style.display = "none";
                                 document.getElementById('pay2').style.display = "block";
+
+                                document.getElementById("fname").required = false;
+                                document.getElementById("lname").required = false;
+                                document.getElementById("cardnumber").required = false;
+                                document.getElementById("securitycode").required = false;
+                                document.getElementById("cardexp").required = false;
+
+                                document.getElementById("passPaypal").required = true;
                             }
                         }
                     </script>
                     <div class="pay1" id="pay1" style="display: none;">
-                        <input type="text" name="fname" placeholder="First Name"> <input type="text" name="lname" placeholder="Last Name"> <br>
+                        <input type="text" id="fname" placeholder="First Name"> <input type="text" id="lname" placeholder="Last Name"> <br>
                         <p>First Name</p>
                         <p>Last Name</p>
-                        <input type="password" name="cardnumber" placeholder="•••• •••• •••• ••••"> <input type="text" name="securitycode" placeholder="CVC"> <br>
+                        <input type="password" id="cardnumber" placeholder="•••• •••• •••• ••••"> <input type="text" id="securitycode" placeholder="CVC"> <br>
                         <p>Credit Card Number</p>
                         <p>Security Code</p> <br>
-                        <input type="date" name="cardexp"> <br>
+                        <input type="date" id="cardexp"> <br>
                         <p>Card Expiration</p>
                     </div>
                     <div class="pay2" id="pay2" style="display: none;">
@@ -143,7 +159,7 @@ if (isset($_POST["topup"])) {
                                 <h2>Input Your Password</h2>
                             </div>
                             <div class="modal-body">
-                                <p><input type="password" name="pass" placeholder="Input Password" required></p>
+                                <p><input type="password" name="pass" id="passPaypal" placeholder="Input Password"></p>
                             </div>
                             <div class="modal-footer">
                                 <h3><button name="pass" id="pass" type="button">Submit Password</button></h3>
