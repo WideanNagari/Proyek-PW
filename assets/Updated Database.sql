@@ -20,9 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `outfitlabs`
 --
-DROP DATABASE IF EXISTS `outfitlabs`;
-CREATE DATABASE IF NOT EXISTS `outfitlabs` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `outfitlabs`;
 
 -- --------------------------------------------------------
 

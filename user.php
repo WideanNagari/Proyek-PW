@@ -29,15 +29,15 @@ $popular = $conn->query("SELECT * FROM `barang` ORDER by `view` DESC LIMIT 8")->
                     <h1>Outfit Labs</h1>
                 </a>
                 <form method="POST">
-                    <button type="submit" name="logOut" formaction="logout.php">
+                    <button type="submit" class="menu2" name="logOut" formaction="logout.php">
                         <img src="./assets/icon/logout.png"><br>
                         Log Out
                     </button>
-                    <button type="submit" name="shopBag" formaction="mybag.php">
+                    <button type="submit" class="menu2" name="shopBag" formaction="mybag.php">
                         <img src="./assets/icon/shopBag.png"> <br>
                         Shop Bag
                     </button>
-                    <button type="submit" name="signIn" formaction="profile.php">
+                    <button type="submit" class="menu2" name="signIn" formaction="profile.php">
                         <img src="./assets/icon/signIn.png"> <br>
                         <?= $user_login['nama'] ?>
                     </button>

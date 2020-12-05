@@ -49,10 +49,12 @@ if (isset($_SESSION['user'])) {
                         </button>
                     </form>
                 <?php } else { ?>
-                    <button type="submit" name="signIn" formaction="login.php">
-                        <img src="./assets/icon/signIn.png"> <br>
-                        Sign in
-                    </button>
+                    <form method="POST">
+                        <button type="submit" name="signIn" formaction="login.php">
+                            <img src="./assets/icon/signIn.png"> <br>
+                            Sign in
+                        </button>
+                    </form>
                 <?php } ?>
             </div>
             <div class="navbar">
@@ -114,7 +116,7 @@ if (isset($_SESSION['user'])) {
                 <h1 style="text-align: center;">Selamat Datang di OutfitLabs!</h1>
                 <div class="isi">
                     <p style="margin-bottom: 20px; font-size: 25px;">Yuk simak beberapa langkah dibawah ini sebelum berbelanja!</p>
-                    <p class="odd"> <img src="./assets/help/login.png">
+                    <p class="odd"> <img src="./assets/help/login.PNG">
                         1. Pastikan anda login terlebih dahulu agar bisa menambahkan barang ke MyBag.
                         Untuk login, anda bisa menekan tombol sign in yang terletak dibagian kanan atas layar anda.
                         Apabila anda belum memiliki akun, silahkan melakukan register di tab yang terletak disamping tab login.
@@ -123,34 +125,34 @@ if (isset($_SESSION['user'])) {
                         2. Silahkan mencari barang yang anda ingin kan.
                         Anda dapat mencari produk berdasarkan kategori dengan menekan tab navigasi yang berada dibagian atas.
                         Anda juga dapat mencari produk berdasarkan nama dengan cara mengetikkannya dibagian pencarian (logo search).
-                        <img src="./assets/help/submenu.png">
+                        <img src="./assets/help/submenu.PNG">
                     </p>
-                    <p class="odd"> <img src="./assets/help/addmybag.png">
+                    <p class="odd"> <img src="./assets/help/addmybag.PNG">
                         3. Pilih barang yang anda ingin kan dan tekan tombol "Tambahkan Ke MyBag"
                     </p>
                     <p class="even">
                         4. Masuk ke halaman Shop Bag dan sesuaikan jumlah barang yang anda inginkan.
                         Anda juga bisa menghapus barang yang tidak jadi anda beli.
                         Bila sudah yakin, silahkan tekan tombol "Checkout".
-                        <img src="./assets/help/cart.png">
+                        <img src="./assets/help/cart.PNG">
                     </p>
                     <p class="odd">
-                        <img src="./assets/help/topup.png">
+                        <img src="./assets/help/topup.PNG">
                         5. Pastikan saldo anda cukup, bila tidak cukup, anda bisa melakukan top up saldo dihalaman profile.
                     </p>
                     <p class="even">
                         6. Silahkan atur jasa kurir yang ingin anda pakai dan voucher promo (jika ada) untuk mendapatkan potongan harga.
                         Kemudian, tekan tombol "Buat Pesanan" untuk melakukan konfirmasi.
-                        <img src="./assets/help/pesan.png">
+                        <img src="./assets/help/pesan.PNG">
                     </p>
                     <p class="odd">
-                        <img src="./assets/help/kirim.png">
+                        <img src="./assets/help/kirim.PNG">
                         7. Barang anda akan dikirim dengan estimasi waktu tertentu.
                         Anda dapat melihat status pengiriman barang di halaman "Status Pengiriman" yang terletak dihalaman profile.
                     </p>
                     <p class="even">
                         8. Apabila barang anda sudah sampai, anda dapat memberikan review di halaman "History Pembelian" yang terletak dihalaman Profile.
-                        <img src="./assets/help/rate1.png">
+                        <img src="./assets/help/rate1.PNG">
                     </p>
                 </div>
             </div>

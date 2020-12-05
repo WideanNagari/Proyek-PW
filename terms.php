@@ -49,10 +49,12 @@ if (isset($_SESSION['user'])) {
                         </button>
                     </form>
                 <?php } else { ?>
-                    <button type="submit" name="signIn" formaction="login.php">
-                        <img src="./assets/icon/signIn.png"> <br>
-                        Sign in
-                    </button>
+                    <form method="POST">
+                        <button type="submit" name="signIn" formaction="login.php">
+                            <img src="./assets/icon/signIn.png"> <br>
+                            Sign in
+                        </button>
+                    </form>
                 <?php } ?>
             </div>
             <div class="navbar">

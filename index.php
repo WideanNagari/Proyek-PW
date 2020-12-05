@@ -30,7 +30,7 @@ $popular = $conn->query("SELECT * FROM `barang` ORDER by `view` DESC LIMIT 8")->
                     <h1>Outfit Labs</h1>
                 </a>
                 <form method="POST">
-                    <button type="submit" name="signIn" id="login" formaction="login.php">
+                    <button type="submit" class="menu2" name="signIn" id="login" formaction="login.php">
                         <img src="./assets/icon/signIn.png"> <br>
                         Sign in
                     </button>

@@ -47,9 +47,8 @@
         }
         if($berhasil == 1){
             $sukses = 1;
-            mysqli_query($conn, "insert into barang values('$id','$idjenis','$nama','$harga','$stok','$desc','$path')");
+            mysqli_query($conn, "insert into barang values('$id','$idjenis','$nama','$harga','$stok','$desc',0,5,'$path')");
         }
-        
 
         $id = "BA";
         $result = mysqli_query($conn, "select * from barang");
@@ -151,7 +150,7 @@
             Harga  <input type="text" name="harga" id="price" style="margin-left:76px;" onkeypress="return hanyaAngka(event)" required><br><br>
             Stok  <input type="text" name= "stok" id="stock" style="margin-left:87px;" onkeypress="return hanyaAngka(event)" required><br><br>
             Import Gambar <input type="file" name="myFile" id="" style="margin-left:5px;background:white;" /><br /><br>
-            Deskripsi: <textarea name="deskripsi" id="desc" cols="65" rows="23" style="margin-left:91px; resize:none; border-radius:7px;padding:10px;"></textarea>
+            Deskripsi: <textarea name="deskripsi" id="desc" cols="65" rows="23" style="margin-left:50px; resize:none; border-radius:7px;padding:10px;"></textarea>
             <button type="submit" style="margin-left: 90px;" id="ganti" name="edit">Edit</button>
             <button type="submit" style="margin-left: 90px;" id="tambah" name="add">Tambah</button>
         </form>
