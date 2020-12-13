@@ -115,7 +115,7 @@ if (isset($_SESSION['user'])) {
             <div class="kanan">
                 <h1 style="text-align: center;">Selamat Datang di OutfitLabs!</h1>
                 <div class="isi">
-                    <p style="margin-bottom: 20px; font-size: 25px;">Yuk simak beberapa langkah dibawah ini sebelum berbelanja!</p>
+                    <p style="margin-bottom: 20px; font-size: 25px;text-align: center;">Yuk simak beberapa langkah dibawah ini sebelum berbelanja!</p>
                     <p class="odd"> <img src="./assets/help/login.PNG">
                         1. Pastikan anda login terlebih dahulu agar bisa menambahkan barang ke MyBag.
                         Untuk login, anda bisa menekan tombol sign in yang terletak dibagian kanan atas layar anda.

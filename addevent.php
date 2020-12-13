@@ -58,9 +58,8 @@
         mysqli_query($conn,"update event set id_event = '$id' where id_event='$id'");
         mysqli_query($conn,"update event set nama_event = '$nama' where id_event='$id'");
         mysqli_query($conn,"update event set diskon = '$diskon1' where id_event='$id'");
-        mysqli_query($conn,"update event set diskon (%) = '$diskon2' where id_event='$id'");
+        mysqli_query($conn,"update event set diskon2 = '$diskon2' where id_event='$id'");
         mysqli_query($conn,"update event set status = '$status' where id_event='$id'");
-
         $event = array(
             'id' => $id,
             'nama' => $nama,

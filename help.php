@@ -115,7 +115,7 @@ $kurir = $conn->query("SELECT * FROM `kurir`")->fetch_all(MYSQLI_ASSOC);
                 <a href="HowTS.php"><button>How To Shop</button></a>
             </div>
             <div class="kanan">
-                <h2>Terms & Conditions</h2>
+                <h2>Help</h2>
                 <p>Latest version: 27/11/2020</p>
                 <button id="b1" type="button">Bisakah saya membatalkan atau mengubah pesanan saya? </button> <br>
                 <div id="t1" style="display: none;">

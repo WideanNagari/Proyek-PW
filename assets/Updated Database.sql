@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 28, 2020 at 06:25 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.10
+-- Host: localhost:3306
+-- Generation Time: Dec 13, 2020 at 02:25 PM
+-- Server version: 10.3.16-MariaDB
+-- PHP Version: 7.3.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,8 +19,11 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `outfitlabs`
+-- Database: `id15539494_outfitlabs`
 --
+DROP DATABASE IF EXISTS `outfitlabs`;
+CREATE DATABASE IF NOT EXISTS `outfitlabs` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `outfitlabs`;
 
 -- --------------------------------------------------------
 
@@ -44,21 +48,21 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_barang`, `id_jenis`, `nama_barang`, `harga`, `stok`, `deskripsi`, `view`, `rate`, `path`) VALUES
-('BA001', 'JB001', 'Adidas Athletics Graphic Tee', '330000', '3', '', 8, 5, './assets/pic/BA001.png'),
-('BA002', 'JB001', 'ASSC X Undefeated 2015 Tee', '2400000', '3', '', 5, 5, './assets/pic/BA002.png'),
+('BA001', 'JB001', 'Adidas Athletics Graphic Tee', '330000', '1', '', 14, 5, './assets/pic/BA001.png'),
+('BA002', 'JB001', 'ASSC X Undefeated 2015 Tee', '2400000', '3', '', 7, 5, './assets/pic/BA002.png'),
 ('BA003', 'JB001', 'Long-sleeved Top Long', '179000', '3', '', 0, 5, './assets/pic/BA003.png'),
-('BA004', 'JB001', 'RickAndMorty T-Shirt', '249000', '3', '', 0, 5, './assets/pic/BA004.png'),
+('BA004', 'JB001', 'RickAndMorty T-Shirt', '249000', '3', '', 1, 5, './assets/pic/BA004.png'),
 ('BA005', 'JB001', 'RipnDip Hiker Nerm Tee', '680000', '3', '', 0, 5, './assets/pic/BA005.png'),
 ('BA006', 'JB001', 'Thrasher Flame T-shirt', '699000', '3', '', 0, 5, './assets/pic/BA006.png'),
 ('BA007', 'JB001', 'V-neck T-shirt Regular', '149000', '2', '', 0, 5, './assets/pic/BA007.png'),
-('BA008', 'JB002', 'Fred Perry High Neck Dress', '1899000', '3', '', 1, 5, './assets/pic/BA008.png'),
+('BA008', 'JB002', 'Fred Perry High Neck Dress', '1899000', '1', '', 7, 2.5, './assets/pic/BA008.png'),
 ('BA009', 'JB002', 'Glittery Shirt', '899000', '4', '', 0, 5, './assets/pic/BA009.png'),
 ('BA010', 'JB002', 'Imitation Leather Shirt Jacket', '599000', '4', '', 0, 5, './assets/pic/BA010.png'),
 ('BA011', 'JB002', 'Jersey Top', '70000', '4', '', 0, 5, './assets/pic/BA011.png'),
-('BA012', 'JB002', 'Large-collared Blouse leopard', '349000', '4', '', 1, 5, './assets/pic/BA012.png'),
-('BA013', 'JB002', 'Short Polo-neck Top', '149000', '4', '', 0, 5, './assets/pic/BA013.png'),
-('BA014', 'JB002', 'Tie-detail Dress', '349000', '4', '', 0, 5, './assets/pic/BA014.png'),
-('BA015', 'JB003', 'Black Embroidered Unisex Jogger Pants', '240000', '1', '', 13, 5, './assets/pic/BA015.png'),
+('BA012', 'JB002', 'Large-collared Blouse leopard', '349000', '4', '', 6, 5, './assets/pic/BA012.png'),
+('BA013', 'JB002', 'Short Polo-neck Top', '149000', '3', '', 1, 5, './assets/pic/BA013.png'),
+('BA014', 'JB002', 'Tie-detail Dress', '349000', '4', '', 1, 5, './assets/pic/BA014.png'),
+('BA015', 'JB003', 'Black Embroidered Unisex Jogger Pants', '240000', '1', '', 16, 5, './assets/pic/BA015.png'),
 ('BA016', 'JB003', 'Dark Blue Straight Pants', '5960000', '3', '', 0, 5, './assets/pic/BA016.png'),
 ('BA017', 'JB003', 'Dark Green Mens Chino', '1199000', '3', '', 0, 5, './assets/pic/BA017.png'),
 ('BA018', 'JB003', 'Lead Pants Speed', '1199000', '3', '', 0, 5, './assets/pic/BA018.png'),
@@ -73,24 +77,26 @@ INSERT INTO `barang` (`id_barang`, `id_jenis`, `nama_barang`, `harga`, `stok`, `
 ('BA027', 'JB004', 'Grey Long Wide-Leg Paperbag Pants', '11980000', '2', '', 0, 5, './assets/pic/BA027.png'),
 ('BA028', 'JB004', 'Orange Ginger Hemal Wide Leg Trousser', '2190000', '2', '', 0, 5, './assets/pic/BA028.png'),
 ('BA029', 'JB008', 'Checked Print Fringed Blazer', '1799000', '5', '', 1, 5, './assets/pic/BA029.png'),
-('BA030', 'JB008', 'Cross Button Blazer', '1399000', '0', '', 7, 3.5, './assets/pic/BA030.png'),
+('BA030', 'JB008', 'Cross Button Blazer', '1399000', '0', '', 8, 3.5, './assets/pic/BA030.png'),
 ('BA031', 'JB005', 'Faux Shearling-Lined Corduroy Jacket', '1399000', '5', '', 0, 5, './assets/pic/BA031.png'),
 ('BA032', 'JB005', 'Faux Shearling-Lined Jacket', '1799000', '5', '', 0, 5, './assets/pic/BA032.png'),
 ('BA033', 'JB008', 'Tweed Blazer', '1799000', '5', '', 2, 5, './assets/pic/BA033.png'),
 ('BA034', 'JB005', 'Wool College Bomber Jacket', '1599000', '5', '', 1, 5, './assets/pic/BA034.png'),
-('BA035', 'JB009', 'Chain Crossbody Bag', '479000', '4', '', 2, 5, './assets/pic/BA035.png'),
+('BA035', 'JB009', 'Chain Crossbody Bag', '479000', '4', '', 3, 5, './assets/pic/BA035.png'),
 ('BA036', 'JB006', 'External Pocket Tote Briefcase', '1199000', '4', '', 0, 5, './assets/pic/BA036.png'),
-('BA037', 'JB009', 'Nylon Baguette Bag', '479000', '1', '', 5, 5, './assets/pic/BA037.png'),
+('BA037', 'JB009', 'Nylon Baguette Bag', '479000', '1', '', 6, 5, './assets/pic/BA037.png'),
 ('BA038', 'JB006', 'Technical Fabric Backpack', '999000', '0', '', 4, 5, './assets/pic/BA038.png'),
 ('BA039', 'JB006', 'Technical Fabric Cross-Body Bag', '479000', '2', '', 0, 5, './assets/pic/BA039.png'),
-('BA040', 'JB009', 'Tortoiseshell Baguette Bag', '359000', '4', '', 0, 5, './assets/pic/BA040.png'),
-('BA041', 'JB007', 'Black White Campo Sneakers', '2650000', '5', '', 0, 5, './assets/pic/BA041.png'),
-('BA042', 'JB010', 'Fuchsia Hoya Heels Shoes', '6923000', '2', '', 4, 5, './assets/pic/BA042.png'),
-('BA043', 'JB010', 'Gold Oversized Pearl Heeled Slip On', '2116000', '0', '', 5, 5, './assets/pic/BA043.png'),
+('BA040', 'JB009', 'Tortoiseshell Baguette Bag', '359000', '4', '', 1, 5, './assets/pic/BA040.png'),
+('BA041', 'JB007', 'Black White Campo Sneakers', '2650000', '5', '', 1, 5, './assets/pic/BA041.png'),
+('BA042', 'JB010', 'Fuchsia Hoya Heels Shoes', '6923000', '2', '', 5, 5, './assets/pic/BA042.png'),
+('BA043', 'JB010', 'Gold Oversized Pearl Heeled Slip On', '2116000', '0', '', 6, 5, './assets/pic/BA043.png'),
 ('BA044', 'JB007', 'Mens Blue White Canvas Sneakers', '3750000', '1', '', 0, 5, './assets/pic/BA044.png'),
 ('BA045', 'JB007', 'Mens Orange Repeat Low Triplet Plain Light', '1990000', '5', '', 0, 5, './assets/pic/BA045.png'),
-('BA046', 'JB010', 'Multicolor Raffia Printed Canvas Shoes', '4790000', '6', '', 0, 5, './assets/pic/BA046.png'),
-('BA047', 'JB007', 'White Green Dreamy Leather Sabot', '6790000', '6', '', 0, 5, './assets/pic/BA047.png');
+('BA046', 'JB010', 'Multicolor Raffia Printed Canvas Shoes', '4790000', '6', '', 1, 5, './assets/pic/BA046.png'),
+('BA047', 'JB007', 'White Green Dreamy Leather Sabot', '6790000', '6', '', 0, 5, './assets/pic/BA047.png'),
+('BA048', 'JB002', 'barang contoh2', '300000', '32', 'ini barang contohh', 0, 5, './assets/pic/BA048.jpg'),
+('BA049', 'JB007', 'sepatu cowok', '235000', '3', 'ini sepatu baru', 1, 5, './assets/pic/BA049.jpg');
 
 -- --------------------------------------------------------
 
@@ -114,9 +120,14 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`id_customer`, `nama_customer`, `password`, `email`, `alamat`, `id_provinsi`, `saldo`, `akses`) VALUES
-('CU001', 'user1', '$2y$10$sKFPvKjsgGPqQNy5v0mau.8wU5Axl137PTAQdoF/iQ6avVELVB.Mu', 'user1@gmail.com', 'entah', 'ID027', '0', '1'),
-('CU002', 'widean', '$2y$10$sQsx62XrmFx9IT/dCDseiOMyBWnirU1xlqBO9BJIo.oSwomTp5nYq', 'widean@gmail.com', 'aaaas', 'ID016', '936187220', '1'),
-('CU003', 'wideann', '$2y$10$ehuhlg6OG.CPMEfSpq9vheacEfSti7HdD1hEzMPkEL6uS00/Crkkq', 'widean@gmail.coms', 'aaaaa', 'ID012', '12572000', '1');
+('CU001', 'user1', '$2y$10$sKFPvKjsgGPqQNy5v0mau.8wU5Axl137PTAQdoF/iQ6avVELVB.Mu', 'user1@gmail.com', 'entah', 'ID027', '0', '0'),
+('CU002', 'widean', '$2y$10$sQsx62XrmFx9IT/dCDseiOMyBWnirU1xlqBO9BJIo.oSwomTp5nYq', 'widean@gmail.com', 'jalan2', 'ID018', '936197220', '0'),
+('CU003', 'wideann', '$2y$10$ehuhlg6OG.CPMEfSpq9vheacEfSti7HdD1hEzMPkEL6uS00/Crkkq', 'widean@gmail.coms', 'aaaaa', 'ID012', '12256000', '1'),
+('CU004', 'david', '$2y$10$O15SrZqfmcD5Z/CijLTA6.yBGcDRwDeZrNck9V5b5FtwfpVwWh/Qm', 'davidcahyadi.022@gmail.com', 'Jalan ABC', 'ID016', '1000000', '1'),
+('CU005', 'indah', '$2y$10$KC1iDQ.Xea0conKL0P/SA.B77fC5cI.6bUdwEuzB0GM8ZA5lXPB7C', 'indah@example.com', 'jalan-jalan kemana saja', 'ID017', '0', '1'),
+('CU006', 'Yantii28', '$2y$10$9vxarb.yumFWo/fwZyhxmuF3yvjRHWMsWkzt9/VETq61rrFhktTM.', 'lindayanti928@gmail.com', 'Jln samalona', 'ID027', '518800', '1'),
+('CU007', '12', '$2y$10$qV/KKVzvTX9GWESzfe3hAum6zzVR6eqCmdYIYnhlxgdpKfbPqW7nK', 'HH', '12', 'ID018', '0', '1'),
+('CU008', 'widean33', '$2y$10$EdSqGTgfEkFhUlLQ7dAdXuGSLDuEzxVPm4vdi14Hq53op.eR3m4Pi', 'xx@gmail.com', 'jalan apa?', 'ID018', '6525800', '1');
 
 -- --------------------------------------------------------
 
@@ -128,7 +139,7 @@ CREATE TABLE `event` (
   `id_event` varchar(10) NOT NULL,
   `nama_event` varchar(30) NOT NULL,
   `diskon` varchar(20) NOT NULL DEFAULT '0',
-  `diskon (%)` varchar(10) NOT NULL DEFAULT '0',
+  `diskon2` varchar(10) NOT NULL DEFAULT '0',
   `status` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -136,13 +147,15 @@ CREATE TABLE `event` (
 -- Dumping data for table `event`
 --
 
-INSERT INTO `event` (`id_event`, `nama_event`, `diskon`, `diskon (%)`, `status`) VALUES
+INSERT INTO `event` (`id_event`, `nama_event`, `diskon`, `diskon2`, `status`) VALUES
 ('EV001', 'OutfitLabs Anniversary', '0', '30', '0'),
 ('EV002', 'OutfitLabs ShopFest', '40000', '0', '1'),
 ('EV003', 'Hari Belanja Online Nasional', '15000', '10', '0'),
 ('EV004', 'Black Friday', '20000', '20', '1'),
 ('EV005', 'Super Shopping Day', '50000', '0', '0'),
-('EV006', 'x', '12500', '1', '0');
+('EV006', 'x', '12500', '1', '0'),
+('EV007', 'aaa', '20000', '1', '1'),
+('EV008', 'event baru', '50002', '1', '0');
 
 -- --------------------------------------------------------
 
@@ -241,7 +254,11 @@ CREATE TABLE `mybag` (
 
 INSERT INTO `mybag` (`id`, `id_user`, `id_barang`, `jumlah`, `status`) VALUES
 (14, 'CU002', 'BA015', 1, 2),
-(15, 'CU002', 'BA008', 0, 1);
+(15, 'CU002', 'BA008', 0, 1),
+(17, 'CU004', 'BA001', 1, 1),
+(18, 'CU002', 'BA012', 1, 1),
+(19, 'CU004', 'BA004', 1, 1),
+(26, 'CU003', 'BA041', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -272,7 +289,12 @@ INSERT INTO `pengiriman` (`id_kirim`, `id_transaksi`, `waktu_kirim`, `waktu_samp
 ('KI007', 'TR007', '26 November 2020 at 20:13', '26 November 2020 at 20:17', '1606396630', 'finished'),
 ('KI008', 'TR008', '26 November 2020 at 20:14', '26 November 2020 at 20:18', '1606396728', 'finished'),
 ('KI009', 'TR009', '26 November 2020 at 20:45', '26 November 2020 at 20:49', '1606398563', 'finished'),
-('KI010', 'TR010', '28 November 2020 at 12:23', '28 November 2020 at 12:27', '1606541268', 'onGoing');
+('KI010', 'TR010', '28 November 2020 at 12:23', '28 November 2020 at 12:27', '1606541268', 'finished'),
+('KI011', 'TR011', '05 December 2020 at 16:53', '05 December 2020 at 16:57', '1607162249', 'onGoing'),
+('KI012', 'TR012', '05 December 2020 at 20:37', '05 December 2020 at 20:44', '1607175850', 'onGoing'),
+('KI013', 'TR013', '05 December 2020 at 20:37', '05 December 2020 at 20:44', '1607175850', 'onGoing'),
+('KI014', 'TR014', '13 December 2020 at 12:40', '13 December 2020 at 12:50', '1607838640', 'finished'),
+('KI015', 'TR015', '13 December 2020 at 12:41', '13 December 2020 at 12:51', '1607838679', 'finished');
 
 -- --------------------------------------------------------
 
@@ -358,7 +380,12 @@ INSERT INTO `transaksi` (`id_transaksi`, `id_customer`, `id_barang`, `jumlah`, `
 ('TR007', 'CU002', 'BA042', '1', '6923000', '0', '26000', '6949000', '-'),
 ('TR008', 'CU002', 'BA042', '1', '6923000', '0', '26000', '6949000', '-'),
 ('TR009', 'CU002', 'BA023', '1', '6190000', '1258000', '26000', '4958000', '-'),
-('TR010', 'CU003', 'BA043', '1', '2116000', '40000', '26000', '2102000', '-');
+('TR010', 'CU003', 'BA043', '1', '2116000', '40000', '26000', '2102000', '-'),
+('TR011', 'CU003', 'BA001', '1', '330000', '40000', '26000', '316000', '-'),
+('TR012', 'CU006', 'BA013', '1', '149000', '115800', '59000', '92200', '-'),
+('TR013', 'CU006', 'BA001', '1', '330000', '115800', '59000', '273200', '-'),
+('TR014', 'CU008', 'BA008', '1', '1899000', '399800', '63000', '1562200', '1'),
+('TR015', 'CU008', 'BA008', '1', '1899000', '40000', '63000', '1922000', '4');
 
 --
 -- Indexes for dumped tables
@@ -432,7 +459,7 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `mybag`
 --
 ALTER TABLE `mybag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -43,7 +43,7 @@ require_once("connection.php");
                             'id' => $row["id_event"],
                             'nama' => $row["nama_event"],
                             'diskon1' => $row["diskon"],
-                            'diskon2' => $row["diskon (%)"],
+                            'diskon2' => $row["diskon2"],
                             'status' => $row["status"]
                         );
                         $data[] = $event;

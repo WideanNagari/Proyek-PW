@@ -16,8 +16,8 @@
     $error = -1;
     
     if (isset($_POST["checkout2"])) {
-        if ($user_login["saldo"] >= $_POST['checkout2']) {
             $harga2 = explode(",",$_POST["checkout2"]);
+        if ($user_login["saldo"] >= $harga2[0]) {
             $kirim = mysqli_query($conn, "SELECT * FROM provinsi p, harga_pengiriman h WHERE p.id_provinsi = '$idprov' AND p.id_harga=h.id_harga");
             $waktu = 0;
             while ($row = mysqli_fetch_array($kirim)) {
@@ -271,7 +271,7 @@
                         while ($row = mysqli_fetch_array($event)) {
                             $nama = $row["nama_event"];
                             $diskon1 = $row["diskon"];
-                            $diskon2 = $row["diskon (%)"];
+                            $diskon2 = $row["diskon2"];
                             $diskon = array($diskon1, $diskon2);
                         ?>
                             <option value=<?= json_encode($diskon) ?>>
